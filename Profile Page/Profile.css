@@ -1,9 +1,10 @@
+
+/* main css*/
+
 body {
     margin: 0;
     padding: 0;
     font-family: 'Playfair Display', serif;
-    background-image: url("../images/background-home.png");
-	background-size:cover;
     color: #ded0c8;
 }
 
@@ -62,25 +63,14 @@ padding:0.5em;
 
 
 
-.text-content #s1{
-    font-size: 2em;
-	font-weight:bold;
-}
-.text-content #s2{
-    color: #d4af37;
-    font-size: 0.8em;
-}
-
-.text-content p {
-    font-size: 1.5em;
-    line-height: 1.5;
-    margin-bottom: 20px;
-}
-
-
 .icons img {
     width: 2em;
     height: 2em;
     border-radius: 10px;
 	padding:0 0.5em;
 }
+ 
+
+/* profile css*/
+
+
