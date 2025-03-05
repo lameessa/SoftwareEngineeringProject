@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wishlist - Reesha</title>
+    <link rel="stylesheet" href="WishlistStyle.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+				<img src="../images/logo.png" alt="Reesha">
+				<span>Reesha ريشة</span>
+		</div>
+		<nav>
+            <ul class="nav-links">
+                <li><a href="../Home Page/index.html">Home</a></li>
+                <li><a href="../Search.html">Search</a></li>
+                <li><a href="../Auction.html">Auctions</a></li>
+                <li><a href="../Cart.html">Cart</a></li>
+            </ul>
+            <div class="icons">
+                <img src="../images/heart.png" alt="Wishlist" id="wishlist-header">
+                <img src="../images/profile.png" alt="Profile" id="profile-header">
+            </div>
+        </nav>
+    </header>
+
+    <main class="wishlist-container">
+        <h1 class="wishlist-title">My Wishlist</h1>
+        <p class="collection-desc">Save your favorite pieces, revisit them anytime, and bring home the art you love.</p>
+		<div class="divider"></div>
+        <div class="wishlist-grid">
+            <div class="wishlist-item">
+                <img src="../images/cubism2.png" alt="Woman">
+				<div class="art-wish-text">
+					<p id="art-details">
+						<span id="art-title">Distorta</span><br>
+						<span id="artist">Yasmin Azzam</span>‎ ‎ ‎ 
+						<span id="price">$480</span>
+					</p>
+					<span id="remove-wishlist"> × </span>
+				</div>
+            </div>
+			<div class="wishlist-item">
+                <img src="../images/exprB.png" alt="Roses">
+				<div class="art-wish-text">
+					<p id="art-details">
+						<span id="art-title">Evanscent</span><br>
+						<span id="artist">Batool Aziz</span>‎ ‎ ‎ 
+						<span id="price">$580</span>
+					</p>
+					<span id="remove-wishlist"> × </span>
+				</div>
+            </div>
+            <div class="wishlist-item">
+                <img src="../images/jpn-exp.png" alt="Birds">
+				<div class="art-wish-text">
+					<p id="art-details">
+						<span id="art-title">Tsubasa (翼)</span><br>
+						<span id="artist">Roya Shirazi</span>‎ ‎ ‎ 
+						<span id="price">$860</span>
+					</p>
+					<span id="remove-wishlist"> × </span>
+				</div>
+            </div>
+			<div class="wishlist-item">
+                <img src="../images/realism444.png" alt="Swans">
+				<div class="art-wish-text">
+					<p id="art-details">
+						<span id="art-title">Swanmoon</span><br>
+						<span id="artist">Noor Qamar</span>‎ ‎ ‎ 
+						<span id="price">$380</span>
+					</p>
+					<span id="remove-wishlist"> × </span>
+				</div>
+            </div>
+            <div class="wishlist-item">
+                <img src="../images/abstract-painting1.jpg" alt="Abstract">
+				<div class="art-wish-text">
+					<p id="art-details">
+						<span id="art-title">Undercurrent</span><br>
+						<span id="artist">Nadir Elbaz</span>‎ ‎ ‎ 
+						<span id="price">$760</span>
+					</p>
+					<span id="remove-wishlist"> × </span>
+				</div>
+            </div>
+			<div class="wishlist-item">
+                <img src="../images/cubed-painting1.jpg" alt="Woman">
+				<div class="art-wish-text">
+					<p id="art-details">
+						<span id="art-title">Family</span><br>
+						<span id="artist">Laila Asmari</span>‎ ‎ ‎ 
+						<span id="price">$810</span>
+					</p>
+					<span id="remove-wishlist"> × </span>
+				</div>
+            </div>
+            <div class="wishlist-item">
+                <img src="../images/abst2.png" alt="Abstract">
+				<div class="art-wish-text">
+					<p id="art-details">
+						<span id="art-title">Ebb & Flow</span><br>
+						<span id="artist">Faris Alami</span>‎ ‎ ‎ 
+						<span id="price">$165</span>
+					</p>
+					<span id="remove-wishlist"> × </span>
+				</div>
+            </div>
+			<div class="wishlist-item">
+                <img src="../images/realismm.png" alt="Lilies">
+				<div class="art-wish-text">
+					<p id="art-details">
+						<span id="art-title">Petals</span><br>
+						<span id="artist">Zarina parvaneh</span>‎ ‎ ‎ 
+						<span id="price">$420</span>
+					</p>
+					<span id="remove-wishlist"> × </span>
+				</div>
+            </div>
+		</div>
+    </main>
+
+    <footer>
+        <p>&copy; IT320 2025 Reesha. All rights reserved.</p>
+    </footer>
+	
+	<script>
+	// JavaScript to handle the clicks for the elements
+	document.addEventListener("DOMContentLoaded", function() {
+
+    // Redirect to index.html when clicking on the logo
+    document.querySelector(".logo").addEventListener("click", function() {
+        window.location.href = "../Home Page/index.html";
+    });
+    
+    // Redirect to Profile.html when clicking on the profile icon (assuming the user is logged in)
+    document.querySelector("#profile-header").addEventListener("click", function() {
+        window.location.href = "../Profile Page/Profile.html";
+    });
+
+    // Redirect to ArtworkDetails.html when clicking on a wishlist item
+    const wishlistItems = document.querySelectorAll(".wishlist-item");
+    wishlistItems.forEach(item => {
+        item.addEventListener("click", function() {
+            window.location.href = "ArtworkDetails.html";
+        });
+    });
+	/*
+    // Handle add to wishlist from other pages
+    // Assuming you use a function to add to the wishlist (we will save this in localStorage)
+    // This function should be called whenever an item is added to the wishlist on other pages
+    function addToWishlist(artwork) {
+        let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+        wishlist.push(artwork);
+        localStorage.setItem("wishlist", JSON.stringify(wishlist));
+    }
+
+    // Function to load the wishlist from localStorage and display it
+    function loadWishlist() {
+        const wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+        const wishlistGrid = document.querySelector(".wishlist-grid");
+        wishlistGrid.innerHTML = ""; // Clear current wishlist items
+        
+        wishlist.forEach((artwork) => {
+            const wishlistItem = document.createElement("div");
+            wishlistItem.classList.add("wishlist-item");
+            wishlistItem.innerHTML = `
+                <img src="${artwork.image}" alt="${artwork.title}">
+                <div class="art-wish-text">
+                    <p id="art-details">
+                        <span id="art-title">${artwork.title}</span><br>
+                        <span id="artist">${artwork.artist}</span>‎ ‎ ‎ 
+                        <span id="price">${artwork.price}</span>
+                    </p>
+                    <span class="remove-wishlist"> × </span>
+                </div>
+            `;
+            wishlistGrid.appendChild(wishlistItem);
+            
+            // Add event listener for removing from wishlist
+            wishlistItem.querySelector(".remove-wishlist").addEventListener("click", function() {
+                if (confirm("Are you sure you want to remove this artwork from your wishlist?")) {
+                    removeFromWishlist(artwork);
+                    alert("Artwork Removed from wishlist");
+                    loadWishlist(); // Reload wishlist after removal
+                }
+            });
+        });
+    }
+
+    // Function to remove an artwork from wishlist
+    function removeFromWishlist(artwork) {
+        let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+        wishlist = wishlist.filter(item => item.title !== artwork.title); // Remove the artwork
+        localStorage.setItem("wishlist", JSON.stringify(wishlist));
+    }
+
+    // Initial loading of wishlist
+    loadWishlist();
+	});
+	*/
+	</script>
+</body>
+</html>

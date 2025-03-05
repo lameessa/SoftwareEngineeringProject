@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Reesha - Home</title>
+    <title>Home - Reesha</title>
     <link rel="stylesheet" href="indexStyle.css">
 </head>
 <body>
@@ -19,8 +19,8 @@
                 <li><a href="../Cart.html">Cart</a></li>
             </ul>
             <div class="icons">
-                <img src="../images/heart.png" alt="Wishlist">
-                <img src="../images/profile.png" alt="Profile">
+                <img src="../images/heart.png" alt="Wishlist" id="wishlist-header">
+                <img src="../images/profile.png" alt="Profile" id="profile-header">
             </div>
         </nav>
     </header>
@@ -32,8 +32,45 @@
 				and every collector discovers meaning in art. <br>
 				<span id="s2">Reesha is more than a gallery—it’s a movement dedicated to redefining the art experience.</span>
         </div>
-    </main>
-	<footer>
-	</footer>
+	</main>
+	
+    <div class="divider"></div>
+
+    <footer>
+        <p>&copy; IT320 2025 Reesha. All rights reserved.</p>
+    </footer>
+	<script>
+	// JavaScript to handle the clicks for the elements
+	document.addEventListener("DOMContentLoaded", function() {
+
+    // Redirect to index.html when clicking on the logo
+    document.querySelector(".logo").addEventListener("click", function() {
+        window.location.href = "index.html";
+    });
+
+    // Redirect to Wishlist.html when clicking on the wishlist icon
+    document.querySelector("#wishlist-header").addEventListener("click", function() {
+        window.location.href = "../Wishlist Page/Wishlist.html";
+    });
+
+    // Redirect to Login.html or Profile.html based on login status
+    document.querySelector("#profile-header").addEventListener("click", function() {
+        // Check if the user is logged in, assuming a function isLoggedIn() to check this
+        if (isLoggedIn()) {
+            window.location.href = "../Profile Page/Profile.html";
+        } else {
+            window.location.href = "../Login/Login.html";
+        }
+    });
+
+	});
+
+	// Function to check if the user is logged in
+	function isLoggedIn() {
+    // Replace with actual login check logic, such as checking a session or localStorage
+    return localStorage.getItem("userLoggedIn") === "true";  // Example check
+	}
+
+</script>
 </body>
 </html>
