@@ -30,7 +30,8 @@
             <p><span id="s1">Reesha's Vision</span> is to connect artists and collectors <br>
 				in a world where every piece tells a story, every artist finds a voice, <br>
 				and every collector discovers meaning in art. <br>
-				<span id="s2">Reesha is more than a gallery—it’s a movement dedicated to redefining the art experience.</span>
+				<span id="s2">Reesha is more than a gallery—it’s a movement redefining art..</span>
+				<span id="s3"><a href="../Login/Login.html">Enter Your Gallery!</a></span>
         </div>
 	</main>
 	
@@ -53,24 +54,12 @@
         window.location.href = "../Wishlist Page/Wishlist.html";
     });
 
-    // Redirect to Login.html or Profile.html based on login status
+    // Redirect to Profile.html when clicking on the profile icon
     document.querySelector("#profile-header").addEventListener("click", function() {
-        // Check if the user is logged in, assuming a function isLoggedIn() to check this
-        if (isLoggedIn()) {
-            window.location.href = "../Profile Page/Profile.html";
-        } else {
-            window.location.href = "../Login/Login.html";
-        }
+        window.location.href = "../Profile Page/Profile.html";
     });
 
 	});
-
-	// Function to check if the user is logged in
-	function isLoggedIn() {
-    // Replace with actual login check logic, such as checking a session or localStorage
-    return localStorage.getItem("userLoggedIn") === "true";  // Example check
-	}
-
 </script>
 </body>
 </html>

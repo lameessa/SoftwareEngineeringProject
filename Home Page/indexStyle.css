@@ -83,7 +83,7 @@ padding:0.5em;
     font-size: 2em;
 	font-weight:bold;
 }
-.text-content #s2{
+.text-content #s2,.text-content #s3 a{
     color: #d4af37;
     font-size: 0.8em;
 }
