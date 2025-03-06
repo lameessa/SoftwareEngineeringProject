@@ -120,7 +120,7 @@ nav ul li a:hover {
 
 .art-grid {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: no-wrap;
     justify-content: center;
     gap: 20px;
 }
