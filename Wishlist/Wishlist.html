@@ -14,10 +14,10 @@
 		</div>
 		<nav>
             <ul class="nav-links">
-                <li><a href="../Home Page/index.html">Home</a></li>
-                <li><a href="../Search.html">Search</a></li>
-                <li><a href="../Auction.html">Auctions</a></li>
-                <li><a href="../Cart.html">Cart</a></li>
+                <li><a href="../Home/index.html">Home</a></li>
+                <li><a href="../Search/Search.html">Search</a></li>
+                <li><a href="../Auction/Auction.html">Auctions</a></li>
+                <li><a href="../Cart/Cart.html">Cart</a></li>
             </ul>
             <div class="icons">
                 <img src="../images/heart.png" alt="Wishlist" id="wishlist-header">
@@ -132,19 +132,19 @@
 
     // Redirect to index.html when clicking on the logo
     document.querySelector(".logo").addEventListener("click", function() {
-        window.location.href = "../Home Page/index.html";
+        window.location.href = "../Home/index.html";
     });
     
     // Redirect to Profile.html when clicking on the profile icon (assuming the user is logged in)
     document.querySelector("#profile-header").addEventListener("click", function() {
-        window.location.href = "../Profile Page/Profile.html";
+        window.location.href = "../Profile/Profile.html";
     });
 
     // Redirect to ArtworkDetails.html when clicking on a wishlist item
     const wishlistItems = document.querySelectorAll(".wishlist-item");
     wishlistItems.forEach(item => {
         item.addEventListener("click", function() {
-            window.location.href = "ArtworkDetails.html";
+            window.location.href = "../ArtworkDetails/ArtworkDetails.html";
         });
     });
 	/*
