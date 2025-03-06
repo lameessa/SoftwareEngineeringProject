@@ -81,7 +81,10 @@ nav ul li a:hover {
     text-align: left;
     padding: 10px;
 }
+.bio{
+    font-family: 'Georgia';
 
+}
 .divider {
     width: 100%;
     height: 1px;
@@ -101,7 +104,8 @@ nav ul li a:hover {
 }
 
 .bio {
-    font-size: 1.2em;
+    
+    font-size: 1.0em;
     color: #ded0c8;
     max-width: 800px;
 }
@@ -116,7 +120,7 @@ nav ul li a:hover {
 
 .art-grid {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: no-wrap;
     justify-content: center;
     gap: 20px;
 }
@@ -131,6 +135,7 @@ nav ul li a:hover {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
     position: relative; /* Ensure checkbox is positioned relative to art-item */
 }
+
 
 .art-item img {
     width: 100%;
@@ -152,6 +157,11 @@ nav ul li a:hover {
     display: flex;
     justify-content: flex-end; /* Align buttons to the right */
     gap: 20px;
+}
+.art-item p{
+    font-size: 0.9em;
+    font-family:serif;
+
 }
 
 #add-artwork,
@@ -178,8 +188,8 @@ nav ul li a:hover {
     
 }
 
+/* Footer */
 footer {
     text-align: center;
     padding: 1em;
-    background-color: #1e1e1e;
 }
