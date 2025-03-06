@@ -48,6 +48,9 @@ body {
             font-size: 18px;
             font-weight: bold;
         }
+
+
+		
         .shipping, .order-notes {
             padding: 15px 0;
             border-bottom: 1px solid #ddd;
@@ -134,3 +137,24 @@ nav ul li a:hover {
  height: 28px;
  gap: 20px;
  }
+ 
+.delete-btn {
+        background-color: transparent;
+        color: white;
+        border: none;
+        font-size: 20px;
+        cursor: pointer;
+        margin-left: 10px;
+    }
+    
+    .delete-btn:hover {
+        color: gray;
+    }
+
+    /* تنسيق العنصر والمعلومات والزر في صف واحد */
+    .item-info {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+    }
