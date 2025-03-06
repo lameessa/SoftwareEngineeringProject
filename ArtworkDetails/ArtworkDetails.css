@@ -162,3 +162,13 @@
         .add-to-cart:hover {
             background: #513c2e;
         }
+		
+.wishlist-icon {
+    position: absolute;
+    left: 47%; /* تحريكها قليلاً لتكون في المنتصف المناسب */
+    bottom: 26%; /* رفعها للأعلى */
+    width: 30px; /* تصغير الحجم */
+    height: 30px;
+    cursor: pointer;
+}
+
