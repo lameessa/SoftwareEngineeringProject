@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Reesha - Search</title>
+    <link rel="stylesheet" href="SearchStyle.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="../images/logo.png" alt="Reesha">
+            <span>Reesha ريشة</span>
+        </div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="../Home Page/index.html">Home</a></li>
+                <li><a href="../Search.html">Search</a></li>
+                <li><a href="../Auction.html">Auctions</a></li>
+                <li><a href="../Cart.html">Cart</a></li>
+            </ul>
+            <div class="icons">
+                <img src="../images/heart.png" alt="Wishlist">
+                <img src="../images/profile.png" alt="Profile">
+            </div>
+        </nav>
+    </header>
+    <div class="search-container">
+        <input type="text" id="searchBar" placeholder="Search for artists..." oninput="searchArtist()">
+    </div>
+    
+    <!-- Artist Profile Section (Initially Hidden) -->
+    
+    <div id="artist-profile" class="hidden">
+        <div class="profile-container">
+            <img id="artist-photo" src="" alt="Artist Photo">
+            <h2 id="artist-name"></h2>
+        </div>
+    </div>
+    
+
+    <div class="content">
+        <aside class="filters">
+            <h3>Filters</h3>
+            <label for="priceRange">Price Range:</label>
+            <div class="price-range-container">
+                <input type="range" id="priceRange" min="0" max="5000" step="50" value="2500">
+                <span id="priceValue">$2500</span>
+            </div>
+            
+            
+            <label for="category">Category:</label>
+            <select id="category">
+                <option value="all">All</option>
+                <option value="abstract">Abstract</option>
+                <option value="Expressionism">Expressionism</option>
+                <option value="Cubism">Cubism</option>
+                <option value="Realism">Realism</option>
+
+            </select>
+            
+            <label for="size">Size:</label>
+            <select id="size">
+                <option value="all">All</option>
+                <option value="10x15 cm">10x15 cm</option>
+                <option value="13x18 cm">13x18 cm</option>
+                <option value="20x25 cm">20x25 cm</option>
+                <option value="28x36 cm">28x36 cm</option>
+                <option value="40x50 cm">40x50 cm</option>
+
+
+            </select>
+        </aside>
+        
+        <div id="artist-profile" class="hidden">
+            <div class="profile-container">
+                <img id="artist-photo" src="" alt="Artist Photo">
+                <h2 id="artist-name"></h2>
+            </div>
+            <div id="artist-artworks" class="artworks"></div>
+        </div> 
+        <section class="artworks">
+            
+            <div class="art-item" data-category="abstract" data-size="10x15 cm" data-price="760">
+                <img src="../images/abstract-painting1.jpg" alt="Abstract">
+                <h4 id="art-title">Undercurrent</h4>
+                <p id="art-category" style="display: none;"> Abstract</p>
+                <p id="art-size" style="display: none;">Size: 10x15 cm</p>
+                <div class="details-container">
+                    <span id="artists-name">Nadir Elbaz</span>
+                    <span id="art-price">$760</span>
+                </div>
+                <button class="add-to-cart">Add to Cart</button>
+                
+            </div>
+            
+            <div class="art-item" data-category="Expressionism" data-size="10x15 cm" data-price="4000">
+                <img src="../images/expImage1.png" alt="Artwork 1">
+                <h4 id="art-title">Celestina</h4>
+                <p id="art-category" style="display: none;"> Expressionism</p>
+                <p id="art-size" style="display: none;">Size: 10x15 cm</p>
+                <div class="details-container">
+                    <span id="artists-name">Pablo Picasso</span>
+                    <span id="art-price">$4000</span>
+                </div>
+                <button class="add-to-cart">Add to Cart</button>
+                
+            </div>
+
+            <div class="art-item" data-category="Cubism" data-size="13x18 cm" data-price="480">
+                <img src="../images/cubism2.png" alt="Woman">
+                <h4 id="art-title">Distorta</h4>
+                <p id="art-category" style="display: none;"> Cubism</p>
+                <p id="art-size" style="display: none;">Size: 13x18 cm</p>
+                <div class="details-container">
+                    <span id="artists-name">Yasmin Azzam</span>
+                    <span id="art-price">$480</span>
+                </div>
+                <button class="add-to-cart">Add to Cart</button>
+                
+            </div>
+
+            <div class="art-item" data-category="Realism" data-size="20x25 cm" data-price="380">
+                <img src="../images/realism444.png" alt="Swans">
+                <h4 id="art-title">Swanmoon</h4>
+                <p id="art-category" style="display: none;"> Realism</p>
+                <p id="art-size" style="display: none;">20x25 cm</p>
+                <div class="details-container">
+                    <span id="artists-name">Noor Qamar</span>
+                    <span id="art-price">$380</span>
+                </div>
+                <button class="add-to-cart">Add to Cart</button>
+                
+            </div>
+            <div class="art-item" data-category="Expressionism" data-size="28x36 cm" data-price="580">
+                <img src="../images/exprB.png" alt="Roses">
+                <h4 id="art-title">Evanscent</h4>
+                <p id="art-category" style="display: none;"> Expressionism</p>
+                <p id="art-size" style="display: none;">Size: 28x36 cm</p>
+                <div class="details-container">
+                    <span id="artists-name">Batool Aziz</span>
+                    <span id="art-price">$580</span>
+                </div>
+                <button class="add-to-cart">Add to Cart</button>
+                
+            </div>
+
+            
+            <div class="art-item" data-category="Cubism" data-size="40x50 cm" data-price="810">
+                <img src="../images/cubed-painting1.jpg" alt="Woman">
+                <h4 id="art-title">Family</h4>
+                <p id="art-category" style="display: none;"> Cubism</p>
+                <p id="art-size" style="display: none;">Size: 40x50 cm</p>
+                <div class="details-container">
+                    <span id="artists-name">Laila Asmari</span>
+                    <span id="art-price">$810</span>
+                </div>
+                <button class="add-to-cart">Add to Cart</button>
+                
+            </div>
+
+            <div class="art-item" data-category="abstract" data-size="40x50 cm" data-price="165">
+                <img src="../images/abst2.png" alt="Abstract">
+                <h4 id="art-title">Ebb & Flow</h4>
+                <p id="art-category" style="display: none;"> Abstract</p>
+                <p id="art-size" style="display: none;">Size: 40x50 cm</p>
+                <div class="details-container">
+                    <span id="artists-name">Faris Alami</span>
+                    <span id="art-price">$165</span>
+                </div>
+                <button class="add-to-cart">Add to Cart</button>
+                
+            </div>
+
+            <div class="art-item" data-category="Expressionism" data-size="40x50 cm" data-price="860">
+                <img src="../images/jpn-exp.png" alt="Birds">
+                <h4 id="art-title">Tsubasa (翼)</h4>
+                <p id="art-category" style="display: none;"> Expressionism</p>
+                <p id="art-size" style="display: none;">Size: 40x50 cm</p>
+                <div class="details-container">
+                    <span id="artists-name">Roya Shirazi</span>
+                    <span id="art-price">$860</span>
+                </div>
+                <button class="add-to-cart">Add to Cart</button>
+                
+            </div>
+        </section>
+    </div>
+    <footer>
+        <p>&copy; IT320 2025 Reesha. All rights reserved.</p>
+    </footer>
+    <script>
+
+let searchedArtist = ""; // Store the searched artist's name
+
+function searchArtist() {
+    const query = document.getElementById("searchBar").value.trim().toLowerCase();
+    const profileSection = document.getElementById("artist-profile");
+    const profilePhoto = document.getElementById("artist-photo");
+    const profileName = document.getElementById("artist-name");
+    const allArtworks = document.querySelectorAll(".art-item");
+
+    // Reset if search is empty
+    if (query === "") {
+        searchedArtist = ""; // Clear the stored artist name
+        profileSection.classList.add("hidden");
+        allArtworks.forEach(item => item.style.display = "block");
+        return;
+    }
+
+    let found = false;
+    searchedArtist = query; // Store the searched artist
+
+    // Hide all artworks initially
+    allArtworks.forEach(item => {
+        const artistElement = item.querySelector("#artists-name");
+        if (artistElement) {
+            const artistName = artistElement.textContent.trim().toLowerCase();
+
+            // Display only the searched artist's artworks
+            if (artistName === query) {
+                item.style.display = "block";
+                found = true;
+            } else {
+                item.style.display = "none";
+            }
+        }
+    });
+
+    if (found) {
+        profileSection.classList.remove("hidden");
+        profilePhoto.src = "../images/default_artist.png"; // Placeholder image
+        profileName.textContent = query.charAt(0).toUpperCase() + query.slice(1);
+    } else {
+        profileSection.classList.add("hidden"); // Hide profile if no match found
+    }
+}
+
+// Function to filter artworks only for the searched artist
+function filterArtworks() {
+    let price = parseInt(document.getElementById("priceRange").value);
+    let category = document.getElementById("category").value;
+    let size = document.getElementById("size").value;
+
+    document.querySelectorAll(".art-item").forEach(item => {
+        let itemPrice = parseInt(item.getAttribute("data-price"));
+        let itemCategory = item.getAttribute("data-category");
+        let itemSize = item.getAttribute("data-size");
+        let artistElement = item.querySelector("#artists-name");
+
+        if (artistElement) {
+            let artistName = artistElement.textContent.trim().toLowerCase();
+
+            // Apply filter **only** if the artwork belongs to the searched artist or no search was performed
+            if ((searchedArtist === "" || artistName === searchedArtist) &&
+                (category === "all" || category === itemCategory) &&
+                (size === "all" || size === itemSize) &&
+                itemPrice <= price) {
+                item.style.display = "block";
+            } else {
+                item.style.display = "none";
+            }
+        }
+    });
+}
+
+// Attach event listeners to filters
+document.getElementById("priceRange").addEventListener("input", filterArtworks);
+document.getElementById("category").addEventListener("change", filterArtworks);
+document.getElementById("size").addEventListener("change", filterArtworks);
+
+// Update price value display
+document.getElementById("priceRange").addEventListener("input", function() {
+    document.getElementById("priceValue").textContent = "$" + this.value;
+});
+
+	// JavaScript to handle the clicks for the elements
+	document.addEventListener("DOMContentLoaded", function() {
+
+// Redirect to index.html when clicking on the logo
+document.querySelector(".logo").addEventListener("click", function() {
+    window.location.href = "../Home Page/index.html";
+});
+
+// Redirect to Wishlist.html when clicking on the wishlist icon
+document.querySelector("#wishlist-header").addEventListener("click", function() {
+    window.location.href = "../Wishlist/Wishlist.html";
+});
+
+// Redirect to Profile.html when clicking on the profile icon
+document.querySelector("#profile-header").addEventListener("click", function() {
+    window.location.href = "../Profile/Profile.html";
+});
+
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+    // Attach click event to all art items
+    document.querySelectorAll(".art-item").forEach(item => {
+        item.addEventListener("click", function (event) {
+            // Prevent redirection when clicking "Add to Cart"
+            if (event.target.classList.contains("add-to-cart")) return;
+
+            // Redirect to the ArtWorkDetails page
+            window.location.href = "../ArtWorkDetails/ArtWorkDetails.html";
+        });
+    });
+});
+
+
+    </script>
+</body>
+</html>
+
+

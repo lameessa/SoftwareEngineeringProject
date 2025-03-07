@@ -3,6 +3,7 @@ header, nav {
     justify-content: space-between;
     align-items: center;
     padding: 1em;
+    font-family: 'Playfair Display', serif;
 }
 
 header{
@@ -11,19 +12,18 @@ header{
     margin-top: 0;
 }
 .logo {
-    color: #513c2e;
+    color: #ded0c8;
 	display:flex;
 	flex-direction:column;
 	text-align:center;
+	transition: transform 0.3s ease;
 }
-
+.logo:hover{
+	transform: scale(1.05);
+}
 .logo img {
 	height:4em;
 	width:10em;
-}
-.logo span {
-	    font-size: 1em;
-
 }
 nav ul {
     list-style: none;
@@ -33,13 +33,17 @@ nav ul {
 
 nav ul li a {
     text-decoration: none;
-    color: #513c2e;
+    color: #ded0c8;
     font-size: 16px;
     transition: color 0.3s;
 }
 
 nav ul li a:hover {
     color: #d4af37;
+}
+
+.icons img:hover{
+	transform: scale(1.05);
 }
 
 /* Import Google Font */
@@ -49,7 +53,6 @@ nav ul li a:hover {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
 }
 
 body {
@@ -57,15 +60,15 @@ body {
     flex-direction: column;
     align-items: center;
     min-height: 100vh;
-    background: #f8f9fa;
+    background: #272727;
 }
 
 
 .login-container {
     display: flex;
-    width: 90%;
+    width: 80%;
     height: 550px;
-    background: #fff;
+    background: #3b3b3b;
     box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
     overflow: hidden;
@@ -79,7 +82,7 @@ body {
     flex-direction: column;
     justify-content: space-between; /* Evenly distribute space */
     padding: 50px;
-    background: #f8f9fa;
+    background: #1e1e1e ;
     height: 100%; /* Ensure it takes full height */
 }
 
@@ -90,10 +93,14 @@ form {
     justify-content: space-evenly; /* Spread inputs evenly */
 }
 
+p{ 
+    color: #ded0c8;
+
+}
 h2 {
     font-size: 24px;
     font-weight: 600;
-    color: #513c2e;
+    color: #ded0c8;
     margin-bottom: 10px;
 
 }
@@ -112,7 +119,7 @@ label {
     display: block;
     font-size: 14px;
     font-weight: 600;
-    color: #513c2e;
+    color: #ded0c8;
     margin-bottom: 5px;
 }
 
@@ -136,8 +143,9 @@ input {
 
 .forgot-password {
     text-decoration: none;
-    color: #007bff;
+    color: #ded0c8;
     font-weight: 600;
+
 }
 
 .login-btn {
@@ -163,4 +171,12 @@ input {
     width: 50%;
     background: url('../images/Login.jpg') no-repeat center;
     background-size: cover;
+    border-left: #ded0c8 2px solid;
+
+}
+footer {
+    margin-top: 50px;
+    text-align: center;
+    padding: 1em;
+    color: #ded0c8;
 }
