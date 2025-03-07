@@ -1,0 +1,167 @@
+/* General Reset */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Playfair Display', serif;
+    background-color: #272727;
+    color: #ded0c8;
+}
+
+/* Header */
+header, nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1em;
+}
+
+
+.logo {
+    color: #ded0c8;
+	display:flex;
+	flex-direction:column;
+	text-align:center;
+	transition: transform 0.3s ease;
+}
+.logo:hover{
+	transform: scale(1.05);
+}
+
+.logo img {
+	height:4em;
+	width:10em;
+}
+.logo span {
+	    font-size: 1em;
+
+}
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #ded0c8;
+    font-size: 16px;
+    transition: color 0.3s;
+}
+
+nav ul li a:hover {
+    color: #d4af37;
+}
+
+.icons  {
+margin: 0 1em;
+padding:0.5em;
+}
+
+
+.icons img {
+    width: 2em;
+    height: 2em;
+    border-radius: 10px;
+	padding:0 0.5em;
+	transition: transform 0.3s ease;
+}
+.icons img:hover{
+	transform: scale(1.05);
+}
+
+/* Wishlist Section */
+.wishlist-container {
+    max-width: 70em;
+    margin: auto;
+    font-size: 1.1em;
+    padding-bottom: 20px;
+    color: #ded0c8;
+}
+
+.wishlist-title {
+    text-align: center;
+    font-size: 3em;
+    margin-bottom: 20px;
+}
+
+.wishlist-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.wishlist-item {
+    background: #1e1e1e;
+    padding: 15px;
+    border-radius: 10px;
+    width: 225px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+	transition: transform 0.3s ease;
+}
+.wishlist-item:hover {
+	transform: scale(1.05);
+}
+
+.wishlist-item img {
+    width: 100%;
+    height: 75%;
+    border-radius: 5px;
+}
+
+.art-wish-text{
+	display:flex;
+	justify-content:space-between;
+	margin:0 0.3em;
+}
+
+.wishlist-item #remove-wishlist {
+	font-size:1.8em;
+	margin-top:0.4em;
+}
+
+.wishlist-item #remove-wishlist:hover {
+	color:#d4af37;
+}
+.art-wish-text .div-wish span{
+	display:flex;
+	flex-direction:column;
+	justify-content:space-between;
+	font-size:1em;
+	margin:0 0.3em;
+}
+
+.art-wish-text #art-title {
+	font-weight:bold;
+	font-size:1.25em;
+}
+.art-wish-text #price {
+	color:#d4af37;
+}
+.art-wish-text #price,.art-wish-text #artist {
+	font-family: 'Fira Code', 'Consolas', 'Courier New', monospace;
+	font-size:0.85em;
+}
+.art-wish-text #art-details {
+	text-align:left;
+}
+.divider {
+    width: 100%;
+    height: 1px;
+    background-color: #d4af37;
+    margin: 30px 0;
+}
+
+.collection-desc {
+    margin: auto;
+    font-size: 1.1em;
+    padding-bottom: 20px;
+    color: #ded0c8;
+	text-align:center;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 1em;
+}

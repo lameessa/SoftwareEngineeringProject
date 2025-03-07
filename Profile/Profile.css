@@ -1,79 +1,4 @@
-
-/* main css*/
-
-body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Playfair Display', serif;
-    color: #ded0c8;
-    background-color: #272727;
-}
-
-header, nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1em;
-}
-
-
-.logo {
-    color: #ded0c8;
-	display:flex;
-	flex-direction:column;
-	text-align:center;
-}
-
-.logo img {
-	height:4em;
-	width:10em;
-}
-.logo span {
-	    font-size: 1em;
-
-}
-nav ul {
-    list-style: none;
-    display: flex;
-    gap: 20px;
-}
-
-nav ul li a {
-    text-decoration: none;
-    color: #ded0c8;
-    font-size: 16px;
-    transition: color 0.3s;
-}
-
-nav ul li a:hover {
-    color: #d4af37;
-}
-
-.icons  {
-margin: 0 1em;
-padding:0.5em;
-}
-
-.hero {
-	margin-top:2em;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 100px 50px;
-}
-
-
-
-.icons img {
-    width: 2em;
-    height: 2em;
-    border-radius: 10px;
-	padding:0 0.5em;
-}
- /* Profile Page CSS */
-
-/* Profile Page CSS */
-
+/* main css */
 body {
     margin: 0;
     padding: 0;
@@ -132,6 +57,7 @@ nav ul li a:hover {
     border-radius: 10px;
     padding: 0 0.5em;
 }
+
 .profile-container {
     display: flex;
     align-items: center;
@@ -148,13 +74,17 @@ nav ul li a:hover {
     margin-right: 20px;
     mask-image: radial-gradient(circle, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 80%);
     -webkit-mask-image: radial-gradient(circle, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 80%);
-    }
+}
+
 .profile-info {
     flex: 1; /* Take up remaining space */
     text-align: left;
     padding: 10px;
 }
+.bio{
+    font-family: 'Georgia';
 
+}
 .divider {
     width: 100%;
     height: 1px;
@@ -168,9 +98,14 @@ nav ul li a:hover {
     width: 100%;
 }
 
+.art-item:hover {
+    transform: scale(1.05); /* Slight enlargement */
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2); /* Softer shadow */
+}
 
 .bio {
-    font-size: 1.2em;
+    
+    font-size: 1.0em;
     color: #ded0c8;
     max-width: 800px;
 }
@@ -185,19 +120,22 @@ nav ul li a:hover {
 
 .art-grid {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: no-wrap;
     justify-content: center;
     gap: 20px;
 }
 
 .art-item {
+    transition: transform 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
     background: #1e1e1e;
     padding: 15px;
     border-radius: 10px;
     width: 250px;
     text-align: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    position: relative; /* Ensure checkbox is positioned relative to art-item */
 }
+
 
 .art-item img {
     width: 100%;
@@ -205,9 +143,53 @@ nav ul li a:hover {
     border-radius: 5px;
 }
 
+.delete-checkbox {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #fff;
+    z-index: 1; /* Ensure it is above other content */
+    opacity: 0.8;
+}
+
+.artwork-buttons {
+    margin-top: 20px;
+    display: flex;
+    justify-content: flex-end; /* Align buttons to the right */
+    gap: 20px;
+}
+.art-item p{
+    font-size: 0.9em;
+    font-family:serif;
+
+}
+
+#add-artwork,
+#delete-artwork {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    margin-top: 20px;
+    margin-bottom: 2%;
+    margin-right: 2%;
+    background: #513c2e;
+    color: #fff;
+    font-size: 14px;
+    cursor: pointer;
+    font-family: 'Playfair Display', serif;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+
+}
+
+#add-artwork:hover,
+#delete-artwork:hover {
+    background-color: #333;
+
+    
+}
+
+/* Footer */
 footer {
     text-align: center;
     padding: 1em;
-    background-color: #1e1e1e;
 }
-
