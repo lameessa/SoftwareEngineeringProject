@@ -14,15 +14,10 @@
         </div>
         <nav>
             <ul class="nav-links">
-                <li><a href="../Home Page/index.html">Home</a></li>
-                <li><a href="../Search.html">Search</a></li>
-                <li><a href="../Auction.html">Auctions</a></li>
-                <li><a href="../Cart.html">Cart</a></li>
+                <li><a href="../Home/index.html">Home</a></li>
+
             </ul>
-            <div class="icons">
-                <img src="../images/heart.png" alt="Wishlist">
-               <a href="../Profile Page/Profile.html"> <img src="../images/profile.png" alt="Profile"></a>
-            </div>
+
         </nav>
     </header>
     
@@ -31,7 +26,7 @@
             <div class="image"></div> <!-- This is where the image will go -->
             <div class="form">
                 <h2>Create an Account</h2>
-                <form action="#" method="POST">
+                <form id="signupForm">
                     <label for="name">Full Name</label>
                     <input type="text" id="name" name="name" required>
                     
@@ -47,7 +42,6 @@
                     <label for="ProfilePhoto">Upload your profile photo</label>
                     <input type="file" id="ProfilePhoto" name="ProfilePhoto" required>
 
-                    
                     <button type="submit">Sign Up</button>
                 </form>
             </div>
@@ -55,7 +49,27 @@
     </main>
 
     <footer>
-        <p>&copy; 2025 Reesha. All rights reserved.</p>
-    </footer>
+<footer>
+    <p>&copy; 2025 Reesha. All rights reserved.</p>
+</footer>
+
+<script>
+    // JavaScript to handle the clicks for the elements
+    document.addEventListener("DOMContentLoaded", function() {
+        // Redirect to index.html when clicking on the logo
+        document.querySelector(".logo").addEventListener("click", function() {
+            window.location.href = "../Home/index.html";
+        });
+    }); 
+</script>
+
+<script>
+    document.getElementById("signupForm").addEventListener("submit", function(event) {
+        event.preventDefault(); // Prevents the default form submission
+        alert("Sign Up Successful! Redirecting to Home Page..."); // Optional message
+        window.location.href = "../Home/index.html"; // ✅ Make sure this path is correct
+    });
+</script>
+
 </body>
 </html>

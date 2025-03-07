@@ -47,17 +47,8 @@ nav ul li a:hover {
     color: #d4af37;
 }
 
-.icons {
-    margin: 0 1em;
-    padding: 0.5em;
-}
 
-.icons img {
-    width: 2em;
-    height: 2em;
-    border-radius: 10px;
-    padding: 0 0.5em;
-}
+
 
 /* Sign Up Section */
 .signup-container {
