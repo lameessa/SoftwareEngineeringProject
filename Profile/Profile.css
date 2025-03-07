@@ -174,18 +174,20 @@ nav ul li a:hover {
     font-size: 1em;
     margin-bottom: 5px;
     word-wrap: break-word;
+    white-space: normal;
+
 }
 
 .art-item p {
-    font-size: 0.9em;
+    font-size: 0.8em;
     font-family: serif;
     margin: 5px 0;
     word-wrap: break-word;
-    overflow: hidden;
+    white-space: normal;
+    line-height: 1.6;
     text-overflow: ellipsis;
     max-height: 4em;
-    line-height: 1.3em;
-}
+    padding: 2%;}
 
 /* Edit Icon */
 .edit-icon {
@@ -214,15 +216,9 @@ nav ul li a:hover {
     position: absolute;
     z-index: 10;
 }
-
-#left-arrow {
-    left: 10px;
+.logout-link{
+    color: #d4af37;
 }
-
-#right-arrow {
-    right: 10px;
-}
-
 /* Artwork Action Buttons */
 .artwork-buttons {
     margin-top: 20px;

@@ -15,13 +15,13 @@
         <nav>
             <ul class="nav-links">
                 <li><a href="../Home/index.html">Home</a></li>
-                <li><a href="../Search.html">Search</a></li>
+                <li><a href="../Search/Search.html">Search</a></li>
                 <li><a href="../Auction.html">Auctions</a></li>
-                <li><a href="../Cart.html">Cart</a></li>
+                <li><a href="../Cart/Cart.html">Cart</a></li>
             </ul>
             <div class="icons">
-                <img src="../images/heart.png" alt="Wishlist">
-                <a href="../Profile Page/Profile.html"> <img src="../images/profile.png" alt="Profile"></a>
+               <a href="../Wishlist/Wishlist.html"><img src="../images/heart.png" alt="Wishlist"></a> 
+                <a href="Profile.html"> <img src="../images/profile.png" alt="Profile"></a>
             </div>
         </nav>
     </header>
@@ -36,6 +36,7 @@
             <p class="bio">Passionate artist dedicated to capturing the beauty of the world around me. My work often reflects my emotions, using vibrant colors and expressive brushstrokes. I find inspiration in nature, everyday life, and the people I encounter. Despite facing many challenges, I strive to convey depth and meaning through my art. My journey may be tumultuous, but my love for painting drives me forward. Thank you for exploring my work.
 
             </p>
+            <a href="../Home/index.html" class="logout-link">Log Out</a>
         </div>
     </main>
     
@@ -54,11 +55,12 @@
                     <img src="../images/Vincent van Gogh - Roses, 1889 at National Museum of Western Art - Tokyo Japan.jpeg" alt="Roses">
                     <h3>Roses (1889)</h3>
 
-                    <p>A burst of green and pink, wild and untamed. The roses, painted in thick strokes, feel alive—growing. Even within the asylum walls, nature’s beauty flourishes.</p>
-
+                    <p>Burst of green and pink, wild and untamed. Roses, painted in thick strokes,Within the asylum walls, nature’s beauty flourishes.</p>
                     <p>Category: Abstract</p>
 
-                    <p>24x36 inches</p>
+
+                    <p>40x50 cm</p>
+
                     <p> $500</p>
 
                     <p>Available</p>
@@ -72,7 +74,7 @@
       
                     <p>A simple meal, shared by those who work the land. Their hands, rough and calloused, have dug the very potatoes they now eat.</p>
                     <p>Category: Realism</p>
-                    <p>30x40 inches</p>
+                    <p>13x18 cm</p>
                     <p>$700</p>
 
                     <p>Available</p>
@@ -86,7 +88,7 @@
                     <p>Soft white petals against a blue sky—delicate yet strong. The almond tree, the first to bloom after winter, is a symbol of hope.</p>
                     <p>Category: Expressionism</p>
 
-                    <p>20x30 inches</p>
+                    <p> 10x15 cm</p>
                     <p> $400</p>
 
                     <p>Available</p>
@@ -98,9 +100,9 @@
                     <img src="../images/Vincent Van Gogh, Olive Trees.jpeg" alt="Olive Trees">
                     <h3>Olive Trees with Yellow Sky and Sun (1889)</h3>
                 
-                    <p> The sun burns in the yellow sky, casting heat over the restless olive trees. Their twisted forms dance with the wind, rooted in the red earth.</p>
+                    <p>The sun burns in the yellow sky, casting heat over the restless olive trees. Their twisted forms dance with the wind, rooted in the earth.</p>
                     <p>Category: Expressionism</p>
-                    <p>28x36 inches</p>
+                    <p>40x50 cm</p>
                     <p> $650</p>
 
                     <p>Available</p>
@@ -113,7 +115,7 @@
                     <h3>View of Paris (1886-1887)</h3>
                     <p>The city sprawls beneath a muted sky, its rooftops layered in smoke and shadow. A world of work, of movement, of life unseen.</p>
                     <p>Category: Realism</p>
-                    <p>25x35 inches</p>
+                    <p>28x36 cm</p>
                     <p>$550</p>
 
                     <p>Available</p>
@@ -125,10 +127,10 @@
                     <img src="../images/Vincent van Gogh - Pollard Birches, 1884 .jpeg" alt="Pollard Birches">
                     <h3>Pollard Birches (1884) </h3>
                  
-                    <p>Bare trees stand in rows, their branches reaching like hands toward the sky. A shepherd moves through the mist, guiding his flock. The land is quiet, yet filled with movement, with life.</p>
+                    <p>Bare trees stand in rows, their branches reaching like hands toward the sky. The land is quiet, yet filled with movement, with life.</p>
                     <p>Category: Realism</p>
 
-                    <p>32x40 inches</p>
+                    <p>13x18 cm</p>
 
                     <p>$800</p>
 
@@ -150,5 +152,27 @@
         <p>&copy; IT320 2025 Reesha. All rights reserved.</p>
     </footer>
     <script src="Profile.js"></script>
+    
+	<script>
+        // JavaScript to handle the clicks for the elements
+        document.addEventListener("DOMContentLoaded", function() {
+    
+        // Redirect to index.html when clicking on the logo
+        document.querySelector(".logo").addEventListener("click", function() {
+            window.location.href = "index.html";
+        });
+    
+        // Redirect to Wishlist.html when clicking on the wishlist icon
+        document.querySelector("#wishlist-header").addEventListener("click", function() {
+            window.location.href = "../Wishlist/Wishlist.html";
+        });
+    
+        // Redirect to Profile.html when clicking on the profile icon
+        document.querySelector("#profile-header").addEventListener("click", function() {
+            window.location.href = "../Profile/Profile.html";
+        });
+    
+        });
+    </script>
 </body>
 </html>
