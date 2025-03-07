@@ -32,7 +32,7 @@
     
     <div id="artist-profile" class="hidden">
         <div class="profile-container">
-            <img id="artist-photo" src="" alt="Artist Photo">
+            <img id="artist-photo" src="../images/profile.png" alt="Artist Photo">
             <h2 id="artist-name"></h2>
         </div>
     </div>
@@ -228,7 +228,7 @@ function searchArtist() {
 
     if (found) {
         profileSection.classList.remove("hidden");
-        profilePhoto.src = "../images/default_artist.png"; // Placeholder image
+        profilePhoto.src = "../images/profile.png"; // Placeholder image
         profileName.textContent = query.charAt(0).toUpperCase() + query.slice(1);
     } else {
         profileSection.classList.add("hidden"); // Hide profile if no match found
