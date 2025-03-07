@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REESHA - Add Artwork</title>
+    <link rel="stylesheet" href="AddArtwork.css">
+    <script defer src="AddArtwork.js"></script>
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <img src="../images/logo.png" alt="Reesha">
+            <span>Reesha ريشة</span>
+        </div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="../Search/Search.html">Search</a></li>
+                <li><a href="../Auction/Auction.html">Auctions</a></li>
+                <li><a href="../Cart/Cart.html">Cart</a></li>
+            </ul>
+            <div class="icons">
+                <img src="../images/heart.png" alt="Wishlist" id="wishlist-header">
+                <img src="../images/profile.png" alt="Profile" id="profile-header">
+            </div>
+        </nav>
+    </header>
+
+    <!-- Add Artwork Section -->
+    <section class="add-artwork-section">
+        <div class="left-column">
+            <h2>SHARE YOUR ART.</h2>
+        </div>
+        
+        <div class="form-container">
+            <h1>Add Your Artwork</h1>
+
+            <!-- Image Preview Section -->
+            <div id="image-preview-container" class="hidden">
+                <button id="prev-btn" class="hidden" onclick="prevImage(event)">❮</button>
+                <div id="image-preview"></div>
+                <button id="next-btn" class="hidden" onclick="nextImage(event)">❯</button>
+            </div>
+
+            <form id="artwork-form" action="#" method="POST" enctype="multipart/form-data">
+                <!-- Upload Image -->
+                <div class="form-group">
+                    <label for="artwork-image">Upload Images</label>
+                    <input type="file" id="artwork-image" name="image" accept="image/*" multiple onchange="previewImages()">
+                </div>
+
+                <!-- Artwork Title -->
+                <div class="form-group">
+                    <label for="artwork-title">Title</label>
+                    <input type="text" id="artwork-title" name="title" required>
+                </div>
+
+                <!-- Artwork Category -->
+                <div class="form-group">
+                    <label for="artwork-category">Category</label>
+                    <select id="artwork-category" name="category" required>
+                        <option value="">Select Category</option>
+                        <option value="painting">Painting</option>
+                        <option value="sculpture">Sculpture</option>
+                        <option value="digital">Digital Art</option>
+                        <option value="photography">Photography</option>
+                    </select>
+                </div>
+
+                <!-- Artwork Size (Dropdown) -->
+                <div class="form-group">
+                    <label for="artwork-size">Size</label>
+                    <select id="artwork-size" name="size" required>
+                        <option value="">Select Size</option>
+                        <option value="small">Small</option>
+                        <option value="medium">Medium</option>
+                        <option value="large">Large</option>
+                    </select>
+                </div>
+
+                <!-- Choose Listing Type (Always Visible) -->
+                <div id="listing-type-section">
+                    <h3>Choose Listing Type</h3>
+                    <div class="radio-group">
+                        <label>
+                            <input type="radio" name="listing-type" value="marketplace" checked onchange="toggleListingType()">
+                            Sell in Marketplace
+                        </label>
+                        <label>
+                            <input type="radio" name="listing-type" value="auction" onchange="toggleListingType()">
+                            Start an Auction
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Marketplace Fields -->
+                <div id="marketplace-fields">
+                    <div class="form-group">
+                        <label for="artwork-price">Price ($)</label>
+                        <input type="number" id="artwork-price" name="price" step="0.01" required>
+                    </div>
+                </div>
+
+                <!-- Auction Fields (Initially Hidden) -->
+                <div id="auction-fields" class="hidden">
+                    <div class="form-group">
+                        <label for="starting-price">Starting Price ($)</label>
+                        <input type="number" id="starting-price" name="starting_price" step="0.01">
+                    </div>
+                    <div class="form-group">
+                        <label for="auction-start">Auction Start Time</label>
+                        <input type="datetime-local" id="auction-start" name="auction_start">
+                    </div>
+                    <div class="form-group">
+                        <label for="auction-end">Auction End Time</label>
+                        <input type="datetime-local" id="auction-end" name="auction_end">
+                    </div>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" class="submit-btn">Add Artwork</button>
+            </form>
+        </div>
+    </section>
+
+</body>
+
+</html>

@@ -1,0 +1,229 @@
+/* Main Styles */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Playfair Display', serif;
+    color: #ded0c8;
+    background-color: #272727;
+}
+
+/* Header and Navigation */
+header, nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1em;
+}
+
+.logo {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.logo img {
+    height: 4em;
+    width: 10em;
+}
+
+.logo span {
+    font-size: 1em;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #ded0c8;
+    font-size: 16px;
+    transition: color 0.3s;
+}
+
+nav ul li a:hover {
+    color: #d4af37;
+}
+
+.icons {
+    margin: 0 1em;
+    padding: 0.5em;
+}
+
+.icons img {
+    width: 2em;
+    height: 2em;
+    border-radius: 10px;
+    padding: 0 0.5em;
+}
+
+.left-column h2 {
+    font-size: 3.3rem;
+    margin-bottom: 1rem;
+    color: #555;
+}
+
+
+/*ADD ARTWORK*/
+/* Add Artwork Section */
+.add-artwork-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+    max-width: 70%;
+    background-color: white;
+    margin: 5% auto;
+    border-radius: 10px;
+    padding: 2rem;
+}
+
+.left-column {
+    padding: 2rem;
+    flex: 1;
+    background-image: url('images/signup3.jpg');
+    background-size: cover;
+    height: 720px;
+    width: 100rem;
+    border-radius: 10px 0 0 10px;
+}
+
+.form-container {
+    flex: 1;
+    padding: 2rem;
+    background: white;
+    border-radius: 0 10px 10px 0;
+}
+
+h1, h3 {
+    color: #555;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+    color: #555;
+}
+
+.form-group input, .form-group select {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.radio-group {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+.radio-group label {
+    font-size: 1rem;
+    color: #555;
+    cursor: pointer;
+}
+
+.radio-group input {
+    margin-right: 0.5rem;
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 10px;
+    background-color: #1B2A1D;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.submit-btn:hover {
+    background-color: #c6c6c6;
+}
+
+/* Hide auction fields initially */
+.hidden {
+    display: none;
+}
+
+/* Image Preview Section */
+#image-preview-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+    position: relative;
+}
+
+#image-preview {
+    display: flex;
+    overflow-x: auto;
+    gap: 10px;
+    padding: 10px;
+    max-width: 100%;
+}
+
+#image-preview img {
+    max-width: 150px;
+    height: 150px;
+    border-radius: 10px;
+    object-fit: cover;
+    position: relative;
+    border: 2px solid #ddd;
+}
+
+.image-container {
+    position: relative;
+    display: inline-block;
+}
+
+.image-container span {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 2px 6px;
+    font-size: 14px;
+    border-radius: 5px;
+}
+
+.delete-btn {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background: red;
+    color: white;
+    border: none;
+    padding: 2px 6px;
+    font-size: 14px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+#prev-btn, #next-btn {
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 18px;
+    display: none;
+}
+
+#prev-btn { left: -40px; }
+#next-btn { right: -40px; }
