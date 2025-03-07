@@ -203,3 +203,9 @@ padding:0.5em;
 			width:20em;
 			justify-content:space-between;
 		}
+		
+/* Footer */
+footer {
+    text-align: center;
+    padding: 1em;
+}

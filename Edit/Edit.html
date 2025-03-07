@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit - Reesha</title>
-	<link rel="stylesheet" href="Edit.css">
+	<link rel="stylesheet" href="EditStyle.css">
 
 </head>
 <body>
@@ -27,44 +27,97 @@
         </nav>
     </header>
 	<main>
-<div class="container">
-    <div class="left">
-        <div class="content">
-            <form id="editArtworkForm">
-				<br>
-                    <label id="label-title" for="title">Title:</label>
-                    <input type="text" id="title" name="title" value="View of Paris from Vincent’s Room (1886-1887)">
-				<br>
-                    <label for="description">Description:</label>
-                    <textarea id="description" name="description">Bare trees stand in rows, their branches reaching like hands toward the sky. A shepherd moves through the mist, guiding his flock. The land is quiet, yet filled with movement, with life.</textarea>
-				<br>
-                    <label for="price">Price:</label>
-                    <input type="number" id="price" name="price" value="800">
-				<br>
-                    <label for="size">Size:</label>
-                    <input type="text" id="size" name="size" value="32x40 inches">
-				<br>
-                    <label for="availability">Availability:</label>
-                    <select id="availability" name="availability">
-                        <option value="available" selected>Available</option>
-                        <option value="sold">Sold</option>
-                    </select>
-				<br>
-				<div id="buttons">
-					<button type="submit" class="save-changes">Save Changes</button>
-					<button type="button" class="cancel-edit">Cancel</button>
+	<div class="container">
+			<div class="left">
+				<div class="content">
+					<form id="editArtworkForm">
+						<br>
+							<label id="label-title" for="title">Title:</label>
+							<input type="text" id="title" name="title" value="View of Paris from Vincent’s Room (1886-1887)">
+						<br>
+							<label for="description">Description:</label>
+							<textarea id="description" name="description">Bare trees stand in rows, their branches reaching like hands toward the sky. A shepherd moves through the mist, guiding his flock. The land is quiet, yet filled with movement, with life.</textarea>
+						<br>
+							<label for="price">Price:</label>
+							<input type="number" id="price" name="price" value="800">
+						<br>
+							<label for="size">Size:</label>
+							<input type="text" id="size" name="size" value="28x36 cm">
+						<br>
+							<label for="availability">Availability:</label>
+							<select id="availability" name="availability">
+								<option value="available" selected>Available</option>
+								<option value="sold">Sold</option>
+							</select>
+						<br>
+						<div id="buttons">
+							<button type="submit" class="save-changes">Save Changes</button>
+							<button type="button" class="cancel-edit">Cancel</button>
+						</div>
+					</form>
 				</div>
-            </form>
-        </div>
-    </div>
-    <div class="right">
-        <div class="image-container">
-            <img src="../images/Window Van Gogh Paintings.jpeg" alt="Inner Image">
-        </div>
-    </div>
-</div>
-</main>
+			</div>
+			<div class="right">
+				<div class="image-container">
+					<img src="../images/Window Van Gogh Paintings.jpeg" alt="Inner Image">
+				</div>
+			</div>
+		</div>
+	</main>
+    <footer>
+        <p>&copy; IT320 2025 Reesha. All rights reserved.</p>
+    </footer>
+	<script>
+document.addEventListener("DOMContentLoaded", function() {
+    console.log("JavaScript Loaded"); // Debugging step to check if script runs
+
+    // Function to add event listener safely
+    function addClickListener(selector, callback) {
+        const elements = document.querySelectorAll(selector);
+        elements.forEach(element => {
+            if (element) {
+                element.addEventListener("click", callback);
+                console.log(`Event added to ${selector}`); // Debugging step
+            } else {
+                console.warn(`Element not found: ${selector}`); // Debugging step
+            }
+        });
+    }
+
+    // Redirect to index.html when clicking on the logo
+    addClickListener(".logo", function() {
+        window.location.href = "../Home/index.html";
+    });
+
+    // Redirect to Wishlist.html when clicking on the wishlist icon
+    addClickListener("#wishlist-header", function() {
+        window.location.href = "../Wishlist/Wishlist.html";
+    });
+
+    // Redirect to Profile.html when clicking on the profile icon
+    addClickListener("#profile-header", function() {
+        window.location.href = "../Profile/Profile.html";
+    });
+
+    // Redirect to ArtworkDetails.html when clicking on the Cancel button
+    addClickListener(".cancel-edit", function() {
+        window.location.href = "../ArtworkDetails/ArtworkDetails.html";
+    });
+
+    // Show alert and redirect when Save Changes button is clicked
+    const saveButton = document.querySelector(".save-changes");
+    if (saveButton) {
+        saveButton.addEventListener("click", function(event) {
+            event.preventDefault(); // Prevent form submission
+            alert("Changes saved successfully!");
+            window.location.href = "../ArtworkDetails/ArtworkDetails.html";
+        });
+        console.log("Save Changes event added");
+    } else {
+        console.warn("Save Changes button not found");
+    }
+});
+
+	</script>
 </body>
-
-
 </html>
