@@ -1,45 +1,25 @@
 let imageList = [];
 
 function handleImageUpload() {
-    let files = document.getElementById("artwork-image").files;
-    let previewContainer = document.getElementById("image-preview");
+    let input = document.getElementById("artwork-image");
+    let imagePreview = document.getElementById("image-preview");
 
-    if (imageList.length + files.length > 4) {
-        alert("You can upload up to 4 images.");
-        return;
-    }
-
-    for (let file of files) {
-        if (imageList.length >= 4) break;
-
+    if (input.files.length > 0) {
+        let file = input.files[0]; // Get only the first file
         let reader = new FileReader();
-        reader.onload = function (event) {
-            let imgElement = document.createElement("img");
-            imgElement.src = event.target.result;
 
-            let imageContainer = document.createElement("div");
-            imageContainer.classList.add("image-container");
-
-            let deleteBtn = document.createElement("button");
-            deleteBtn.innerHTML = "&times;";
-            deleteBtn.classList.add("delete-btn");
-            deleteBtn.onclick = function () {
-                imageContainer.remove();
-                imageList = imageList.filter(img => img !== imageContainer);
-            };
-
-            imageContainer.appendChild(imgElement);
-            imageContainer.appendChild(deleteBtn);
-            previewContainer.appendChild(imageContainer);
-            imageList.push(imageContainer);
+        reader.onload = function (e) {
+            // Replace existing image (allows only one)
+            imagePreview.innerHTML = `
+                <div class="image-container">
+                    <img src="${e.target.result}" alt="Uploaded Artwork">
+                </div>
+            `;
         };
 
         reader.readAsDataURL(file);
     }
-
-    document.getElementById("image-preview-container").classList.remove("hidden");
 }
-
 
 document.addEventListener("DOMContentLoaded", function () {
     let listingRadios = document.querySelectorAll('input[name="listing-type"]');
