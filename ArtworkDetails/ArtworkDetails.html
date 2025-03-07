@@ -74,14 +74,14 @@
     });
 
     addToCartButton.addEventListener("click", function () {
-        let Cart = JSON.parse(localStorage.getItem("cart")) || [];
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
         let cartDetails = {
             title: artworkDetails.title,
             price: artworkDetails.price,
             image: artworkDetails.image
         };
-        Cart.push(cartDetails);
-        localStorage.setItem("Cart", JSON.stringify(Cart);
+        cart.push(cartDetails);
+        localStorage.setItem("cart", JSON.stringify(cart);
         alert("Artwork added to Cart!");
     });
 });
