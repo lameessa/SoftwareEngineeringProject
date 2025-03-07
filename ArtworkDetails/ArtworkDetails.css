@@ -1,77 +1,80 @@
-* {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Times New Roman', serif;
-        }
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Playfair Display', serif;
+    background: linear-gradient(to right, #1e1e1e 50%, transparent 50%), url('../images/museum.jpeg') center/cover no-repeat;
+	background-size:cover;
+    color: #ded0c8;
+}
 
-        body {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            height: 100vh;
-            background: linear-gradient(to right, #1e1e1e 50%, transparent 50%), url('../images/museum.jpeg') center/cover no-repeat;
-        }
+main {
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
+    align-items: center;
+    height: 35em;
+}
 
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            width: 100%;
-            padding: 1.5em 3em;
-            
-        }
+header, nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1em;
+}
 
-        .logo {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            color: #ded0c8;
-        }
 
-        .logo img {
+.logo {
+    color: #ded0c8;
+	display:flex;
+	flex-direction:column;
+	text-align:center;
+	transition: transform 0.3s ease;
+}
+.logo:hover{
+	transform: scale(1.05);
+}
+.logo img {
 	height:4em;
 	width:10em;
-        }
+}
+.logo span {
+	    font-size: 1em;
 
-        .logo span {
-            font-size: 18px;
-            font-weight: bold;
-            margin-top: 5px;
-        }
+}
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
 
-        nav {
-            display: flex;
-            align-items: center;
-            gap: 40px;
-        }
+nav ul li a {
+    text-decoration: none;
+    color: #ded0c8;
+    font-size: 16px;
+    transition: color 0.3s;
+}
 
-        nav ul {
-            list-style: none;
-            display: flex;
-            gap: 25px;
-        }
+nav ul li a:hover {
+    color: #d4af37;
+}
 
-        nav ul li a {
-            text-decoration: none;
-            color: #ded0c8;
-            font-size: 18px;
-            transition: color 0.3s;
-        }
+.icons  {
+margin: 0 1em;
+padding:0.5em;
+}
 
-        nav ul li a:hover {
-            color: #d4af37;
-        }
+.icons img {
+    width: 2em;
+    height: 2em;
+    border-radius: 10px;
+	padding:0 0.5em;
+	transition: transform 0.3s ease;
+}
 
-        .icons {
-            display: flex;
-            gap: 15px;
-        }
+.icons img:hover{
+	transform: scale(1.05);
+}
 
-        .icons img {
-            width: 28px;
-            height: 28px;
-        }
 
         .container {
             display: flex;
@@ -162,3 +165,8 @@
         .add-to-cart:hover {
             background: #513c2e;
         }
+		
+		footer {
+    text-align: center;
+    padding: 1em;
+}
