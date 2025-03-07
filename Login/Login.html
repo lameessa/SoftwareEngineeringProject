@@ -2,18 +2,18 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Reesha - Home</title>
+    <title>Reesha - Log in</title>
     <link rel="stylesheet" href="LoginStyle.css">
 </head>
 <body>
     <header>
         <div class="logo">
-				<img src="../images/DarkLogo.png" alt="Reesha">
+				<img src="../images/logo.png" alt="Reesha">
 				<span>Reesha ريشة</span>
 		</div>
 		<nav>
             <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
+                <li><a href="../Home Page/index.html">Home</a></li>
                
             </ul>
            
@@ -34,12 +34,15 @@
                     <input type="password" id="password" placeholder="Your Password" required>
                 </div>
                 <div class="options">
-                    <a href="#" class="forgot-password">Forgot Password?</a>
+                  <p>Dont have and account?<span> </span> <a href="SignUp.html" class="forgot-password">Sign Up</a> </p> 
                 </div>
-                <button type="submit" class="login-btn">Log In</button>
+                <button type="submit" class="login-btn" onclick="window.location.href='../Home Page/index.html'">Log In</button>
             </form>
         </div>
         <div class="image-section"></div>
     </div>
+    <footer>
+        <p>&copy; IT320 2025 Reesha. All rights reserved.</p>
+    </footer>
     </body>
 </html>
