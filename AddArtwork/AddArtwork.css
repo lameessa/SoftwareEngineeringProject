@@ -41,6 +41,7 @@ nav ul li a {
     color: #ded0c8;
     font-size: 16px;
     transition: color 0.3s;
+    font-family: 'Playfair Display', serif;
 }
 
 nav ul li a:hover {
@@ -59,67 +60,111 @@ nav ul li a:hover {
     padding: 0 0.5em;
 }
 
-.left-column h2 {
-    font-size: 3.3rem;
-    margin-bottom: 1rem;
-    color: #555;
-}
-
-
-/*ADD ARTWORK*/
 /* Add Artwork Section */
 .add-artwork-section {
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: stretch; /* Ensures both columns match in height */
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
     max-width: 70%;
-    background-color: white;
+    background-color: #1e1e1e;
     margin: 5% auto;
     border-radius: 10px;
     padding: 2rem;
+    height: auto;
 }
 
+/* Left Column (Equal Width) */
 .left-column {
     padding: 2rem;
     flex: 1;
-    background-image: url('images/signup3.jpg');
+    background-image: url('../images/ARTttt.jpg');
     background-size: cover;
-    height: 720px;
-    width: 100rem;
     border-radius: 10px 0 0 10px;
 }
 
+.left-column h2 {
+    font-size: 3.3rem;
+    margin-bottom: 1rem;
+    color: #fff7e4;
+    text-shadow: 2px 2px 8px rgb(85, 85, 85); /* Adds a smooth shadow */
+    font-family: 'Playfair Display', serif;
+}
+
+/* Right Column (Equal Width) */
 .form-container {
-    flex: 1;
+    flex: 1;  /* Makes both columns take equal width */
     padding: 2rem;
-    background: white;
+    background: #181818;
     border-radius: 0 10px 10px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 h1, h3 {
-    color: #555;
+    color: #ffffff;
+    font-family: 'Playfair Display', serif;
 }
 
 .form-group {
     margin-bottom: 1.5rem;
+    font-family: 'Playfair Display', serif;
 }
 
 .form-group label {
     display: block;
     margin-bottom: 0.5rem;
-    font-size: 1rem;
-    color: #555;
+    font-size: 1.2rem;
+    color: #fffefe;
+    font-family: 'Playfair Display', serif;
 }
 
-.form-group input, .form-group select {
-    width: 100%;
+/* User Input Fields (Now with Black Text) */
+.form-group input, 
+.form-group select, 
+.form-group textarea {
+    width: 90%;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    font-family: 'Playfair Display', serif;
+    background-color: #ffffff; /* Background remains white */
+    color: #494949; /* User-typed text is black */
+}
+
+/* Placeholder Text Light Gray */
+::placeholder {
+    color: #b0b0b0;
+}
+
+/* Description Box (Same Width as Other Inputs) */
+#artwork-description {
+    width: 91%;
     padding: 0.75rem;
     border: 1px solid #ddd;
     border-radius: 5px;
     font-size: 1rem;
+    background-color: #ffffff;
+    color: #000000; /* User-typed text black */
+    resize: vertical;
 }
 
+/* Auction Start & End Time Side by Side */
+.auction-row {
+    display: flex;
+    gap: 20px;
+}
+
+.auction-row .form-group {
+    flex: 1; /* Makes both fields take equal space */
+    min-width: 25%;
+}
+
+
+
+/* Radio Button Group */
 .radio-group {
     display: flex;
     gap: 2rem;
@@ -127,25 +172,28 @@ h1, h3 {
 }
 
 .radio-group label {
-    font-size: 1rem;
-    color: #555;
+    font-size: 1.1rem;
+    color: #ffffff;
     cursor: pointer;
+    font-family: 'Playfair Display', serif;
 }
 
 .radio-group input {
     margin-right: 0.5rem;
 }
 
+/* Submit Button */
 .submit-btn {
     width: 100%;
     padding: 10px;
-    background-color: #1B2A1D;
+    background-color: #000000;
     color: #ffffff;
     border: none;
     border-radius: 5px;
     font-size: 1rem;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    font-family: 'Playfair Display', serif;
 }
 
 .submit-btn:hover {
@@ -183,47 +231,56 @@ h1, h3 {
     border: 2px solid #ddd;
 }
 
+/* Image Container */
 .image-container {
     position: relative;
     display: inline-block;
 }
 
-.image-container span {
-    position: absolute;
-    top: 5px;
-    left: 5px;
-    background: rgba(0, 0, 0, 0.7);
-    color: white;
-    padding: 2px 6px;
-    font-size: 14px;
-    border-radius: 5px;
-}
-
+/* Delete Button for Images */
 .delete-btn {
     position: absolute;
     top: 5px;
     right: 5px;
-    background: red;
+    background: rgb(97, 84, 67);
     color: white;
     border: none;
     padding: 2px 6px;
     font-size: 14px;
     border-radius: 50%;
     cursor: pointer;
+    font-family: 'Playfair Display', serif;
 }
 
-#prev-btn, #next-btn {
-    background: rgba(0, 0, 0, 0.5);
-    color: white;
+/* Custom File Upload Button */
+.custom-file-upload {
+    text-decoration: none;
+    display: inline-block;
+    padding: 0.9375em 1.875em;
+    font-size: 1.125em;
+    font-weight: bold;
+    background-color: #513c2e;
+    color: #ffffff;
     border: none;
-    padding: 10px;
+    border-radius: 5px;
     cursor: pointer;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 18px;
+    transition: background-color 0.3s ease;
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+}
+
+.custom-file-upload:hover {
+    background-color: #362727;
+}
+
+/* Hide Default File Input */
+.custom-file-upload input[type="file"] {
     display: none;
 }
 
-#prev-btn { left: -40px; }
-#next-btn { right: -40px; }
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 1em;
+}
