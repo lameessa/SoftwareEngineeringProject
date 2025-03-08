@@ -4,15 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Cart</title>
-    <link rel="stylesheet" href="cart.css">
+<link rel="stylesheet" href="cart.css">
 </head>
-<body>
+
     <header>
         <div class="logo">
-            <img src="../images/logo.png" alt="Reesha">
-            <span>Reesha ريشة</span>
-        </div>
-        <nav>
+				<img src="../images/logo.png" alt="Reesha">
+				<span>Reesha ريشة</span>
+		</div>
+		<nav>
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="../Search.html">Search</a></li>
@@ -25,76 +25,57 @@
             </div>
         </nav>
     </header>
-    
+	
+<body>
     <div class="container">
         <div class="cart-section">
             <div class="cart-items">
                 <h2>My Cart</h2>
+                <div class="cart-item">
+                    <img src="../images/Vincent van Gogh - Pollard Birches, 1884 .jpeg" alt="London Bus">
+                    <div class="item-info">
+                        <h3>Pollard Birches (1884)<h3>
+						
+                    </div>
+                    <span class="price">Price: $800</span>
+					 <button class="delete-btn">✖</button>
+                </div>
+                <div class="shipping">
+                    <p><strong>Shipping method</strong></p>
+               <input type="radio" checked> Delivery Included
+                </div>
+                <div class="cart-item">
+                    <img src="../images/Potato Eaters by Vincent Van Gogh Poster _ Zazzle.jpeg" alt="Feline's Festive">
+                    <div class="item-info">
+                        <h3>The Potato Eaters (1885) <h3>
+						
+                    </div>
+                    <span class="price">Price: $700</span>
+					<button class="delete-btn">✖</button>
+                </div>
+                <div class="shipping">
+                    <p><strong>Shipping method</strong></p>
+                    <input type="radio" checked> Delivery Included
+                </div>
+                <div class="order-notes">
+                    <p><strong>Order notes (optional)</strong></p>
+                    <textarea placeholder="Notes about your order, e.g. special notes for delivery" style="width: 100%; height: 80px;"></textarea>
+                </div>
             </div>
             <div class="checkout-section">
                 <p><strong>Order details</strong></p>
-                <p><strong>Total</strong> <span id="total-price" style="float: right;">$0</span></p>
+                <p><strong>Total</strong> <span style="float: right;">£3,350.00</span></p>
                 <input type="checkbox"> By clicking, you agree to our Terms & Conditions
                 <button class="checkout-btn">Checkout</button>
             </div>
         </div>
     </div>
-
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const cartContainer = document.querySelector(".cart-items");
-            const totalPriceElement = document.getElementById("total-price");
-
-            function displayCartItems() {
-                let cart = JSON.parse(localStorage.getItem("cart")) || [];
-                cartContainer.innerHTML = "<h2>My Cart</h2>";
-                let total = 0;
-                
-                if (cart.length === 0) {
-                    cartContainer.innerHTML += "<p>Your cart is empty.</p>";
-                    totalPriceElement.innerText = "$0";
-                    return;
-                }
-
-                cart.forEach((item, index) => {
-                    const cartItem = document.createElement("div");
-                    cartItem.classList.add("cart-item");
-                    cartItem.innerHTML = `
-                        <img src="${item.image}" alt="${item.title}">
-                        <div class="item-info">
-                            <h3>${item.title}</h3>
-                        </div>
-                        <span class="price">${item.price}</span>
-                        <button class="delete-btn" data-index="${index}">✖</button>
-                        <div class="shipping">
-                            <p><strong>Shipping method</strong></p>
-                            <input type="radio" checked> Delivery Included
-                        </div>
-                    `;
-                    cartContainer.appendChild(cartItem);
-                    total += parseFloat(item.price.replace("Price: $", ""));
-                });
-
-                totalPriceElement.innerText = `$${total.toFixed(2)}`;
-                attachDeleteEvent();
-            }
-
-            function attachDeleteEvent() {
-                document.querySelectorAll(".delete-btn").forEach(button => {
-                    button.addEventListener("click", function () {
-                        let cart = JSON.parse(localStorage.getItem("cart")) || [];
-                        const index = this.getAttribute("data-index");
-                        cart.splice(index, 1);
-                        localStorage.setItem("cart", JSON.stringify(cart));
-                        displayCartItems();
-                    });
-                });
-            }
-
-            displayCartItems();
-        });
-    </script>
 </body>
-</html>
+
+
+</html> 
+
+
+
 
 
