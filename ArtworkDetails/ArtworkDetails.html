@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ArtworlDetails</title>
-	<link rel="stylesheet" href="ArtworkDetails.css">
-
+    <title>Artwork Details</title>
+    <link rel="stylesheet" href="ArtworkDetails.css">
 </head>
 <body>
     <header>
@@ -21,42 +20,117 @@
                 <li><a href="../Cart/Cart.html">Cart</a></li>
             </ul>
             <div class="icons">
-                <img src="../images/heart.png" alt="Wishlist">
+                <img src="../images/heart.png" alt="Wishlist" class="wishlist-icon">
                 <img src="../images/profile.png" alt="Profile">
             </div>
         </nav>
     </header>
-	<main>
-    <div class="container">
-        <div class="left">
-            <div class="content">
-                
-                <h1>View of Paris from Vincent’s Room (1886-1887)</h1>
-                <p>Description: Bare trees stand in rows, their branches reaching like hands toward the sky. A shepherd moves through the mist, guiding his flock. The land is quiet, yet filled with movement, with life.</p>
-				<p>Vincent van Gogh</p>
-                <p>Price: $800</p>
-                <p>Size: 28x36 cm</p>
-				<p>Available</p>
+    <main>
+        <div class="container">
+            <div class="left">
+                <div class="content">
+                    <h1 id="art-title">View of Paris from Vincent’s Room (1886-1887)</h1>
+                    <p>Description: Bare trees stand in rows, their branches reaching like hands toward the sky. A shepherd moves through the mist, guiding his flock. The land is quiet, yet filled with movement, with life.</p>
+                    <p id="artist">Vincent van Gogh</p>
+                    <p id="price">Price: $800</p>
+                    <p>Size: 28x36 cm</p>
+                    <p>Available</p>
                     <div class="buttons-container">
                         <button class="add-to-cart">Add to Cart</button>
-                        <img src="../images/heart.png" alt="Wishlist" class="wishlist-icon">
+                        <img src="../images/heart.png" alt="Wishlist" class="wishlist">
                     </div>
+                </div>
+            </div>
+            <div class="right">
+                <div class="image-container">
+                    <img src="../images/Window Van Gogh Paintings.jpeg" alt="Inner Image">
+                    <button class="next-button">→</button>
+                </div>
             </div>
         </div>
-        <div class="right">
-            <div class="image-container">
-                <img src="../images/Window Van Gogh Paintings.jpeg" alt="Inner Image">
-                <button class="next-button">→</button>
-            </div>
-        </div>
-    </div>
-	</main>
-	    <footer>
+    </main>
+    <footer>
         <p>&copy; IT320 2025 Reesha. All rights reserved.</p>
     </footer>
+    
+	
+<script>
+	// JavaScript to handle the clicks for the elements
+	document.addEventListener("DOMContentLoaded", function() {
+
+    // Redirect to index.html when clicking on the logo
+    document.querySelector(".logo").addEventListener("click", function() {
+        window.location.href = "index.html";
+    });
+
+    // Redirect to Wishlist.html when clicking on the wishlist icon
+    document.querySelector("#wishlist-header").addEventListener("click", function() {
+        window.location.href = "../Wishlist/Wishlist.html";
+    });
+
+    // Redirect to Profile.html when clicking on the profile icon
+    document.querySelector("#profile-header").addEventListener("click", function() {
+        window.location.href = "../Profile/Profile.html";
+    });
+
+	});
+</script>
+
+<script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const wishlistIcon = document.querySelector(".wishlist");
+            const addToCartButton = document.querySelector(".add-to-cart");
+            
+            // Get artwork details
+            const artworkTitle = document.getElementById("art-title").textContent;
+            const artistName = document.getElementById("artist").textContent;
+            const price = document.getElementById("price").textContent;
+            const artworkImage = document.querySelector(".image-container img").src;
+
+            function addToStorage(key, item) {
+                let storedItems = JSON.parse(localStorage.getItem(key)) || [];
+                
+                // Prevent duplicates
+                if (!storedItems.some(storedItem => storedItem.title === item.title)) {
+                    storedItems.push(item);
+                    localStorage.setItem(key, JSON.stringify(storedItems));
+                    alert("Artwork added to " + (key === "cart" ? "cart" : "wishlist") + "!");
+                } else {
+                    alert("This artwork is already in your " + (key === "cart" ? "cart" : "wishlist") + "!");
+                }
+                console.log("Updated " + key + ":", storedItems);
+            }
+
+            wishlistIcon.addEventListener("click", function () {
+                const wishlistItem = {
+                    title: artworkTitle,
+                    artist: artistName,
+                    price: price,
+                    image: artworkImage
+                };
+                addToStorage("wishlist", wishlistItem);
+            });
+
+            addToCartButton.addEventListener("click", function () {
+                const cartItem = {
+                    title: artworkTitle,
+                    price: price,
+                    image: artworkImage
+                };
+                addToStorage("cart", cartItem);
+            });
+        });
+		
+	
+    </script>
+	
+
+
+
 </body>
-
-
 </html>
+
+
+
 
 
