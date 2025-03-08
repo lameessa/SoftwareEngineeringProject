@@ -29,7 +29,11 @@
 
     <section class="add-artwork-section">
         <div class="left-column">
-            <h2>SHARE YOUR ART.</h2>
+            <div class="text-layer">
+                <h2 class="text-light">SHARE YOUR ART</h2>
+                <h2 class="text-medium">SHARE YOUR ART</h2>
+                <h2 class="text-dark">SHARE YOUR ART</h2>
+            </div>
         </div>
         <div class="form-container">
             <h1>Add Your Artwork</h1>
@@ -38,10 +42,8 @@
     
                 <!-- Upload Image (Allows Adding More Pictures) -->
                 <div class="form-group">
-                    <label class="custom-file-upload">
-                        Add Picture
-                        <input type="file" id="artwork-image" name="image" accept="image/*" multiple onchange="handleImageUpload()">
-                    </label>
+                    <label for="artwork-image">Artwork's Picture</label>
+                    <input type="file" id="artwork-image" name="image" accept="image/*" multiple onchange="handleImageUpload()">
                 </div>
             
                 <!-- Image Preview Section (Now with "X" button) -->
@@ -128,26 +130,6 @@
     <footer>
         <p>&copy; IT320 2025 Reesha. All rights reserved.</p>
     </footer>
-	<script>
-	// JavaScript to handle the clicks for the elements
-	document.addEventListener("DOMContentLoaded", function() {
 
-    // Redirect to index.html when clicking on the logo
-    document.querySelector(".logo").addEventListener("click", function() {
-        window.location.href = "index.html";
-    });
-
-    // Redirect to Wishlist.html when clicking on the wishlist icon
-    document.querySelector("#wishlist-header").addEventListener("click", function() {
-        window.location.href = "../Wishlist/Wishlist.html";
-    });
-
-    // Redirect to Profile.html when clicking on the profile icon
-    document.querySelector("#profile-header").addEventListener("click", function() {
-        window.location.href = "../Profile/Profile.html";
-    });
-
-	});
-</script>
 </body>
 </html>
