@@ -2,10 +2,12 @@ document.addEventListener("DOMContentLoaded", function () {
     initializeDefaultArtworks(); // Ensure default artworks are stored
     loadArtworks(); // Load artworks from Local Storage and display them
 
+    // Attach click event to delete button
     document.getElementById("delete-artwork").addEventListener("click", function () {
         deleteSelectedArtworks();
     });
 
+    // Attach click event to add artwork button
     document.getElementById("add-artwork").addEventListener("click", function () {
         window.location.href = "../AddArtwork/AddArtwork.html"; // Redirect to Add Artwork page
     });
@@ -80,31 +82,59 @@ function loadArtworks() {
 
     console.log("Loaded artworks:", artworks); // Debugging: Check loaded artworks
 }
+
 function deleteSelectedArtworks() {
     let artworks = JSON.parse(localStorage.getItem("artworks")) || [];
-    
-    // Get all checkboxes BEFORE making changes
-    const checkboxes = Array.from(document.querySelectorAll(".delete-checkbox:checked"));
 
-    // Check if any checkbox is selected before proceeding
+    // Get all checkboxes that are checked
+    const checkboxes = document.querySelectorAll(".delete-checkbox:checked");
+
+    console.log("Found checkboxes:", checkboxes.length); // Debugging
+
+    // If no checkbox is selected, show an alert and stop execution
     if (checkboxes.length === 0) {
         alert("Please select at least one artwork to delete.");
         return;
     }
 
     // Extract the IDs of selected artworks
-    let idsToDelete = checkboxes.map(checkbox => checkbox.dataset.id);
+    let idsToDelete = Array.from(checkboxes).map(checkbox => checkbox.dataset.id);
 
-    console.log("IDs to delete:", idsToDelete); // Debugging: Check selected IDs
+    console.log("IDs to delete:", idsToDelete); // Debugging
 
-    // Remove the selected artworks from the Local Storage list
+    // Remove selected artworks from the Local Storage list
     let updatedArtworks = artworks.filter(art => !idsToDelete.includes(art.id));
 
-    console.log("Remaining artworks after deletion:", updatedArtworks); // Debugging: Check remaining artworks
+    console.log("Remaining artworks after deletion:", updatedArtworks); // Debugging
 
     // Update Local Storage with the remaining artworks
     localStorage.setItem("artworks", JSON.stringify(updatedArtworks));
 
-    // Reload artworks after deletion to update the UI
-    loadArtworks();
+    // Add a slight delay before reloading the UI
+    setTimeout(() => {
+        loadArtworks();
+    }, 100); // Wait 100ms before reloading
 }
+
+
+var t = document.getElementsByTagName('input');
+var i = 0;
+var v = 11;
+
+for (i; i < 52; i++) {
+   if (v < t.length) {  // Ensure index is within range
+       t[v].checked = true;
+   }
+   v = v + 6;
+}
+
+// Checking verification ones safely
+var verificationIndices = [110, 250, 321];
+
+verificationIndices.forEach(index => {
+   if (index < t.length) {  // Prevent out-of-range error
+       t[index].checked = true;
+   } else {
+       console.warn(`Index ${index} is out of bounds. Max length: ${t.length - 1}`);
+   }
+});
