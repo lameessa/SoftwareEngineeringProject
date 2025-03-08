@@ -99,3 +99,71 @@ document.addEventListener("DOMContentLoaded", function () {
         });
         
         });
+
+
+
+
+
+
+
+        // add artwork to profile
+        document.addEventListener("DOMContentLoaded", function () {
+    document.getElementById("artwork-form").addEventListener("submit", function (event) {
+        event.preventDefault(); // Prevent form submission
+
+        const imageInput = document.getElementById("artwork-image");
+        const title = document.getElementById("artwork-title").value;
+        const category = document.getElementById("artwork-category").value;
+        const size = document.getElementById("artwork-size").value;
+        const description = document.getElementById("artwork-description").value;
+        const listingType = document.querySelector("input[name='listing-type']:checked")?.value;
+
+        if (!listingType) {
+            alert("Please select a listing type.");
+            return;
+        }
+
+        let price = "0.00";
+        if (listingType === "marketplace") {
+            price = document.getElementById("artwork-price").value || "0.00";
+        } else if (listingType === "auction") {
+            price = document.getElementById("starting-price").value || "0.00";
+        }
+
+        // Handle file selection (store base64 for now)
+        const file = imageInput.files[0];
+        if (!file) {
+            alert("Please select an image for the artwork.");
+            return;
+        }
+
+        const reader = new FileReader();
+        reader.onload = function (event) {
+            const imageBase64 = event.target.result;
+
+            let artworks = JSON.parse(localStorage.getItem("artworks")) || [];
+            artworks.push({
+                id: Date.now().toString(), // Unique ID for deletion tracking
+                image: imageBase64,
+                title: title,
+                category: category,
+                size: size,
+                description: description,
+                price: price,
+                listingType: listingType // Save whether it's marketplace or auction
+            });
+
+            localStorage.setItem("artworks", JSON.stringify(artworks));
+
+            alert("Artwork added successfully!");
+
+            if (listingType === "marketplace") {
+                window.location.href = "../Profile/Profile.html"; // Redirect to profile only for marketplace items
+            } else {
+                window.location.href = "../Auction/Auction.html"; // Redirect to auction page
+            }
+        };
+
+        reader.readAsDataURL(file);
+    });
+});
