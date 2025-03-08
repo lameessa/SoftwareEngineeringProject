@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-// Function to initialize default artworks in Local Storage (Only runs once)
+// Function to initialize default artworks in Local Storage (Runs only once)
 function initializeDefaultArtworks() {
     if (!localStorage.getItem("initialized")) {
         let defaultArtworks = [
@@ -77,27 +77,34 @@ function loadArtworks() {
 
         artContainer.appendChild(artItem);
     });
-}
 
-// Function to delete selected artworks from Local Storage
+    console.log("Loaded artworks:", artworks); // Debugging: Check loaded artworks
+}
 function deleteSelectedArtworks() {
     let artworks = JSON.parse(localStorage.getItem("artworks")) || [];
-    const checkboxes = document.querySelectorAll(".delete-checkbox:checked");
+    
+    // Get all checkboxes BEFORE making changes
+    const checkboxes = Array.from(document.querySelectorAll(".delete-checkbox:checked"));
 
+    // Check if any checkbox is selected before proceeding
     if (checkboxes.length === 0) {
         alert("Please select at least one artwork to delete.");
         return;
     }
 
-    // Get IDs of selected artworks
-    let idsToDelete = Array.from(checkboxes).map((checkbox) => checkbox.dataset.id);
+    // Extract the IDs of selected artworks
+    let idsToDelete = checkboxes.map(checkbox => checkbox.dataset.id);
 
-    // Filter artworks to remove selected ones
-    artworks = artworks.filter(art => !idsToDelete.includes(art.id));
+    console.log("IDs to delete:", idsToDelete); // Debugging: Check selected IDs
 
-    // Update Local Storage
-    localStorage.setItem("artworks", JSON.stringify(artworks));
+    // Remove the selected artworks from the Local Storage list
+    let updatedArtworks = artworks.filter(art => !idsToDelete.includes(art.id));
 
-    // Reload artworks after deletion
+    console.log("Remaining artworks after deletion:", updatedArtworks); // Debugging: Check remaining artworks
+
+    // Update Local Storage with the remaining artworks
+    localStorage.setItem("artworks", JSON.stringify(updatedArtworks));
+
+    // Reload artworks after deletion to update the UI
     loadArtworks();
 }
