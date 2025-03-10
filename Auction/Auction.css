@@ -1,0 +1,76 @@
+/* Main Styles */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Playfair Display', serif;
+    color: #ded0c8;
+    background-color: #272727;
+}
+
+/* Header and Navigation */
+header, nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1em;
+}
+
+.logo {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.logo img {
+    height: 4em;
+    width: 10em;
+}
+
+.logo span {
+    font-size: 1em;
+}
+
+.logo:hover{
+	transform: scale(1.05);
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #ded0c8;
+    font-size: 16px;
+    transition: color 0.3s;
+    font-family: 'Playfair Display', serif;
+}
+
+nav ul li a:hover {
+    color: #d4af37;
+}
+
+.icons {
+    margin: 0 1em;
+    padding: 0.5em;
+}
+
+.icons img {
+    width: 2em;
+    height: 2em;
+    border-radius: 10px;
+    padding: 0 0.5em;
+}
+/*Header section done*/
+
+
+
+
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 1em;
+}
