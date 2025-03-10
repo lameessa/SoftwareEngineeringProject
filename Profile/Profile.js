@@ -116,6 +116,13 @@ function deleteSelectedArtworks() {
 
     console.log("IDs to delete:", idsToDelete); // Debugging
 
+    // ✅ Add confirmation dialog BEFORE deleting
+    const userConfirmed = confirm(`Are you sure you want to delete ${idsToDelete.length} artwork(s)?`);
+    if (!userConfirmed) {
+        console.log("User canceled the deletion.");
+        return; // Do nothing if user cancels
+    }
+
     // Remove selected artworks from the Local Storage list
     let updatedArtworks = artworks.filter(art => !idsToDelete.includes(art.id));
 
@@ -129,6 +136,7 @@ function deleteSelectedArtworks() {
         loadArtworks();
     }, 100); // Wait 100ms before reloading
 }
+
 
 
 var t = document.getElementsByTagName('input');
