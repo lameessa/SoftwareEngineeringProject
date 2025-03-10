@@ -155,13 +155,13 @@ padding:0.5em;
 .art-item h4 {
     margin: 5px 0;
     text-align: left;
-    font-size: 1.2em;
+    font-size: 1em;
     font-weight: bold;
 }
 
 .art-item p {
     margin: 2px 0;
-    font-size: 1em;
+    font-size: 0.9em;
 }
 
 .art-item #artists-name {
@@ -317,6 +317,50 @@ padding:0.5em;
     font-size: 14px;
     color: #ded0c8;
 }
+/* Fix buttons container to align elements properly */
+.buttons-container {
+    display: flex;
+    justify-content: space-between;  /* Ensures buttons are aligned */
+    align-items: center;
+    gap: 10px;  /* Adds spacing between buttons */
+    margin-top: 10px;
+}
+
+/* Style the Wishlist Button (Heart) */
+.wishlist-btn  {
+    width: 1.6em;  /* Reduce size */
+    height: 1.6em;
+    cursor: pointer;
+    transition: transform 0.3s ease, filter 0.3s ease;
+    object-fit: contain;  /* Prevent stretching */
+}
+.buttons-container img{
+    width: 1.6em;  /* Reduce size */
+    height: 1.6em;
+}
+/* Ensure the Wishlist Button Stays Inside the Art Card */
+.art-item .buttons-container .wishlist-btn {
+    display: inline-block;  /* Keep it in place */
+    position: relative;  /* Prevents floating outside */
+}
+
+/* Hover Effect for Wishlist Button */
+.wishlist-btn:hover {
+    transform: scale(1.1);
+    filter: brightness(1.2);
+}
+
+/* Fix Floating Heart Icon Issue */
+
+
+/* Ensure the Wishlist Button Doesn’t Appear Outside */
+.art-item {
+    position: relative;
+    overflow: hidden;  /* Prevents elements from breaking out */
+}
+ 
+
+
 
 footer {
     margin-top: 50px;
@@ -325,3 +369,4 @@ footer {
     color: #ded0c8;
 
 }
+
