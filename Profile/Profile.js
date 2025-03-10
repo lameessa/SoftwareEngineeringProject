@@ -54,6 +54,7 @@ function initializeDefaultArtworks() {
 }
 
 // Function to load artworks from Local Storage and display them
+// Function to load artworks from Local Storage and display them
 function loadArtworks() {
     let artworks = JSON.parse(localStorage.getItem("artworks")) || [];
     const artContainer = document.querySelector(".art-grid");
@@ -61,6 +62,18 @@ function loadArtworks() {
     // Clear existing artworks before loading
     artContainer.innerHTML = "";
 
+    // Check if there are no artworks
+    if (artworks.length === 0) {
+        const noArtMessage = document.createElement("p");
+        noArtMessage.textContent = "No artworks available at the moment. Start adding your creations!";
+        noArtMessage.classList.add("no-art-message"); // Add a class for styling (CSS)
+        artContainer.appendChild(noArtMessage);
+
+        console.log("No artworks found."); // Debugging: Check for no artworks
+        return; // Exit function early since there’s nothing to load
+    }
+
+    // Display artworks if available
     artworks.forEach((art) => {
         const artItem = document.createElement("div");
         artItem.classList.add("art-item");
@@ -82,6 +95,7 @@ function loadArtworks() {
 
     console.log("Loaded artworks:", artworks); // Debugging: Check loaded artworks
 }
+
 
 function deleteSelectedArtworks() {
     let artworks = JSON.parse(localStorage.getItem("artworks")) || [];

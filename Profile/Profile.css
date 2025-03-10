@@ -68,6 +68,12 @@ nav ul li a:hover {
     margin: 20px auto;
     max-width: 80%;
 }
+.no-art-message {
+    color: #ded0c8;
+    font-size: 0.9em;
+    margin: 20px auto;
+    text-align: center;
+}
 
 .profile-pic {
     width: 60%;
