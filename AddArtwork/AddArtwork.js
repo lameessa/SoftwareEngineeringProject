@@ -128,7 +128,16 @@ document.addEventListener("DOMContentLoaded", function () {
             price = document.getElementById("artwork-price").value || "0.00";
         } else if (listingType === "auction") {
             price = document.getElementById("starting-price").value || "0.00";
+            const auctionEnd = document.getElementById("auction-end").value;
+        
+            if (!auctionEnd) {
+                alert("Please select an auction end date.");
+                return;
+            }
+        
+            // Save auctionEnd to localStorage if needed
         }
+        
 
         // Handle file selection (store base64 for now)
         const file = imageInput.files[0];

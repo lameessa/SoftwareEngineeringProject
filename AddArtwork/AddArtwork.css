@@ -93,6 +93,7 @@ nav ul li a:hover {
 }
 
 .text-layer h2 {
+    font-weight: 100; 
     position: absolute;
     left: 0;
     right: 0;
@@ -130,6 +131,11 @@ nav ul li a:hover {
     flex-direction: column;
     justify-content: center;
 }
+
+h1 {
+font-size: 2.7rem;
+}
+
 
 h1, h3 {
     color: #ffffff;
@@ -191,16 +197,7 @@ h1, h3 {
     border-color: #d4af37; /* Optional: Gold border on focus */
 }
 
-/* Auction Start & End Time */
-.auction-row {
-    display: flex;
-    gap: 20px;
-}
 
-.auction-row .form-group {
-    flex: 1;
-    min-width: 25%;
-}
 
 /* Radio Buttons */
 .radio-group {
