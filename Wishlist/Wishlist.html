@@ -147,7 +147,7 @@
             window.location.href = "../ArtworkDetails/ArtworkDetails.html";
         });
     });
-	/*
+	
     // Handle add to wishlist from other pages
     // Assuming you use a function to add to the wishlist (we will save this in localStorage)
     // This function should be called whenever an item is added to the wishlist on other pages
@@ -165,18 +165,18 @@
         
         wishlist.forEach((artwork) => {
             const wishlistItem = document.createElement("div");
-            wishlistItem.classList.add("wishlist-item");
-            wishlistItem.innerHTML = `
-                <img src="${artwork.image}" alt="${artwork.title}">
-                <div class="art-wish-text">
-                    <p id="art-details">
-                        <span id="art-title">${artwork.title}</span><br>
-                        <span id="artist">${artwork.artist}</span>‎ ‎ ‎ 
-                        <span id="price">${artwork.price}</span>
-                    </p>
-                    <span class="remove-wishlist"> × </span>
-                </div>
-            `;
+        wishlistItem.classList.add("wishlist-item");
+        wishlistItem.innerHTML = `
+            <img src="${artwork.image}" alt="${artwork.title}">
+            <div class="art-wish-text">
+                <p id="art-details">
+                    <span id="art-title">${artwork.title}</span><br>
+                    <span id="artist">${artwork.artist}</span>‎ ‎ ‎ 
+                    <span id="price" class="price-tag">${artwork.price}</span>
+                </p>
+                <span class="remove-wishlist"> × </span>
+            </div>
+        `;
             wishlistGrid.appendChild(wishlistItem);
             
             // Add event listener for removing from wishlist
@@ -199,7 +199,7 @@
 
     // Initial loading of wishlist
     loadWishlist();
-		*/
+		
 	});
 
 	</script>
