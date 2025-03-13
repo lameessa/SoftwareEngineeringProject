@@ -24,25 +24,26 @@ document.addEventListener("DOMContentLoaded", function () {
     loadAuctionItems("currentUser"); // TODO: fix this to get actual current user id
 
     document.querySelectorAll(".auction-item").forEach(item => {
-        item.addEventListener("click", function (event) {
-            // Get the image source from the clicked item
-            // const imageSrc = item.querySelector("img").src;
+    item.addEventListener("click", function (event) {
+        // Get the artwork name
+        const artName = item.querySelector(".art-name").textContent;
 
-            // // Extract the image name from the src (you may want to use just the image filename)
-            // const imageName = imageSrc.substring(imageSrc.lastIndexOf("/") + 1);
+        // Get the artworks from localStorage
+        let artworks = JSON.parse(localStorage.getItem("artworks")) || [];
 
-            // // Get the other information from the item
-            const artName = item.querySelector(".art-name").textContent;
-            // const artPrice = item.querySelector(".art-price").textContent;
-            // const timeLeft = item.querySelector(".time-left").textContent;
-            let artworks = JSON.parse(localStorage.getItem("artworks")) || [];
+        // Find the matching artwork
+        let artwork = artworks.find(artwork => artwork.title === artName);
 
-            let artwork = artworks.find(artwork => artwork.title === artName);
-
-            // Redirect to the ArtWorkDetails page and pass the data as query parameters
+        // If artwork is found, redirect to the details page
+        if (artwork) {
             window.location.href = `../AuctionDetails/AuctionDetails.html?id=${artwork.id}`;
-        });
+        } else {
+            console.error("Artwork not found.");
+            // Optionally, show a message to the user
+        }
     });
+});
+
 });
 
 
@@ -112,6 +113,7 @@ function loadAuctionItems(username) {
             }
         }, 1000); // Update every second (1000ms)
     });
+
 }
 
 // Function to calculate the time left based on endTime
