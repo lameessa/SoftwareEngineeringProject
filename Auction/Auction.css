@@ -2,7 +2,7 @@
 body {
     margin: 0;
     padding: 0;
-    font-family: 'Playfair Display', serif;
+    font-family: serif; /* Serif font applied globally */
     color: #ded0c8;
     background-color: #272727;
 }
@@ -14,12 +14,14 @@ nav {
     justify-content: space-between;
     align-items: center;
     padding: 1em;
+    font-family: serif; /* Serif font */
 }
 
 .logo {
     display: flex;
     flex-direction: column;
     text-align: center;
+    font-family: serif;
 }
 
 .logo img {
@@ -46,7 +48,7 @@ nav ul li a {
     color: #ded0c8;
     font-size: 16px;
     transition: color 0.3s;
-    font-family: 'Playfair Display', serif;
+    font-family: serif;
 }
 
 nav ul li a:hover {
@@ -65,31 +67,26 @@ nav ul li a:hover {
     padding: 0 0.5em;
 }
 
-/*Header section done*/
+/* Header section done */
 
-
-
-/*main*/
+/* Main */
 /* General styling for the auction section */
 #auction-description {
     display: flex;
-    /* Use flexbox for layout */
     justify-content: space-between;
-    /* Distribute space between title and description */
     gap: 0px;
-    /* Add a small gap between the title and description */
     margin: 20px;
-    font-family: Arial, sans-serif;
+    font-family: serif;
 }
 
 .auction-container {
     position: relative;
-    display: inline-block; /* Shrinks to fit content */
+    display: inline-block;
 }
 
 .auction-image {
     display: block;
-    width: 100%; /* or specify fixed width */
+    width: 100%;
     height: auto;
 }
 
@@ -99,14 +96,12 @@ nav ul li a:hover {
     left: 0;
     width: 100%;
     height: 100%;
-    
     display: flex;
     justify-content: center;
     align-items: center;
     color: #fff;
     font-size: 1.5em;
-    
-    background-color: rgba(0, 0, 0, 0.5); /* Optional overlay */
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
 #auction-description h1 {
@@ -116,8 +111,6 @@ nav ul li a:hover {
     margin: 0;
     margin-left: 50px;
     margin-top: 20px;
-    /* Remove default margin */
-    /* Align to the left by default in flexbox */
 }
 
 #auction-description p {
@@ -126,19 +119,14 @@ nav ul li a:hover {
     line-height: 1.6;
     color: #ded0c8;
     margin-left: -50px;
-    /* Remove default margin */
     max-width: 70%;
-    /* Optional: limit the width of the description */
-    /* Align to the right by default in flexbox */
 }
-
 
 /* Tabs layout */
 .tabs {
-    font-family: 'Poppins', sans-serif;
+    font-family: serif;
     display: flex;
     flex-direction: column;
-    /* Stack the sidebar and content vertically */
     width: 100%;
     min-height: 100vh;
 }
@@ -147,12 +135,11 @@ nav ul li a:hover {
 .sidebar {
     display: flex;
     flex-direction: row;
-    /* Display tabs horizontally */
     align-items: flex-start;
     justify-content: flex-start;
     width: 100%;
     padding: 10px 20px;
-    /* Add some space around the tabs */
+    font-family: serif;
 }
 
 /* Tab buttons */
@@ -167,17 +154,14 @@ nav ul li a:hover {
     border-bottom: 2px solid #333;
     transition: all 0.3s ease;
     margin-right: 20px;
-    /* Space between the tabs */
+    font-family: serif;
 }
-
-
 
 /* Active tab button */
 .tab-btn-active {
     border-bottom: 2px solid #ded0c8;
     color: #ded0c8;
     z-index: 10;
-    /* Active color for the bottom border */
 }
 
 /* Active line under the tabs */
@@ -189,29 +173,23 @@ nav ul li a:hover {
 
 hr {
     width: 100%;
-    /* Full width */
     height: 2px;
-    /* Thickness of the line */
     background-color: #333;
-    /* Color of the line */
     border: none;
     border-top: 2px solid #333;
-    /* Solid line */
     margin-top: -13px;
     margin-left: 20px;
-    /* Remove the border */
 }
 
-.tab-btn-active+.active-line {
+.tab-btn-active + .active-line {
     background-color: #513c2e;
-    ;
-    /* Color for the active line */
 }
 
 /* Content section (below tabs) */
 .content {
     padding: 20px;
     width: 100%;
+    font-family: serif;
 }
 
 /* Tab content (hidden by default) */
@@ -225,21 +203,16 @@ hr {
 }
 
 /* Auction row (horizontal scrollable content) */
-/* General styling for the page background */
 body {
     margin: 0;
     padding: 0;
     transition: background-image 0.3s ease;
-    /* Smooth transition when changing background */
     background-size: cover;
-    /* Make sure the image covers the whole page */
     background-position: center;
-    /* Center the background image */
     background-repeat: no-repeat;
-    /* Prevent the background image from repeating */
 }
 
-/* Other existing CSS you already have (auction-item styles) */
+/* Auction Row */
 .auction-row {
     display: flex;
     gap: 20px;
@@ -249,24 +222,25 @@ body {
 }
 
 .auction-row::-webkit-scrollbar {
-    display: none; /* Optional: hide scrollbar for clean look */
+    display: none;
 }
 
-/* Updated Auction Item Card */
+/* Auction Item Card */
 .auction-item {
     flex: 0 0 auto;
-    width: 250px; /* Increased size for a card-like look */
-    background-color: #1e1e1e; /* Dark background to match theme */
+    width: 250px;
+    background-color: #1e1e1e;
     padding: 15px;
-    border-radius: 10px; /* Rounded corners */
+    border-radius: 10px;
     text-align: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Soft shadow */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     transition: transform 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
     overflow: hidden;
     position: relative;
+    font-family: serif;
 }
 
 /* Hover effect for the whole card */
@@ -290,6 +264,7 @@ body {
     color: #ded0c8;
     margin-bottom: 8px;
     font-weight: 600;
+    font-family: serif;
 }
 
 /* Artwork Price */
@@ -298,6 +273,7 @@ body {
     color: #c94a3c;
     font-weight: bold;
     margin-bottom: 8px;
+    font-family: serif;
 }
 
 /* Time Left */
@@ -305,11 +281,12 @@ body {
     font-size: 0.9em;
     color: #7f8c8d;
     margin-bottom: 10px;
+    font-family: serif;
 }
-
 
 /* Footer */
 footer {
     text-align: center;
     padding: 1em;
+    font-family: serif;
 }
