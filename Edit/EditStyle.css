@@ -12,7 +12,7 @@ main {
 	display: flex;
 	flex-direction: column;
     align-items: center;
-    height: 35em;
+    height: 40em;
 }
 
 header, nav {
@@ -80,23 +80,25 @@ padding:0.5em;
             display: flex;
             width: 90%;
             max-width: 1200px;
-            height: 80vh;
+            height: 1500px;
             background: #272727;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             position: relative;
-            overflow: hidden;
         }
 
         .left {
             width: 50%;
             background: #272727;
-            padding: 50px;
+            padding: 60px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             z-index: 2;
+            height: 64vh;
         }
-
+		.content{
+			            height: 1200px;
+		}
         .content h3 {
             font-size: 14px;
             color: gray;
@@ -106,7 +108,7 @@ padding:0.5em;
         .content #label-title {
             font-size: 32px;
 			color:#D3D3D3;
-            margin: 10px 0;
+            margin: 7px 0;
 			font-weight:bold;
         }
 
@@ -194,7 +196,7 @@ padding:0.5em;
 		}
 	
 		#editArtworkForm textarea {
-			height: 70px;
+			height: 60px;
 			resize: vertical;
 		}
 		

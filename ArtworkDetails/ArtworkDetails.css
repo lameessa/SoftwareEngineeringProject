@@ -139,16 +139,7 @@ padding:0.5em;
             height: auto;
         }
 
-        .next-button {
-            position: absolute;
-            bottom: 10px;
-            right: 10px;
-            background: #272727;
-            border: none;
-            font-size: 20px;
-            cursor: pointer;
-            padding: 5px;
-        }
+
         
         .add-to-cart {
             margin-top: 20px;
