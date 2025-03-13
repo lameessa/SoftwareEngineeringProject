@@ -8,7 +8,8 @@ body {
 }
 
 /* Header and Navigation */
-header, nav {
+header,
+nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -30,8 +31,8 @@ header, nav {
     font-size: 1em;
 }
 
-.logo:hover{
-	transform: scale(1.05);
+.logo:hover {
+    transform: scale(1.05);
 }
 
 nav ul {
@@ -63,11 +64,227 @@ nav ul li a:hover {
     border-radius: 10px;
     padding: 0 0.5em;
 }
+
 /*Header section done*/
 
 
 
+/*main*/
+/* General styling for the auction section */
+#auction-description {
+    display: flex;
+    /* Use flexbox for layout */
+    justify-content: space-between;
+    /* Distribute space between title and description */
+    gap: 0px;
+    /* Add a small gap between the title and description */
+    margin: 20px;
+    font-family: Arial, sans-serif;
+}
 
+.auction-container {
+    position: relative;
+    display: inline-block; /* Shrinks to fit content */
+}
+
+.auction-image {
+    display: block;
+    width: 100%; /* or specify fixed width */
+    height: auto;
+}
+
+.auction-description {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-size: 1.5em;
+    
+    background-color: rgba(0, 0, 0, 0.5); /* Optional overlay */
+}
+
+#auction-description h1 {
+    font-size: 2em;
+    font-weight: 500;
+    color: #ded0c8;
+    margin: 0;
+    margin-left: 50px;
+    margin-top: 20px;
+    /* Remove default margin */
+    /* Align to the left by default in flexbox */
+}
+
+#auction-description p {
+    font-size: 1em;
+    font-weight: 500;
+    line-height: 1.6;
+    color: #ded0c8;
+    margin-left: -50px;
+    /* Remove default margin */
+    max-width: 70%;
+    /* Optional: limit the width of the description */
+    /* Align to the right by default in flexbox */
+}
+
+
+/* Tabs layout */
+.tabs {
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    flex-direction: column;
+    /* Stack the sidebar and content vertically */
+    width: 100%;
+    min-height: 100vh;
+}
+
+/* Sidebar (tabs at the top) */
+.sidebar {
+    display: flex;
+    flex-direction: row;
+    /* Display tabs horizontally */
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 100%;
+    padding: 10px 20px;
+    /* Add some space around the tabs */
+}
+
+/* Tab buttons */
+.tab-btn {
+    background-color: transparent;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1.2em;
+    color: #333;
+    cursor: pointer;
+    font-weight: normal;
+    border-bottom: 2px solid #333;
+    transition: all 0.3s ease;
+    margin-right: 20px;
+    /* Space between the tabs */
+}
+
+
+
+/* Active tab button */
+.tab-btn-active {
+    border-bottom: 2px solid #ded0c8;
+    color: #ded0c8;
+    z-index: 10;
+    /* Active color for the bottom border */
+}
+
+/* Active line under the tabs */
+.active-line {
+    height: 2px;
+    background-color: transparent;
+    transition: 0.3s ease;
+}
+
+hr {
+    width: 100%;
+    /* Full width */
+    height: 2px;
+    /* Thickness of the line */
+    background-color: #333;
+    /* Color of the line */
+    border: none;
+    border-top: 2px solid #333;
+    /* Solid line */
+    margin-top: -13px;
+    margin-left: 20px;
+    /* Remove the border */
+}
+
+.tab-btn-active+.active-line {
+    background-color: #513c2e;
+    ;
+    /* Color for the active line */
+}
+
+/* Content section (below tabs) */
+.content {
+    padding: 20px;
+    width: 100%;
+}
+
+/* Tab content (hidden by default) */
+.tab-content {
+    display: none;
+}
+
+/* Active tab content */
+.tab-content-active {
+    display: block;
+}
+
+/* Auction row (horizontal scrollable content) */
+/* General styling for the page background */
+body {
+    margin: 0;
+    padding: 0;
+    transition: background-image 0.3s ease;
+    /* Smooth transition when changing background */
+    background-size: cover;
+    /* Make sure the image covers the whole page */
+    background-position: center;
+    /* Center the background image */
+    background-repeat: no-repeat;
+    /* Prevent the background image from repeating */
+}
+
+/* Other existing CSS you already have (auction-item styles) */
+.auction-row {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    padding: 10px 0;
+    justify-content: center;
+}
+
+.auction-item {
+    flex: 0 0 auto;
+    width: 200px;
+    text-align: center;
+}
+
+.auction-item img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.auction-item img:hover {
+    transform: scale(1.1);
+    /* Scale the image up by 10% */
+}
+
+
+.art-name,
+.art-price,
+.time-left {
+    font-size: 1em;
+    color: #ded0c8;
+    margin-top: 10px;
+}
+
+.art-price {
+    color: #c94a3c;
+    font-weight: bold;
+}
+
+.time-left {
+    color: #7f8c8d;
+}
 
 /* Footer */
 footer {
