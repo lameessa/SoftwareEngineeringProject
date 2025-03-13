@@ -1,22 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>REESHA - Add Artwork</title>
     <link rel="stylesheet" href="Auction.css">
-    <script defer src="Auction.css"></script>
+    <script defer src="Auction.js"></script>
 </head>
+
 <body>
 
-<!-- Nav Bar Start -->
-
+    <!-- Nav Bar Start -->
     <header>
         <div class="logo">
-				<img src="../images/logo.png" alt="Reesha">
-				<span>Reesha ريشة</span>
-		</div>
-		<nav>
+            <img src="../images/logo.png" alt="Reesha">
+            <span>Reesha ريشة</span>
+        </div>
+        <nav>
             <ul class="nav-links">
                 <li><a href="../Home/index.html">Home</a></li>
                 <li><a href="../Search/Search.html">Search</a></li>
@@ -29,16 +30,44 @@
             </div>
         </nav>
     </header>
-<!-- Nav Bar end -->
-   
+    <!-- Nav Bar end -->
 
+    <!-- Auction Section Start -->
+    <section id="auction-description">
+        <h1>Auctions</h1>
+        <p>
+            Auctions are an exciting way to buy and sell art, where buyers place bids on artwork, and the highest bidder
+            wins the item. At Reesha, we bring art lovers and collectors together to engage in competitive bidding,
+            making the art buying experience more dynamic and thrilling.
+        </p>
+    </section>
 
+    <section class="tabs">
+        <div class="sidebar">
+            <button class="tab-btn tab-btn-active" data-for-tab="1">Trending Artwork</button>
+            <button class="tab-btn" data-for-tab="2">My Auctions</button>
+            <div class="active-line"></div>
+        </div>
+        <hr>
+        <div class="content">
+            <div class="tab-content tab-content-active" data-tab="1">
+                <div class="auction-row" id="auction-items-container">
+                    <!-- Auction items will be dynamically added here -->
+                </div>
+            </div>
+            <div class="tab-content tab-content-active" data-tab="2">
+                <div class="auction-row" id="my-auction-items-container">
+                    <!-- Auction items will be dynamically added here -->
+                </div>
+            </div>
+    </section>
+    <!-- Auction Section End -->
 
-
-<!-- Footer -->
+    <!-- Footer -->
     <footer>
         <p>&copy; IT320 2025 Reesha. All rights reserved.</p>
     </footer>
 
 </body>
+
 </html>

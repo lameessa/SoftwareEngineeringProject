@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="ar">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auction Details</title>
+    <link rel="stylesheet" href="AuctionDetails.css">
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <img src="../images/logo.png" alt="Reesha">
+            <span>Reesha ريشة</span>
+        </div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="../Search/Search.html">Search</a></li>
+                <li><a href="../Auction/Auction.html">Auctions</a></li>
+                <li><a href="../Cart/Cart.html">Cart</a></li>
+            </ul>
+            <div class="icons">
+                <img src="../images/heart.png" alt="Wishlist" id="wishlist-header">
+                <img src="../images/profile.png" alt="Profile" id="profile-header">
+            </div>
+        </nav>
+    </header>
+    <main>
+        <div class="container">
+            <div class="left">
+                <div class="content">
+                    <h1 id="art-title">View of Paris from Vincent’s Room (1886-1887)</h1>
+                    <p id="description">Description: Bare trees stand in rows, their branches reaching like hands toward
+                        the sky. A
+                        shepherd moves through the mist, guiding his flock. The land is quiet, yet filled with movement,
+                        with life.</p>
+                    <p id="artist">Vincent van Gogh</p>
+                    <p id="price">Current bid: $800</p>
+                    <p id="timeleft">Time Left: 2h 30m</p>
+                    <p>Size: 28x36 cm</p>
+                    <p>1 bid, reserve met.</p>
+                    <p>12 watchers</p>
+                    <p>Available</p>
+
+                    <!-- New input field for placing a bid -->
+                    <label for="bidAmount">Place your bid:</label>
+                    <input type="number" id="bidAmount" placeholder="Enter bid amount" />
+
+                    <!-- Button to place bid -->
+                    <div class="buttons-container">
+                        <button class="place-bid">Place Bid</button>
+                        <img src="../images/heart.png" alt="Wishlist" class="wishlist">
+                    </div>
+                </div>
+            </div>
+            <div class="right">
+                <div class="image-container">
+                    <img id="artwork-image" src="" alt="Artwork" class="artwork-image">
+                    <button class="next-button">→</button>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; IT320 2025 Reesha. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Get the query parameters from the URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const artId = urlParams.get('id');
+
+        let artworks = JSON.parse(localStorage.getItem("artworks")) || [];
+
+        let artwork = artworks.find(artwork => artwork.id === artId);
+        // If parameters exist, populate the page with the corresponding values
+
+        document.getElementById("artwork-image").src = artwork.image;
+        document.getElementById("art-title").textContent = artwork.title;
+        document.getElementById("price").textContent = "Current bid: " + artwork.price;
+        document.getElementById("description").textContent = artwork.description;
+
+        // JavaScript to handle the clicks for the elements
+        document.addEventListener("DOMContentLoaded", function () {
+            // Redirect to index.html when clicking on the logo
+            document.querySelector(".logo").addEventListener("click", function () {
+                window.location.href = "index.html";
+            });
+
+            // // Redirect to Wishlist.html when clicking on the wishlist icon
+            // document.querySelector("#wishlist-header").addEventListener("click", function () {
+            //     window.location.href = "../Wishlist/Wishlist.html";
+            // });
+
+            // Redirect to Profile.html when clicking on the profile icon
+            document.querySelector("#profile-header").addEventListener("click", function () {
+                window.location.href = "../Profile/Profile.html";
+            });
+            // Set up the countdown timer
+            const timeLeftElement = document.getElementById("timeleft");
+            const endTime = artwork.endTime; // Fetch the endTime from the artwork object
+
+            // Function to calculate the time left
+            function calculateTimeLeft(endTime) {
+                const now = new Date();
+                const endDate = new Date(endTime);
+                const timeDiff = endDate - now;
+
+                if (timeDiff <= 0) {
+                    return "Auction has ended";
+                }
+
+                const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
+
+                return `${days}d ${hours}h ${minutes}m ${seconds}s`;
+            }
+
+            // Update the countdown every second
+            const interval = setInterval(() => {
+                const timeLeftText = calculateTimeLeft(endTime);
+                timeLeftElement.textContent = "Time Left: " + timeLeftText;
+
+                // If auction has ended, stop the interval
+                if (timeLeftText === "Auction has ended") {
+                    clearInterval(interval);
+                }
+            }, 1000); // Update every second (1000ms)
+
+        });
+
+        function UpdateStorage(key, item) {
+            let storedItems = JSON.parse(localStorage.getItem(key)) || [];
+
+            // Prevent duplicates
+            if (!storedItems.some(storedItem => storedItem.title === item.title)) {
+                storedItems.push(item);
+                localStorage.setItem(key, JSON.stringify(storedItems));
+                alert("Artwork added to " + (key === "cart" ? "cart" : "wishlist") + "!");
+            } else {
+                alert("This artwork is already in your " + (key === "cart" ? "cart" : "wishlist") + "!");
+            }
+            console.log("Updated " + key + ":", storedItems);
+        }
+    </script>
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const wishlistIcon = document.querySelector(".wishlist");
+            const placeBidButton = document.querySelector(".place-bid");
+
+            // Get artwork details
+            const artworkTitle = document.getElementById("art-title").textContent;
+            const artistName = document.getElementById("artist").textContent;
+            const priceElement = document.getElementById("price"); // current bid element
+            const artworkImage = document.querySelector(".image-container img").src;
+
+            // Get current price (extracting the numeric value)
+            let currentPrice = parseFloat(priceElement.textContent.replace('Current bid: $', '').trim());
+
+            function addToStorage(key, item) {
+                let storedItems = JSON.parse(localStorage.getItem(key)) || [];
+
+                // Prevent duplicates
+                if (!storedItems.some(storedItem => storedItem.title === item.title)) {
+                    storedItems.push(item);
+                    localStorage.setItem(key, JSON.stringify(storedItems));
+                    alert("Artwork added to " + (key === "cart" ? "cart" : "wishlist") + "!");
+                } else {
+                    alert("This artwork is already in your " + (key === "cart" ? "cart" : "wishlist") + "!");
+                }
+                console.log("Updated " + key + ":", storedItems);
+            }
+
+            wishlistIcon.addEventListener("click", function () {
+                const wishlistItem = {
+                    title: artworkTitle,
+                    artist: artistName,
+                    price: currentPrice, // use current price
+                    image: artworkImage
+                };
+                addToStorage("wishlist", wishlistItem);
+            });
+
+            placeBidButton.addEventListener("click", function () {
+                const bidAmount = parseFloat(document.getElementById("bidAmount").value);
+
+                // Check if the entered bid is higher than the current price
+                if (bidAmount && bidAmount > currentPrice) {
+                    // Update the current price with the new bid amount
+                    currentPrice = bidAmount;
+
+                    // Update the price element on the page
+                    priceElement.textContent = "Current bid: $" + currentPrice.toFixed(2);
+
+                    // Update the artwork in localStorage
+                    let artworks = JSON.parse(localStorage.getItem("artworks")) || [];
+                    let artwork = artworks.find(artwork => artwork.title === artworkTitle);
+
+                    if (artwork) {
+                        artwork.price = "$" + currentPrice;  // Update the price in the artwork object
+                        localStorage.setItem("artworks", JSON.stringify(artworks));
+                        alert(`Your bid of $${bidAmount} has been placed!`);
+                    } else {
+                        alert("Artwork not found in storage.");
+                    }
+                } else if (bidAmount && bidAmount <= currentPrice) {
+                    // If the bid is lower or equal to the current price, show an error
+                    alert(`Your bid must be higher than the current bid of $${currentPrice.toFixed(2)}.`);
+                } else {
+                    alert("Please enter a valid bid amount.");
+                }
+            });
+
+        });
+    </script>
+
+</body>
+
+</html>
