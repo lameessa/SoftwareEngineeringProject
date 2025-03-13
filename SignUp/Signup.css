@@ -16,9 +16,14 @@ header, nav {
 }
 
 .logo {
-    display: flex;
-    flex-direction: column;
-    text-align: center;
+    color: #ded0c8;
+	display:flex;
+	flex-direction:column;
+	text-align:center;
+	transition: transform 0.3s ease;
+}
+.logo:hover{
+	transform: scale(1.05);
 }
 
 .logo img {
