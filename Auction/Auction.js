@@ -19,7 +19,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     // Call the function to load auction items
-    initializeDefaultArtworks();
     loadAuctionItems("");
     loadAuctionItems("currentUser"); // TODO: fix this to get actual current user id
 
@@ -158,85 +157,3 @@ function setupTabs() {
 }
 
 
-function initializeDefaultArtworks() {
-    if (!localStorage.getItem("initialized")) {
-        let defaultArtworks = [
-            {
-                id: "1",
-                image: "../images/Vincent van Gogh - Roses, 1889 at National Museum of Western Art - Tokyo Japan.jpeg",
-                title: "Roses (1889)",
-                description: "Burst of green and pink, wild and untamed. Roses, painted in thick strokes, within the asylum walls, nature’s beauty flourishes.",
-                category: "Abstract",
-                size: "40x50 cm",
-                price: "$500",
-                listingType: "marketplace"
-            },
-            {
-                id: "2",
-                image: "../images/Potato Eaters by Vincent Van Gogh Poster _ Zazzle.jpeg",
-                title: "The Potato Eaters (1885)",
-                description: "A simple meal, shared by those who work the land. Their hands, rough and calloused, have dug the very potatoes they now eat.",
-                category: "Realism",
-                size: "13x18 cm",
-                price: "$700",
-                listingType: "marketplace"
-            },
-            {
-                id: "3",
-                image: "../images/Vincent van Gogh almond blossom.jpeg",
-                title: "Almond Blossoms (1890)",
-                description: "Soft white petals against a blue sky—delicate yet strong. The almond tree, the first to bloom after winter, is a symbol of hope.",
-                category: "Expressionism",
-                size: "10x15 cm",
-                price: "$400",
-                listingType: "marketplace"
-            },
-            {
-                id: "4",
-                image: "../images/Cafeterrasse-bei-Nacht.jpg",
-                title: "Cafe Terrace at Night (1890)",
-                description: "This painting of a colorful outdoor view is a picturesque work, the vision of a relaxed spectator who enjoys the charm of his surrounding without any moral concern.",
-                category: "Post-Impressionism",
-                size: "10x15 cm",
-                price: "$8800",
-                listingType: "auction",
-                endTime: "2025-05-12T11:11"
-            },
-            {
-                id: "5",
-                image: "../images/StarryNight.jpg",
-                title: "The Starry Night (1889)",
-                description: "A swirling night sky over a small town, a powerful and emotional depiction of Van Gogh’s inner turmoil.",
-                category: "Post-Impressionism",
-                size: "24x36 cm",
-                price: "$1000",
-                listingType: "auction",
-                endTime: "2025-06-12T11:11"
-            },
-            {
-                id: "6",
-                image: "../images/MonaLisa.jpg",
-                title: "Mona Lisa (1503–1506)",
-                description: "The enigmatic portrait of a woman that has captivated viewers for centuries, created by Leonardo da Vinci.",
-                category: "Renaissance",
-                size: "50x70 cm",
-                price: "$1020",
-                listingType: "auction",
-                endTime: "2025-07-12T11:11"
-            },
-            {
-                id: "7",
-                image: "../images/TheScream.jpg",
-                title: "The Scream (1893)",
-                description: "An iconic expressionist painting of a figure on a bridge, with a distorted, screaming face.",
-                category: "Expressionism",
-                size: "20x30 cm",
-                price: "$940",
-                listingType: "auction",
-                endTime: "2025-08-12T11:11"
-            },];
-        localStorage.setItem("artworks", JSON.stringify(defaultArtworks));
-        localStorage.setItem("initialized", "true");
-    }
-
-}

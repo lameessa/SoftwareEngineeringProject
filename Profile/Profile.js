@@ -46,8 +46,51 @@ function initializeDefaultArtworks() {
                 size: "10x15 cm",
                 price: "$400",
                 listingType: "marketplace"
-            }
-        ];
+            },
+            {
+                id: "4",
+                image: "../images/Cafeterrasse-bei-Nacht.jpg",
+                title: "Cafe Terrace at Night (1890)",
+                description: "This painting of a colorful outdoor view is a picturesque work, the vision of a relaxed spectator who enjoys the charm of his surrounding without any moral concern.",
+                category: "Post-Impressionism",
+                size: "10x15 cm",
+                price: "$8800",
+                listingType: "auction",
+                endTime: "2025-05-12T11:11"
+            },
+            {
+                id: "5",
+                image: "../images/StarryNight.jpg",
+                title: "The Starry Night (1889)",
+                description: "A swirling night sky over a small town, a powerful and emotional depiction of Van Gogh’s inner turmoil.",
+                category: "Post-Impressionism",
+                size: "24x36 cm",
+                price: "$1000",
+                listingType: "auction",
+                endTime: "2025-06-12T11:11"
+            },
+            {
+                id: "6",
+                image: "../images/MonaLisa.jpg",
+                title: "Mona Lisa (1503–1506)",
+                description: "The enigmatic portrait of a woman that has captivated viewers for centuries, created by Leonardo da Vinci.",
+                category: "Renaissance",
+                size: "50x70 cm",
+                price: "$1020",
+                listingType: "auction",
+                endTime: "2025-07-12T11:11"
+            },
+            {
+                id: "7",
+                image: "../images/TheScream.jpg",
+                title: "The Scream (1893)",
+                description: "An iconic expressionist painting of a figure on a bridge, with a distorted, screaming face.",
+                category: "Expressionism",
+                size: "20x30 cm",
+                price: "$940",
+                listingType: "auction",
+                endTime: "2025-08-12T11:11"
+            },];
         localStorage.setItem("artworks", JSON.stringify(defaultArtworks));
         localStorage.setItem("initialized", "true");
     }
