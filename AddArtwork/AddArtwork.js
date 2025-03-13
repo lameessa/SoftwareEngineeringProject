@@ -24,7 +24,7 @@ function handleImageUpload() {
 document.addEventListener("DOMContentLoaded", function () {
     let listingRadios = document.querySelectorAll('input[name="listing-type"]');
     listingRadios.forEach(radio => radio.checked = false);
-    
+
     document.getElementById("marketplace-fields").classList.add("hidden");
     document.getElementById("auction-fields").classList.add("hidden");
 });
@@ -73,41 +73,41 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Select both the Marketplace Price and Auction Starting Price fields
     let priceFields = document.querySelectorAll("#artwork-price, #starting-price");
-    
+
     // Apply event listeners
     priceFields.forEach(field => {
         field.addEventListener("input", formatPriceInput);
         field.addEventListener("focus", ensureDollarSign); // Adds "$" if empty when clicked
     });
 });
-	// JavaScript to handle the clicks for the elements
-	document.addEventListener("DOMContentLoaded", function() {
+// JavaScript to handle the clicks for the elements
+document.addEventListener("DOMContentLoaded", function () {
 
-        // Redirect to index.html when clicking on the logo
-        document.querySelector(".logo").addEventListener("click", function() {
-            window.location.href = "../Home/index.html";
-        });
-        
-        // Redirect to Wishlist.html when clicking on the wishlist icon
-        document.querySelector("#wishlist-header").addEventListener("click", function() {
-            window.location.href = "../Wishlist/Wishlist.html";
-        });
-        
-        // Redirect to Profile.html when clicking on the profile icon
-        document.querySelector("#profile-header").addEventListener("click", function() {
-            window.location.href = "../Profile/Profile.html";
-        });
-        
-        });
+    // Redirect to index.html when clicking on the logo
+    document.querySelector(".logo").addEventListener("click", function () {
+        window.location.href = "../Home/index.html";
+    });
 
+    // Redirect to Wishlist.html when clicking on the wishlist icon
+    document.querySelector("#wishlist-header").addEventListener("click", function () {
+        window.location.href = "../Wishlist/Wishlist.html";
+    });
 
+    // Redirect to Profile.html when clicking on the profile icon
+    document.querySelector("#profile-header").addEventListener("click", function () {
+        window.location.href = "../Profile/Profile.html";
+    });
+
+});
 
 
 
 
 
-        // add artwork to profile
-        document.addEventListener("DOMContentLoaded", function () {
+
+
+// add artwork to profile
+document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("artwork-form").addEventListener("submit", function (event) {
         event.preventDefault(); // Prevent form submission
 
@@ -117,6 +117,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const size = document.getElementById("artwork-size").value;
         const description = document.getElementById("artwork-description").value;
         const listingType = document.querySelector("input[name='listing-type']:checked")?.value;
+        const auctionEnd = document.getElementById("auction-end").value;
 
         if (!listingType) {
             alert("Please select a listing type.");
@@ -128,16 +129,15 @@ document.addEventListener("DOMContentLoaded", function () {
             price = document.getElementById("artwork-price").value || "0.00";
         } else if (listingType === "auction") {
             price = document.getElementById("starting-price").value || "0.00";
-            const auctionEnd = document.getElementById("auction-end").value;
-        
+
             if (!auctionEnd) {
                 alert("Please select an auction end date.");
                 return;
             }
-        
+
             // Save auctionEnd to localStorage if needed
         }
-        
+
 
         // Handle file selection (store base64 for now)
         const file = imageInput.files[0];
@@ -159,7 +159,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 size: size,
                 description: description,
                 price: price,
-                listingType: listingType // Save whether it's marketplace or auction
+                listingType: listingType, // Save whether it's marketplace or auction
+                createdBy: "currentUser", // TODO: associate artwork by user
+                endTime: auctionEnd,
             });
 
             localStorage.setItem("artworks", JSON.stringify(artworks));

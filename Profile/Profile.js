@@ -25,7 +25,8 @@ function initializeDefaultArtworks() {
                 category: "Abstract",
                 size: "40x50 cm",
                 price: "$500",
-                listingType: "marketplace"
+                listingType: "marketplace",
+                createdBy: "currentUser"
             },
             {
                 id: "2",
@@ -35,7 +36,8 @@ function initializeDefaultArtworks() {
                 category: "Realism",
                 size: "13x18 cm",
                 price: "$700",
-                listingType: "marketplace"
+                listingType: "marketplace",
+                createdBy: "currentUser"
             },
             {
                 id: "3",
@@ -45,7 +47,8 @@ function initializeDefaultArtworks() {
                 category: "Expressionism",
                 size: "10x15 cm",
                 price: "$400",
-                listingType: "marketplace"
+                listingType: "marketplace",
+                createdBy: "currentUser"
             },
             {
                 id: "4",
@@ -118,6 +121,7 @@ function loadArtworks() {
 
     // Display artworks if available
     artworks.forEach((art) => {
+        if (art.createdBy=== "currentUser") {
         const artItem = document.createElement("div");
         artItem.classList.add("art-item");
 
@@ -133,7 +137,7 @@ function loadArtworks() {
             <p><a href="../Edit/Edit.html" class="edit-icon">✎</a></p>
         `;
 
-        artContainer.appendChild(artItem);
+        artContainer.appendChild(artItem);}
     });
 
     console.log("Loaded artworks:", artworks); // Debugging: Check loaded artworks
