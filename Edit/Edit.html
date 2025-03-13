@@ -21,8 +21,8 @@
                 <li><a href="../Cart/Cart.html">Cart</a></li>
             </ul>
             <div class="icons">
-                <img src="../images/heart.png" alt="Wishlist">
-                <img src="../images/profile.png" alt="Profile">
+                <img src="../images/heart.png" alt="Wishlist" id="wishlist-header">
+                <img src="../images/profile.png" alt="Profile" id="profile-header">
             </div>
         </nav>
     </header>
@@ -119,5 +119,28 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 	</script>
+	
+			<script>
+	// JavaScript to handle the clicks for the elements
+	document.addEventListener("DOMContentLoaded", function() {
+
+    // Redirect to index.html when clicking on the logo
+    document.querySelector(".logo").addEventListener("click", function() {
+        window.location.href = "index.html";
+    });
+
+    // Redirect to Wishlist.html when clicking on the wishlist icon
+    document.querySelector("#wishlist-header").addEventListener("click", function() {
+        window.location.href = "../Wishlist/Wishlist.html";
+    });
+
+    // Redirect to Profile.html when clicking on the profile icon
+    document.querySelector("#profile-header").addEventListener("click", function() {
+        window.location.href = "../Profile/Profile.html";
+    });
+
+	});
+
+</script>
 </body>
 </html>
