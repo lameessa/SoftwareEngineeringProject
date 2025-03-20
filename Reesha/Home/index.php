@@ -39,7 +39,9 @@ $is_logged_in = isset($_SESSION['user_id']); // Assume 'user_id' is stored in se
                 in a world where every piece tells a story, every artist finds a voice, <br>
                 and every collector discovers meaning in art. <br>
                 <span id="s2">Reesha is more than a gallery—it’s a movement redefining art..</span>
-                <span id="s3"><a href="../Login/Login.php">Enter Your Gallery!</a></span>
+                <?php if (!$is_logged_in): ?> 
+                    <span id="s3"><a href="../Login/Login.php">Enter Your Gallery!</a></span>
+                <?php endif; ?>
             </p>
         </div>
     </main>
