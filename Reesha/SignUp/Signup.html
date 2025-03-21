@@ -14,19 +14,17 @@
         </div>
         <nav>
             <ul class="nav-links">
-                <li><a href="../Home/index.html">Home</a></li>
-
+                <li><a href="../Home/index.php">Home</a></li>
             </ul>
-
         </nav>
     </header>
     
     <main class="signup-container">
         <div class="signup-box">
-            <div class="image"></div> <!-- This is where the image will go -->
+            <div class="image"></div>
             <div class="form">
                 <h2>Create an Account</h2>
-                <form id="signupForm">
+                <form action="signup.php" method="POST" enctype="multipart/form-data">
                     <label for="name">Full Name</label>
                     <input type="text" id="name" name="name" required>
                     
@@ -49,27 +47,16 @@
     </main>
 
     <footer>
-<footer>
-    <p>&copy; 2025 Reesha. All rights reserved.</p>
-</footer>
+        <p>&copy; 2025 Reesha. All rights reserved.</p>
+    </footer>
 
-<script>
-    // JavaScript to handle the clicks for the elements
+    <script>
     document.addEventListener("DOMContentLoaded", function() {
-        // Redirect to index.html when clicking on the logo
+        // Redirect to index.php when clicking on the logo
         document.querySelector(".logo").addEventListener("click", function() {
-            window.location.href = "../Home/index.html";
+            window.location.href = "index.php";
         });
-    }); 
-</script>
-
-<script>
-    document.getElementById("signupForm").addEventListener("submit", function(event) {
-        event.preventDefault(); // Prevents the default form submission
-        alert("Sign Up Successful! Redirecting to Home Page..."); // Optional message
-        window.location.href = "../Home/index.html"; // ✅ Make sure this path is correct
-    });
-</script>
-
+      });
+    </script>
 </body>
 </html>
