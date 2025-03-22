@@ -11,7 +11,7 @@ $port = '8889';
 // Create connection
 $conn = mysqli_connect($host, $dbUser, $dbPass, $dbName, $port);
 
-//  Check connection
+// Check connection
 if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
@@ -19,51 +19,62 @@ if (!$conn) {
 // Process form when submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Sanitize and validate user inputs
-    $name = mysqli_real_escape_string($conn, $_POST['name']);
-    $username = mysqli_real_escape_string($conn, $_POST['username']);
+    $name = mysqli_real_escape_string($conn, $_POST['name']);        // Full Name
+    $username = mysqli_real_escape_string($conn, $_POST['username']); // UserID (Primary Key)
     $email = mysqli_real_escape_string($conn, $_POST['email']);
-    $password = $_POST['password'];
+    $password = mysqli_real_escape_string($conn, $_POST['password']); // Plain text password (⚠️ Only for testing!)
 
     // Check if any field is empty (basic validation)
     if (empty($name) || empty($username) || empty($email) || empty($password)) {
         $error = "Please fill in all fields.";
     } else {
-        // Check if username already exists
-        $checkQuery = "SELECT * FROM User WHERE UserName = '$username'";
+        // Check if UserID (username) already exists
+        $checkQuery = "SELECT * FROM User WHERE UserID = '$username'";
         $checkResult = mysqli_query($conn, $checkQuery);
 
         if (mysqli_num_rows($checkResult) > 0) {
-            $error = "Username already exists. Please choose another.";
+            $error = "This username already exists. Please choose another.";
         } else {
-            //  Hash password
-            $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-
             // Handle profile photo upload
             $profilePhoto = $_FILES['ProfilePhoto'];
             $targetDir = "../images/";
-            $fileName = uniqid() . "_" . basename($profilePhoto["name"]);
+
+            // Get file extension
+            $fileExtension = pathinfo($profilePhoto["name"], PATHINFO_EXTENSION);
+
+            // Generate unique filename using uniqid()
+            $fileName = "ArtistPhoto" . uniqid() . "." . $fileExtension;
+
+            // Full path to save the image
             $targetFile = $targetDir . $fileName;
 
+            // Allowed image types
             $allowedTypes = ['image/jpeg', 'image/png', 'image/jpg'];
+
             if (!in_array($profilePhoto["type"], $allowedTypes)) {
                 $error = "Only JPG, JPEG, and PNG files are allowed.";
             } else {
+                // Create folder if it doesn't exist
                 if (!file_exists($targetDir)) {
                     mkdir($targetDir, 0777, true);
                 }
 
+                // Move the uploaded file
                 if (!move_uploaded_file($profilePhoto["tmp_name"], $targetFile)) {
                     $error = "Failed to upload profile photo.";
                 } else {
-                    //  Insert the new user into the database
-                    $insertQuery = "INSERT INTO User (UserName, Email, UserPic, Password)
-                                    VALUES ('$username', '$email', '$fileName', '$hashedPassword')";
+                    // Save relative file path
+                    $photoPath = "../images/" . $fileName;
+
+                    // Insert user data into the database
+                    $insertQuery = "INSERT INTO User (UserID, UserName, Email, UserPic, Password)
+                                    VALUES ('$username', '$name', '$email', '$photoPath', '$password')";
 
                     if (mysqli_query($conn, $insertQuery)) {
-                        //  Save username in the session as user_id
+                        // Save the user_id in session
                         $_SESSION['user_id'] = $username;
 
-                        //  Redirect to Home page after successful signup
+                        // Redirect to profile page
                         header("Location: ../Profile/Profile.php");
                         exit();
                     } else {
@@ -75,7 +86,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
-// Close connection at the end
+// Close connection
 mysqli_close($conn);
 ?>
 
