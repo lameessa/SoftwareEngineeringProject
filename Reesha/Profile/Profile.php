@@ -32,12 +32,12 @@ if ($userResult && mysqli_num_rows($userResult) > 0) {
     $fullName = $user['UserName'];
     $email = $user['Email'];
     $profilePic = $user['UserPic'] ? $user['UserPic'] : '../images/profile-placeholder.png'; // Fallback profile pic
-    $bio=$user['Bio'];
+    
 } else {
     $fullName = "Unknown User";
     $email = "";
     $profilePic = '../images/profile-placeholder.png';
-    $bio='';
+
 }
 
 // Handle deleting selected artworks
@@ -101,7 +101,7 @@ mysqli_close($conn);
         <h1><?php echo htmlspecialchars($fullName); ?></h1>
         <p>@<?php echo htmlspecialchars($userID); ?></p>
         <p><?php echo htmlspecialchars($email); ?></p>
-        <p class="bio"><?php echo htmlspecialchars($bio); ?></p>
+       
         <a href="SignOut.php" class="logout-link">Log Out</a>
 
     </div>
@@ -136,7 +136,7 @@ mysqli_close($conn);
                             <p>Available</p>
 
                             <p>
-                                <a href="../Edit/edit.php?artworkID=<?php echo $art['ArtworkID']; ?>" class="edit-icon">✎</a>
+                                <a href="../Edit/Edit.php?artworkID=<?php echo $art['ArtworkID']; ?>" class="edit-icon">✎</a>
                             </p>
                         </div>
                     <?php endwhile; ?>
