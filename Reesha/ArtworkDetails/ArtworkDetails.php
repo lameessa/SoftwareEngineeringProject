@@ -4,6 +4,11 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to c
 Click nbfs://nbhost/SystemFileSystem/Templates/Scripting/EmptyPHPWebPage.php to edit this template
 -->
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+session_start();
+
 $host = "localhost";
 $dbUser = "root";
 $dbPass = "root";
@@ -12,6 +17,49 @@ $dbName = "reesha";
 $conn = mysqli_connect($host, $dbUser, $dbPass, $dbName);
 if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
+}
+
+$_SESSION['UserID'] = 'batool999';
+$userID = $_SESSION['UserID'];
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    print_r($_POST); // للتأكد
+
+    $artID = intval($_POST['artwork_id']);
+    
+if (isset($_POST['add_to_cart'])) {
+    $check = mysqli_query($conn, "SELECT * FROM cart WHERE UserID='$userID' AND ArtworkID=$artID");
+
+    if (mysqli_num_rows($check) > 0) {
+        $message = "This artwork is already in your cart.";
+    } else {
+        $sql = "INSERT INTO cart (UserID, ArtworkID) VALUES ('$userID', $artID)";
+        if (mysqli_query($conn, $sql)) {
+            $message = "Artwork successfully added to your cart.";
+        } else {
+            $message = "An error occurred while adding the artwork.";
+        }
+    }
+}
+
+
+
+
+if (isset($_POST['add_to_wishlist'])) {
+    $check = mysqli_query($conn, "SELECT * FROM wishlist WHERE UserID='$userID' AND ArtworkID=$artID");
+
+    if (mysqli_num_rows($check) > 0) {
+        $message = "This artwork is already in your wishlist.";
+    } else {
+        $sql = "INSERT INTO wishlist (UserID, ArtworkID) VALUES ('$userID', $artID)";
+        if (mysqli_query($conn, $sql)) {
+            $message = "Artwork successfully added to your wishlist.";
+        } else {
+            $message = "An error occurred while adding the artwork to your wishlist.";
+        }
+    }
+}
+
 }
 
 if (isset($_GET['id'])) {
@@ -59,8 +107,12 @@ if (isset($_GET['id'])) {
 </header>
 
 <main>
+
+
     <div class="container">
+
         <div class="left">
+
             <div class="content">
                 <h1 id="art-title"><?= htmlspecialchars($art['Title']) ?></h1>
                 <p>Description: <?= htmlspecialchars($art['Descreption']) ?></p>
@@ -69,10 +121,23 @@ if (isset($_GET['id'])) {
                 <p id="price">Price: $<?= htmlspecialchars($art['Price']) ?></p>
                 <p>Size: <?= htmlspecialchars($art['Size']) ?></p>
                 <p>Available</p>
-                <div class="buttons-container">
-                    <button class="add-to-cart">Add to Cart</button>
-                    <img src="../images/heart.png" alt="Wishlist" class="wishlist">
-                </div>
+                    <?php if (isset($message)): ?>
+    <div class="custom-toast">
+        <?= $message ?>
+    </div>
+<?php endif; ?>
+<div class="buttons-container">
+    <form method="POST">
+        <input type="hidden" name="artwork_id" value="<?= $art['ArtworkID'] ?>">
+        <button type="submit" name="add_to_cart" class="add-to-cart">Add to Cart</button>
+<button type="submit" name="add_to_wishlist" class="wishlist-btn">
+    <img src="../images/heart.png" alt="Wishlist" class="wishlist-icon">
+</button>
+
+    </form>
+
+</div>
+
             </div>
         </div>
         <div class="right">
@@ -81,6 +146,8 @@ if (isset($_GET['id'])) {
             </div>
         </div>
     </div>
+
+
 </main>
 
 <footer>
