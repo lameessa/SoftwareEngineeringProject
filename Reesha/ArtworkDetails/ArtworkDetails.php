@@ -23,7 +23,7 @@ $_SESSION['UserID'] = 'batool999';
 $userID = $_SESSION['UserID'];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    print_r($_POST); // للتأكد
+    
 
     $artID = intval($_POST['artwork_id']);
     
@@ -75,7 +75,7 @@ if (isset($_GET['id'])) {
         die("artwork not found");
     }
 } else {
-    die("لم يتم تحديد العمل الفني.");
+    die("no artwork selected");
 }
 ?>
 
@@ -105,6 +105,8 @@ if (isset($_GET['id'])) {
         </div>
     </nav>
 </header>
+    
+
 
 <main>
 
@@ -121,11 +123,12 @@ if (isset($_GET['id'])) {
                 <p id="price">Price: $<?= htmlspecialchars($art['Price']) ?></p>
                 <p>Size: <?= htmlspecialchars($art['Size']) ?></p>
                 <p>Available</p>
-                    <?php if (isset($message)): ?>
+ <?php if (isset($message)): ?>
     <div class="custom-toast">
         <?= $message ?>
     </div>
 <?php endif; ?>
+
 <div class="buttons-container">
     <form method="POST">
         <input type="hidden" name="artwork_id" value="<?= $art['ArtworkID'] ?>">
