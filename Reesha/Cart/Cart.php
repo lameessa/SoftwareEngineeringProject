@@ -104,7 +104,7 @@ $total = 0;
             <p><strong>Order details</strong></p>
             <p><strong>Total:</strong> <span id="total-price" style="float: right;">$<?= $total ?></span></p>
             <input type="checkbox"> By clicking, you agree to our Terms & Conditions
-            <button class="checkout-btn">Checkout</button>
+<a href="Checkout.php" class="checkout-btn">Checkout</a>
         </div>
     </div>
 </div>
