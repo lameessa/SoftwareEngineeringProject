@@ -6,29 +6,46 @@ $db = "reesha";
 $user = "root";
 $pass = "root";
 
-$conn = new mysqli($host, $user, $pass, $db);
+// Create connection
+$conn = mysqli_connect($host, $user, $pass, $db);
 
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+// Check connection
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
 }
 
 $error = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $email = $conn->real_escape_string($_POST['email']);
-    $password = $conn->real_escape_string($_POST['password']);
+    $email = mysqli_real_escape_string($conn, $_POST['email']);
+    $password = mysqli_real_escape_string($conn, $_POST['password']);
 
-    $sql = "SELECT * FROM user WHERE Email='$email' AND Password='$password'";
-    $result = $conn->query($sql);
+    $sql = "SELECT * FROM user WHERE Email = ?";
+    $stmt = mysqli_prepare($conn, $sql);
+    mysqli_stmt_bind_param($stmt, "s", $email);
+    mysqli_stmt_execute($stmt);
 
-    if ($result->num_rows == 1) {
-        $_SESSION['email'] = $email;
-        header("Location: ../Home/index.html");
-        exit();
+    $result = mysqli_stmt_get_result($stmt);
+
+    if ($row = mysqli_fetch_assoc($result)) {
+        // Compare plain text password
+        if ($password === $row['Password']) {
+               $_SESSION['email'] = $row['Email'];
+    $_SESSION['username'] = $row['Username'];
+    $_SESSION['user_id'] = $row['UserID']; // ← ADD THIS LINE // Optional
+            header("Location: ../Home/index.php");
+            exit();
+        } else {
+            $error = "Incorrect username or password.";
+        }
     } else {
         $error = "Incorrect username or password.";
     }
+
+    mysqli_stmt_close($stmt);
 }
+
+mysqli_close($conn);
 ?>
 
 <!-- HTML Login Form -->
@@ -91,4 +108,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </script>
 </body>
 </html>
+
+
 
