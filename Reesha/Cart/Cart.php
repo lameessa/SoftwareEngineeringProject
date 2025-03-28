@@ -16,7 +16,7 @@ if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
-$userID = $_SESSION['UserID'] ?? 'batool999';
+$userID = $_SESSION['user_id'] ?? 'batool999';
 
 // حذف العمل من السلة
 if (isset($_GET['remove'])) {
