@@ -227,7 +227,7 @@ unset($_SESSION['flash']);
         document.querySelectorAll('.art-clickable').forEach(img => {
             img.addEventListener('click', function () {
                 const artId = this.getAttribute('data-id');
-                window.location.href = `../ArtDetails/ArtDetails.php?id=${artId}`;
+                window.location.href = `../ArtworkDetails/ArtworkDetails.php?id=${artId}`;
             });
         });
 
