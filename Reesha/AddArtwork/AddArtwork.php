@@ -1,4 +1,8 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 session_start();
 
 // Ensure the user is logged in
@@ -14,9 +18,9 @@ $host = "localhost";
 $dbUser = "root";
 $dbPass = "root";
 $dbName = "reesha";
-$port = '8889';
 
-$conn = mysqli_connect($host, $dbUser, $dbPass, $dbName, $port);
+
+$conn = mysqli_connect($host, $dbUser, $dbPass, $dbName);
 
 if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());

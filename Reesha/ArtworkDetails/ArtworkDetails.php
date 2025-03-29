@@ -19,8 +19,11 @@ if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
-$_SESSION['UserID'] = 'batool999';
-$userID = $_SESSION['UserID'];
+$userID = $_SESSION['user_id'] ?? null;
+if (!$userID) {
+    header("Location: ../Login/Login.php");
+    exit();
+}
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
@@ -94,14 +97,14 @@ if (isset($_GET['id'])) {
     </div>
     <nav>
         <ul class="nav-links">
-            <li><a href="../Home/index.html">Home</a></li>
-            <li><a href="../Search/Search.html">Search</a></li>
-            <li><a href="../Auction/Auction.html">Auctions</a></li>
+            <li><a href="../Home/index.php">Home</a></li>
+            <li><a href="../Search/Search.php">Search</a></li>
+            <li><a href="../Auction/Auction.php">Auctions</a></li>
             <li><a href="../Cart/Cart.php">Cart</a></li>
         </ul>
         <div class="icons">
-            <img src="../images/heart.png" alt="Wishlist" id="wishlist-header">
-            <img src="../images/profile.png" alt="Profile" id="profile-header">
+            <img src="../images/heart.png" alt="Wishlist" id="wishlist-header" onclick="window.location.href='../Wishlist/Wishlist.php'">
+            <img src="../images/profile.png" alt="Profile" id="profile-header" onclick="window.location.href='../Profile/Profile.php'" >
         </div>
     </nav>
 </header>

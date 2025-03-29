@@ -1,4 +1,8 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 session_start();
 
 // Redirect if not logged in
@@ -14,9 +18,10 @@ $host = "localhost";
 $dbUser = "root";
 $dbPass = "root";
 $dbName = "reesha";
-$port = '8889';
 
-$conn = mysqli_connect($host, $dbUser, $dbPass, $dbName, $port);
+
+$conn = mysqli_connect($host, $dbUser, $dbPass, $dbName);
+
 
 if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
@@ -46,13 +51,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete_selected'])) {
         $selected = $_POST['selected_artworks'];
         $selectedIDs = implode(',', array_map('intval', $selected));
 
-        $deleteQuery = "DELETE FROM Artwork WHERE ArtworkID IN ($selectedIDs) AND UserID = '$userID'";
+// First delete from Auction table (child), then from Artwork (parent)
+$deleteAuctionQuery = "DELETE FROM Auction WHERE ArtworkID IN ($selectedIDs)";
+mysqli_query($conn, $deleteAuctionQuery); // Even if it fails silently, Artwork deletion won't break
 
-        if (mysqli_query($conn, $deleteQuery)) {
-            $message = "Selected artworks deleted successfully.";
-        } else {
-            $message = "Error deleting artworks: " . mysqli_error($conn);
-        }
+$deleteArtworkQuery = "DELETE FROM Artwork WHERE ArtworkID IN ($selectedIDs) AND UserID = '$userID'";
+if (mysqli_query($conn, $deleteArtworkQuery)) {
+    $message = "Selected artworks deleted successfully.";
+} else {
+    $message = "Error deleting artworks: " . mysqli_error($conn);
+}
+
+
+
     } else {
         $message = "No artworks selected for deletion.";
     }
@@ -147,7 +158,7 @@ mysqli_close($conn);
         </div>
 
         <div class="artwork-buttons">
-            <button type="button" id="add-artwork" onclick="window.location.href='../Add/addartwork.php';">Add New Artwork</button>
+            <button type="button" id="add-artwork" onclick="window.location.href='../addartwork/addartwork.php';">Add New Artwork</button>
             <button type="submit" id='delete-artwork' name="delete_selected" class="delete-btn">Delete Selected Artworks</button>
         </div>
     </form>
