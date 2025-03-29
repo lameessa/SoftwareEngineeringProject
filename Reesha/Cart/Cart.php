@@ -46,6 +46,7 @@ $total = 0;
 <head>
     <meta charset="UTF-8">
     <title>My Cart</title>
+
     <link rel="stylesheet" href="cart.css">
 </head>
 <body>

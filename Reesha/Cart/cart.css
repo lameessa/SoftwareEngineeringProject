@@ -142,7 +142,7 @@ padding:0.5em;
 
 .checkout-btn {
     display: block;
-    width: calc(100% - 40px); /* تعديل العرض ليتناسب مع الـ padding */
+    width: calc(80% - 80px); /* تعديل العرض ليتناسب مع الـ padding */
     padding: 10px;
     margin: 10px 0; /* تعديل الـ margin */
     background-color: #513c2e;

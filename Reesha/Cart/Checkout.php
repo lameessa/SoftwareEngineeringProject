@@ -6,7 +6,12 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Scripting/EmptyPHPWebPage.php to 
 <?php
 session_start();
 $conn = mysqli_connect("localhost", "root", "root", "reesha");
-$userID = $_SESSION['UserID'] ?? 'batool999';
+
+$userID = $_SESSION['user_id'] ?? null;
+if (!$userID) {
+    header("Location: ../Login/Login.php");
+    exit();
+}
 
 $paymentComplete = false;
 
