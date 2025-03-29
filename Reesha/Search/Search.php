@@ -249,21 +249,23 @@ unset($_SESSION['flash']);
     }
 
     function updateArtistProfile(artworks) {
-        const query = searchBar.value.trim().toLowerCase();
-        const match = artworks.find(art => art.UserName.toLowerCase() === query);
+    const query = searchBar.value.trim().toLowerCase();
+    const match = artworks.find(art => art.UserName.toLowerCase() === query);
 
-        if (match) {
-            profileName.textContent = match.UserName;
-            profilePhoto.src = match.UserPic;
-            profileSection.classList.remove('hidden');
+    if (match) {
+        profileName.textContent = match.UserName;
+        profilePhoto.src = match.UserPic;
+        profileSection.classList.remove('hidden');
 
-            profileSection.onclick = () => {
-                window.location.href = `../Profile/Profile.php?artist=${encodeURIComponent(match.UserName)}`;
-            };
-        } else {
-            profileSection.classList.add('hidden');
-        }
+        // Redirect using artist_id
+        profileSection.onclick = () => {
+            window.location.href = `../Profile/Profile.php?artistID=${match.ArtistID}`;
+        };
+    } else {
+        profileSection.classList.add('hidden');
     }
+}
+
 
   document.addEventListener("DOMContentLoaded", () => {
     <?php if ($flashMessage): ?>

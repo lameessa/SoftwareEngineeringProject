@@ -19,7 +19,7 @@ $category = isset($_GET['category']) ? mysqli_real_escape_string($conn, $_GET['c
 $size = isset($_GET['size']) ? mysqli_real_escape_string($conn, $_GET['size']) : 'all';
 
 // Build SQL query with filters
-$sql = "SELECT artwork.ArtworkID, artwork.*, user.UserPic 
+$sql = "SELECT artwork.ArtworkID, artwork.*, user.UserPic, user.UserID AS ArtistID
         FROM artwork 
         JOIN user ON artwork.UserName = user.UserName
         WHERE artwork.Price <= $maxPrice";
@@ -41,8 +41,6 @@ $artworks = [];
 
 if (mysqli_num_rows($result) > 0) {
     while ($row = mysqli_fetch_assoc($result)) {
-        // Ensure ArtPic is properly encoded for URL
-        $row['ArtPic'] = $row['ArtPic'];
         $artworks[] = $row;
     }
 }
