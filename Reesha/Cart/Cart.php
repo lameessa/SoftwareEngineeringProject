@@ -16,7 +16,11 @@ if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
-$userID = $_SESSION['user_id'] ?? 'batool999';
+$userID = $_SESSION['user_id'] ?? null;
+if (!$userID) {
+    header("Location: ../Login/Login.php");
+    exit();
+}
 
 // حذف العمل من السلة
 if (isset($_GET['remove'])) {
@@ -52,14 +56,14 @@ $total = 0;
     </div>
     <nav>
         <ul class="nav-links">
-            <li><a href="../Home/index.html">Home</a></li>
-            <li><a href="../Search/Search.html">Search</a></li>
-            <li><a href="../Auction/Auction.html">Auctions</a></li>
+            <li><a href="../Home/index.php">Home</a></li>
+            <li><a href="../Search/Search.php">Search</a></li>
+            <li><a href="../Auction/Auction.php">Auctions</a></li>
             <li><a href="Cart.php">Cart</a></li>
         </ul>
         <div class="icons">
-            <img src="../images/heart.png" alt="Wishlist" id="wishlist-header">
-            <img src="../images/profile.png" alt="Profile" id="profile-header">
+           <img src="../images/heart.png" alt="Wishlist" id="wishlist-header" onclick="window.location.href='../Wishlist/Wishlist.php'">
+            <img src="../images/profile.png" alt="Profile" id="profile-header" onclick="window.location.href='../Profile/Profile.php'" >
         </div>
     </nav>
 </header>
@@ -100,12 +104,12 @@ $total = 0;
             <?php endif; ?>
         </div>
 
-        <div class="checkout-section">
-            <p><strong>Order details</strong></p>
-            <p><strong>Total:</strong> <span id="total-price" style="float: right;">$<?= $total ?></span></p>
-            <input type="checkbox"> By clicking, you agree to our Terms & Conditions
-<a href="Checkout.php" class="checkout-btn">Checkout</a>
-        </div>
+<div class="checkout-section">
+    <p><strong>Order details</strong></p>
+    <p><strong>Total:</strong> <span id="total-price" style="float: right;">$<?= $total ?></span></p>
+    <input type="checkbox"> By clicking, you agree to our Terms & Conditions
+    <a href="checkout.php" class="checkout-btn">Checkout</a>
+</div>
     </div>
 </div>
 
