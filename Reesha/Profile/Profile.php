@@ -148,7 +148,7 @@ mysqli_close($conn);
 
                             <img src="<?php echo htmlspecialchars($art['ArtPic']); ?>" alt="<?php echo htmlspecialchars($art['Title']); ?>">
                             <h3><?php echo htmlspecialchars($art['Title']); ?></h3>
-                            <p><?php echo htmlspecialchars($art['Descreption']); ?></p>
+                            <p><?php echo htmlspecialchars($art['Description']); ?></p>
                             <p>Category: <?php echo htmlspecialchars($art['Category']); ?></p>
                             <p><?php echo htmlspecialchars($art['Size']); ?></p>
                             <p>$<?php echo htmlspecialchars($art['Price']); ?></p>

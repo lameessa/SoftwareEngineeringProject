@@ -15,18 +15,20 @@ if (!$conn) {
 $userID = $_SESSION['user_id'];
 
 $trendingQuery = "
-    SELECT a.ArtworkID, a.Title, a.ArtPic, a.Price, au.EndTime
+    SELECT a.ArtworkID, a.Title, a.ArtPic, au.CurrentBid, au.EndTime
     FROM Artwork a
     JOIN Auction au ON a.ArtworkID = au.ArtworkID
+    WHERE au.EndTime > NOW()
 ";
 $trendingResult = mysqli_query($conn, $trendingQuery);
 
 $userQuery = "
-    SELECT a.ArtworkID, a.Title, a.ArtPic, a.Price, au.EndTime
+    SELECT a.ArtworkID, a.Title, a.ArtPic, au.currentBid, au.EndTime, au.HighestBidderID
     FROM Artwork a
     JOIN Auction au ON a.ArtworkID = au.ArtworkID
     WHERE a.UserID = '$userID'
 ";
+
 $userResult = mysqli_query($conn, $userQuery);
 ?>
 
@@ -174,24 +176,31 @@ $userResult = mysqli_query($conn, $userQuery);
             <div class="tab-content tab-content-active" data-tab="1">
                 <div class="auction-row">
                     <?php while ($row = mysqli_fetch_assoc($trendingResult)) : ?>
-                        <div class="auction-item">
-                            <img src="<?php echo $row['ArtPic']; ?>" alt="<?php echo $row['Title']; ?>">
-                            <p class="art-name"><?php echo $row['Title']; ?></p>
-                            <p class="art-price">$<?php echo $row['Price']; ?></p>
-                            <p class="time-left" data-endtime="<?php echo $row['EndTime']; ?>">Loading...</p>
-                        </div>
+<a href="../AuctionDetails/AuctionDetails.php?id=<?php echo $row['ArtworkID']; ?>" style="text-decoration: none;">
+    <div class="auction-item">
+        <img src="<?php echo $row['ArtPic']; ?>" alt="<?php echo $row['Title']; ?>">
+        <p class="art-name"><?php echo $row['Title']; ?></p>
+<p class="art-price">$<?php echo number_format($row['CurrentBid'], 2); ?></p>
+        <p class="time-left" data-endtime="<?php echo $row['EndTime']; ?>">Loading...</p>
+    </div>
+</a>
+
                     <?php endwhile; ?>
                 </div>
             </div>
             <div class="tab-content" data-tab="2">
                 <div class="auction-row">
                     <?php while ($row = mysqli_fetch_assoc($userResult)) : ?>
-                        <div class="auction-item">
-                            <img src="<?php echo $row['ArtPic']; ?>" alt="<?php echo $row['Title']; ?>">
-                            <p class="art-name"><?php echo $row['Title']; ?></p>
-                            <p class="art-price">$<?php echo $row['Price']; ?></p>
-                            <p class="time-left" data-endtime="<?php echo $row['EndTime']; ?>">Loading...</p>
-                        </div>
+<a href="../AuctionDetails/AuctionDetails.php?id=<?php echo $row['ArtworkID']; ?>" style="text-decoration: none;">
+    <div class="auction-item">
+        <img src="<?php echo $row['ArtPic']; ?>" alt="<?php echo $row['Title']; ?>">
+        <p class="art-name"><?php echo $row['Title']; ?></p>
+<p class="art-price">$<?php echo number_format($row['CurrentBid'], 2); ?></p>
+
+        <p class="time-left" data-endtime="<?php echo $row['EndTime']; ?>">Loading...</p>
+    </div>
+</a>
+
                     <?php endwhile; ?>
                 </div>
             </div>

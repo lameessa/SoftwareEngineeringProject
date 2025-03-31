@@ -225,6 +225,38 @@ label {
 }
 
 
+#price {
+    font-size: 1.2em;
+    color: #ffd700; /* Gold */
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+#price small {
+    font-size: 0.7em;
+    color: #ccc;
+}
+
+#timeleft {
+    font-size: 1em;
+    color: white;
+    font-weight: bold;
+}
+
+/* White input */
+#bidAmount {
+    background-color: white;
+    color: black;
+    padding: 12px;
+    font-size: 1.1em;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 60%;
+    margin-bottom: 15px;
+    font-family: 'Playfair Display', serif;
+}
+
+
 
 footer {
     text-align: center;
