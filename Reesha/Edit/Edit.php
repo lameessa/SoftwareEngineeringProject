@@ -95,7 +95,7 @@ $availability = $artwork['Availability'] ?? 'available';
 
                     <div class="form-group">
                         <label for="description">Description:</label>
-                        <textarea id="description" name="description"><?= htmlspecialchars($artwork['Descreption']) ?></textarea>
+                        <textarea id="description" name="description"><?= htmlspecialchars($artwork['Description']) ?></textarea>
                     </div>
 
                     <div class="form-group">
