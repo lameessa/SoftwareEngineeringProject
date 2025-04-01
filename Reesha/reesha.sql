@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.1.2
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:8889
--- Generation Time: Mar 19, 2025 at 04:02 PM
--- Server version: 8.0.40
--- PHP Version: 8.3.14
+-- Host: localhost:3306
+-- Generation Time: Apr 01, 2025 at 12:33 AM
+-- Server version: 5.7.24
+-- PHP Version: 8.3.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -28,62 +28,75 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `artwork` (
-  `ArtworkID` int NOT NULL,
+  `ArtworkID` int(11) NOT NULL,
   `UserID` varchar(255) NOT NULL,
   `UserName` varchar(255) NOT NULL,
   `Title` varchar(255) NOT NULL,
-  `Descreption` text NOT NULL,
+  `Description` text NOT NULL,
   `Category` varchar(255) NOT NULL,
   `Size` varchar(255) NOT NULL,
   `Price` decimal(10,0) NOT NULL,
   `ArtPic` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `artwork`
 --
 
-INSERT INTO `artwork` (`ArtworkID`, `UserID`, `UserName`, `Title`, `Descreption`, `Category`, `Size`, `Price`, `ArtPic`) VALUES
-(1, 'Yasmin_', 'Yasmin Azzam', 'Distorta', 'A striking cubist composition, blending sharp geometry and soft hues to reveal fragmented beauty.', 'Cubism', '40x50', 480, '../images/Distorta.png'),
-(2, 'batool999', 'Batool Aziz', 'Evanscent', 'Delicate lines and muted greens swirl into a fleeting vision, like a memory slipping away.', 'Expressionism', '20x25', 890, '../images/Evanscent.png'),
-(3, 'royaa_', 'Roya Shirazi', 'Tsubasa (翼)', 'Scene of white cranes soaring over a bold red sun, framed by blooming trees and swirling clouds in a traditional Japanese style.', 'Expressionism', '10x15', 860, '../images/Tsubasa.png'),
-(4, 'no0or', 'Noor Qamar', 'Swanmoon', 'A serene and mystical depiction of two swans glowing under moonlight on still, dark waters.', 'Realism', '10x15', 380, '../images/Swanmoon.png'),
-(5, 'zaarina', 'Zarina parvaneh', 'Petals', 'White lilies in quiet bloom, capturing a moment of fragile beauty.', 'Realism', '20x25', 420, '../images/Petals.png'),
-(6, 'Faris_Alami', 'Faris Alami', 'Ebb $ Flow', 'A vibrant, layered composition of swirling patterns and oceanic blues, evoking the constant motion and rhythm of nature.', 'Abstract', '40x50', 670, '../images/EbbFlow.png'),
-(7, 'Lailaa', 'Laila Asmari', 'Family', 'A textured and minimalist scene of abstract human figures, evoking connection and togetherness.', 'Cubism', '28x36', 770, '../images/Family.png'),
-(8, 'nad1r', 'Nadir Elbaz', 'Undercurrent', 'A wild fusion of bold colors and abstract forms, pulsing with raw, untamed energy.', 'Abstract', '28x36', 760, '../images/Undercurrent.png'),
-(9, 'hiss', 'Hissah K', 'Feathers', 'A fluid exploration of color and form, capturing the delicate movement and texture of abstract feathers.', 'Abstract', '13x18', 440, '../images/Feathers.jpg'),
-(10, 'Kh_1', 'Khalid Nassar', 'Crowded', 'A reflection on isolation, where one vivid soul stands out amidst a sea of anonymity.', 'Expressionism', '20x25', 320, '../images/Crowded.jpg'),
-(11, 'Lamyaa', 'Lamya Hamad', 'Golden Meadow', 'An ode to nature’s quiet beauty, capturing a sunlit meadow in full bloom under an endless sky.', 'Realism', '10x15', 480, '../images/GoldenMeadow.jpg'),
-(12, 'Rama_A', 'Rama A', 'Cubist Kat', 'A playful fusion of geometry and whimsy, capturing the quiet elegance of a cat through a cubist lens.', 'Cubism', '10x15', 180, '../images/CubistKat.jpg');
+INSERT INTO `artwork` (`ArtworkID`, `UserID`, `UserName`, `Title`, `Description`, `Category`, `Size`, `Price`, `ArtPic`) VALUES
+(1, 'Yasmin_', 'Yasmin Azzam', 'Distorta', 'descreption1', 'Cubism', '40x50', '480', '../images/Distorta.png'),
+(2, 'batool999', 'Batool Aziz', 'Evanscent', 'descreption2', 'Expressionism', '20x25', '890', '../images/Evanscent.png'),
+(3, 'royaa_', 'Roya Shirazi', 'Tsubasa (翼)', 'descreption3', 'Expressionism', '10x15', '860', '../images/Tsubasa.png'),
+(4, 'no0or', 'Noor Qamar', 'Swanmoon', 'descreption4', 'Realism', '10x15', '380', '../images/Swanmoon.png'),
+(5, 'zaarina', 'Zarina parvaneh', 'Petals', 'descreption5', 'Realism', '20x25', '420', '../images/Petals.png'),
+(6, 'Faris_Alami', 'Faris Alami', 'Ebb $ Flow', 'descreption6', 'Abstract', '40x50', '670', '../images/EbbFlow.png'),
+(7, 'Lailaa', 'Laila Asmari', 'Family', 'descreption7', 'Cubism', '28x36', '770', '../images/Family.png'),
+(8, 'nad1r', 'Nadir Elbaz', 'Undercurrent', 'Descreption8', 'Abstract', '28x36', '760', '../images/Undercurrent.png'),
+(9, 'hiss', 'Hissah K', 'Feathers', 'Descreption9', 'Abstract', '13x18', '440', '../images/Feathers.jpg'),
+(10, 'Kh_1', 'Khalid Nassar', 'Crowded', 'Descreption10', 'Expressionism', '20x25', '320', '../images/Crowded.jpg'),
+(11, 'Lamyaa', 'Lamya Hamad', 'Golden Meadow', 'Descreption11', 'Realism', '10x15', '480', '../images/GoldenMeadow.jpg'),
+(12, 'Rama_A', 'Rama A', 'Cubist Kat', 'Descreption12', 'Cubism', '10x15', '180', '../images/CubistKat.jpg'),
+(30, 'batool999', 'Batool Aziz', 'hi', 'adfad', 'abstract', '10x15 cm', '500', '../images/Artwork_67e9f8f52ad6f.png'),
+(31, 'Faris_Alami', 'Faris Alami', 'first', 'first try', 'abstract', '13x18 cm', '500', '../images/Artwork_67e9fba1555f6.png'),
+(32, 'Faris_Alami', 'Faris Alami', 'second', 'qwdrwd', 'abstract', '13x18 cm', '500', '../images/Artwork_67e9fbc2ac36f.png');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Auction`
+-- Table structure for table `auction`
 --
 
-CREATE TABLE `Auction` (
-  `AuctionID` int NOT NULL,
-  `ArtworkID` int NOT NULL,
+CREATE TABLE `auction` (
+  `AuctionID` int(11) NOT NULL,
+  `ArtworkID` int(11) NOT NULL,
   `StartTime` datetime NOT NULL,
   `EndTime` datetime NOT NULL,
-  `StartPrice` decimal(10,2) NOT NULL,
-  `HighestBid` decimal(10,2) DEFAULT NULL,
-  `CurrentBid` decimal(10,2) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `Currentbid` decimal(10,0) NOT NULL,
+  `StartPrice` decimal(10,0) NOT NULL,
+  `Highestbid` decimal(10,0) DEFAULT NULL,
+  `HighestBidderID` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `auction`
+--
+
+INSERT INTO `auction` (`AuctionID`, `ArtworkID`, `StartTime`, `EndTime`, `Currentbid`, `StartPrice`, `Highestbid`, `HighestBidderID`) VALUES
+(14, 30, '2025-03-31 02:07:49', '2025-03-31 05:09:00', '600', '500', '600', 'Faris_Alami'),
+(15, 31, '2025-03-31 02:19:13', '2025-04-30 05:19:00', '500', '500', '500', NULL),
+(16, 32, '2025-03-31 02:19:46', '2025-04-01 05:19:00', '500', '500', '500', NULL);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Cart`
+-- Table structure for table `cart`
 --
 
-CREATE TABLE `Cart` (
-  `CartID` int NOT NULL,
-  `UserID` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
-  `ArtworkID` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE TABLE `cart` (
+  `CartID` int(11) NOT NULL,
+  `UserID` varchar(11) NOT NULL,
+  `ArtworkID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -97,14 +110,14 @@ CREATE TABLE `user` (
   `Email` varchar(255) NOT NULL,
   `UserPic` varchar(255) NOT NULL,
   `Password` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `user`
 --
 
 INSERT INTO `user` (`UserID`, `UserName`, `Email`, `UserPic`, `Password`) VALUES
-('batool999', 'Batool Aziz', 'bbatool@gmail.com', '../images/ArtistPhoto2.jpg', 'Bb040620'),
+('batool999', 'Batool Aziz', 'bbatool@gmail.com', '../images/ArtistPhoto2.jpg', '123'),
 ('Faris_Alami', 'Faris Alami', 'fariss@gmail.com', '../images/ArtistPhoto6.jpg', 'Faris&2001'),
 ('hiss', 'Hissah K', 'Hissah@gmail.com', '../images/ArtistPhoto1.jpg', 'hiss112233'),
 ('Kh_1', 'Khalid Nassar', 'Khal1d@gmail.com', '../images/ArtistPhoto10.jpg', 'Kh00112233'),
@@ -120,14 +133,14 @@ INSERT INTO `user` (`UserID`, `UserName`, `Email`, `UserPic`, `Password`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Wishlist`
+-- Table structure for table `wishlist`
 --
 
-CREATE TABLE `Wishlist` (
-  `WishlistID` int NOT NULL,
-  `UserID` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
-  `ArtworkID` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE TABLE `wishlist` (
+  `WishlistID` int(11) NOT NULL,
+  `UserID` varchar(255) NOT NULL,
+  `ArtworkID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Indexes for dumped tables
@@ -141,16 +154,17 @@ ALTER TABLE `artwork`
   ADD KEY `UserID` (`UserID`);
 
 --
--- Indexes for table `Auction`
+-- Indexes for table `auction`
 --
-ALTER TABLE `Auction`
+ALTER TABLE `auction`
   ADD PRIMARY KEY (`AuctionID`),
-  ADD KEY `ArtworkID` (`ArtworkID`);
+  ADD KEY `ArtworkID` (`ArtworkID`),
+  ADD KEY `HighestBidderID` (`HighestBidderID`);
 
 --
--- Indexes for table `Cart`
+-- Indexes for table `cart`
 --
-ALTER TABLE `Cart`
+ALTER TABLE `cart`
   ADD PRIMARY KEY (`CartID`),
   ADD KEY `UserID` (`UserID`),
   ADD KEY `ArtworkID` (`ArtworkID`);
@@ -162,9 +176,9 @@ ALTER TABLE `user`
   ADD PRIMARY KEY (`UserID`);
 
 --
--- Indexes for table `Wishlist`
+-- Indexes for table `wishlist`
 --
-ALTER TABLE `Wishlist`
+ALTER TABLE `wishlist`
   ADD PRIMARY KEY (`WishlistID`),
   ADD KEY `UserID` (`UserID`),
   ADD KEY `ArtworkID` (`ArtworkID`);
@@ -177,25 +191,25 @@ ALTER TABLE `Wishlist`
 -- AUTO_INCREMENT for table `artwork`
 --
 ALTER TABLE `artwork`
-  MODIFY `ArtworkID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `ArtworkID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
--- AUTO_INCREMENT for table `Auction`
+-- AUTO_INCREMENT for table `auction`
 --
-ALTER TABLE `Auction`
-  MODIFY `AuctionID` int NOT NULL AUTO_INCREMENT;
+ALTER TABLE `auction`
+  MODIFY `AuctionID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
--- AUTO_INCREMENT for table `Cart`
+-- AUTO_INCREMENT for table `cart`
 --
-ALTER TABLE `Cart`
-  MODIFY `CartID` int NOT NULL AUTO_INCREMENT;
+ALTER TABLE `cart`
+  MODIFY `CartID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `Wishlist`
+-- AUTO_INCREMENT for table `wishlist`
 --
-ALTER TABLE `Wishlist`
-  MODIFY `WishlistID` int NOT NULL AUTO_INCREMENT;
+ALTER TABLE `wishlist`
+  MODIFY `WishlistID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables
@@ -208,24 +222,25 @@ ALTER TABLE `artwork`
   ADD CONSTRAINT `artwork_ibfk_1` FOREIGN KEY (`UserID`) REFERENCES `user` (`UserID`);
 
 --
--- Constraints for table `Auction`
+-- Constraints for table `auction`
 --
-ALTER TABLE `Auction`
-  ADD CONSTRAINT `auction_ibfk_1` FOREIGN KEY (`ArtworkID`) REFERENCES `Artwork` (`ArtworkID`) ON DELETE CASCADE;
+ALTER TABLE `auction`
+  ADD CONSTRAINT `auction_ibfk_1` FOREIGN KEY (`ArtworkID`) REFERENCES `artwork` (`ArtworkID`),
+  ADD CONSTRAINT `auction_ibfk_2` FOREIGN KEY (`HighestBidderID`) REFERENCES `user` (`UserID`);
 
 --
--- Constraints for table `Cart`
+-- Constraints for table `cart`
 --
-ALTER TABLE `Cart`
-  ADD CONSTRAINT `cart_ibfk_1` FOREIGN KEY (`UserID`) REFERENCES `user` (`UserID`) ON DELETE CASCADE,
-  ADD CONSTRAINT `cart_ibfk_2` FOREIGN KEY (`ArtworkID`) REFERENCES `Artwork` (`ArtworkID`) ON DELETE CASCADE;
+ALTER TABLE `cart`
+  ADD CONSTRAINT `cart_ibfk_1` FOREIGN KEY (`ArtworkID`) REFERENCES `artwork` (`ArtworkID`),
+  ADD CONSTRAINT `cart_ibfk_2` FOREIGN KEY (`UserID`) REFERENCES `user` (`UserID`);
 
 --
--- Constraints for table `Wishlist`
+-- Constraints for table `wishlist`
 --
-ALTER TABLE `Wishlist`
-  ADD CONSTRAINT `wishlist_ibfk_1` FOREIGN KEY (`UserID`) REFERENCES `user` (`UserID`) ON DELETE CASCADE,
-  ADD CONSTRAINT `wishlist_ibfk_2` FOREIGN KEY (`ArtworkID`) REFERENCES `Artwork` (`ArtworkID`) ON DELETE CASCADE;
+ALTER TABLE `wishlist`
+  ADD CONSTRAINT `wishlist_ibfk_1` FOREIGN KEY (`UserID`) REFERENCES `user` (`UserID`),
+  ADD CONSTRAINT `wishlist_ibfk_2` FOREIGN KEY (`ArtworkID`) REFERENCES `artwork` (`ArtworkID`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
