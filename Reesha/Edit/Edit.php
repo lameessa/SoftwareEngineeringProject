@@ -23,22 +23,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $size = mysqli_real_escape_string($conn, $_POST['size']);
     $availability = mysqli_real_escape_string($conn, $_POST['availability'] ?? 'available');
 
-    /*$sql = "UPDATE artwork SET 
+    $sql = "UPDATE artwork SET 
                 Title = '$title',
                 Descreption = '$description',
                 Category = '$category',
                 Price = '$price',
                 Size = '$size',
                 Availability = '$availability' 
-            WHERE ArtworkID = '$artworkID'";*/
-
-$sql = "UPDATE artwork SET 
-    Title = '$title',
-    Descreption = '$description',
-    Category = '$category',
-    Price = '$price',
-    Size = '$size'
-WHERE ArtworkID = '$artworkID'";
+            WHERE ArtworkID = '$artworkID'";
 
 
 
