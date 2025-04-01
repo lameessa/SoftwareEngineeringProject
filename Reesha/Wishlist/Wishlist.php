@@ -1,5 +1,6 @@
 <?php
 session_start();
+include_once("../utils/auto_cart_check.php");
 
 // Redirect if not logged in
 if (!isset($_SESSION['user_id'])) {

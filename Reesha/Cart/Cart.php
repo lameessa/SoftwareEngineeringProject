@@ -11,6 +11,8 @@ error_reporting(E_ALL);
 
 
 session_start();
+include_once("../utils/auto_cart_check.php");
+
 $conn = mysqli_connect("localhost", "root", "root", "reesha");
 if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());

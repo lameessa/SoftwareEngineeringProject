@@ -1,5 +1,6 @@
 <?php
 session_start();
+include_once("../utils/auto_cart_check.php");
 
 // DB connection
 $conn = mysqli_connect("localhost", "root", "root", "reesha");

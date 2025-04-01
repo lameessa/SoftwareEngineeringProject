@@ -304,7 +304,7 @@ footer {
 }
 
 /* Target the auction start & end date fields */
-.auction-row input[type="datetime-local"] {
+input[type="datetime-local"] {
     color: white; /* Text color */
     border: 2px solid white; /* White border */
     background: transparent; /* Transparent background */
@@ -315,7 +315,7 @@ footer {
 }
 
 /* Change the color of the calendar icon */
-.auction-row input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+input[type="datetime-local"]::-webkit-calendar-picker-indicator {
     filter: invert(1); /* Turns the icon white */
     opacity: 0.8; /* Adjust visibility */
     cursor: pointer;

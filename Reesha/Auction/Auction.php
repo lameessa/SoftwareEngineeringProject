@@ -1,5 +1,6 @@
 <?php
 session_start();
+include_once("../utils/auto_cart_check.php");
 
 $host = "localhost";
 $dbUser = "root";
@@ -44,20 +45,23 @@ $userResult = mysqli_query($conn, $userQuery);
             margin: 0;
             padding: 0;
             height: 100%;
-            background: url('../images/auctionbackground.png') no-repeat center center fixed;
-            background-size: cover;
             position: relative;
+            font-family: sans-serif;
         }
 
-        body::before {
-            content: "";
-            position: absolute;
+        .dynamic-bg {
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            height: 300px;
-            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), transparent);
-            z-index: 0;
+            height: 100%;
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            filter: blur(15px) brightness(0.3);
+            z-index: -1;
+            transition: background-image 1s ease-in-out;
+            background-image: url('../images/auctionbackground.png');
         }
 
         header {
@@ -94,10 +98,11 @@ $userResult = mysqli_query($conn, $userQuery);
             height: 2em;
             border-radius: 10px;
             padding: 0 0.5em;
+            cursor: pointer;
         }
 
         .auction-card {
-            background-color: #1e1e1e;
+            background-color: rgba(30, 30, 30, 0.85);
             margin: 100px auto 30px auto;
             border-radius: 20px;
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
@@ -116,7 +121,6 @@ $userResult = mysqli_query($conn, $userQuery);
             font-size: 4em;
             color: #fff;
             margin: 0 auto;
-            text-align: center;
             text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6);
             border-bottom: 1px solid #fff;
             display: inline-block;
@@ -126,17 +130,193 @@ $userResult = mysqli_query($conn, $userQuery);
         .auction-card .header p {
             color: #ded0c8;
             font-size: 1em;
-            line-height: 1.6;
             margin-top: 20px;
             text-align: left;
         }
 
-        .auction-card .tabs {
-            padding: 0 30px 30px 30px;
+
+        /* Tab buttons */
+        .tab-btn {
+            background-color: transparent;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1.2em;
+            color: #333;
+            cursor: pointer;
+            font-weight: normal;
+            border-bottom: 2px solid #333;
+            transition: all 0.3s ease;
+            margin-right: 20px;
+            font-family: serif;
         }
+
+        /* Active tab button */
+        .tab-btn-active {
+            border-bottom: 2px solid #ded0c8;
+            color: #ded0c8;
+            z-index: 10;
+        }
+
+        /* Active line under the tabs */
+        .active-line {
+            height: 2px;
+            background-color: transparent;
+            transition: 0.3s ease;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content-active {
+            display: block;
+        }
+
+        .carousel-wrapper {
+            position: relative;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            padding: 2em 0;
+        }
+
+        .carousel-track {
+            display: flex;
+            transition: transform 0.6s ease-in-out;
+            gap: 2em;
+            will-change: transform;
+        }
+
+        .carousel-slide {
+            flex: 0 0 80%;
+            transform: scale(0.8);
+            opacity: 0.5;
+            transition: all 0.5s ease;
+            pointer-events: none;
+        }
+
+        .carousel-slide.active {
+            transform: scale(1);
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .slide-content {
+            display: block;
+            text-align: center;
+            color: white;
+            background-color: rgba(30, 30, 30, 0.85);
+            padding: 1em;
+            border-radius: 20px;
+            text-decoration: none;
+        }
+
+        .slide-content img {
+            width: 100%;
+            border-radius: 15px;
+            max-height: 400px;
+            object-fit: cover;
+        }
+
+        .carousel-arrow {
+            background: rgba(255, 255, 255, 0.08);
+            border: none;
+            font-size: 2em;
+            color: white;
+            padding: 0.5em 0.8em;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.2s ease;
+            z-index: 5;
+        }
+
+        .carousel-arrow:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: scale(1.15);
+        }
+
+        .no-trending-msg {
+            color: #fff;
+            font-size: 1.2em;
+            text-align: center;
+            margin: 2em 0;
+            background-color: rgba(0,0,0,0.5);
+            padding: 1em 2em;
+            border-radius: 15px;
+        }
+
+        footer {
+            color: white;
+            text-align: center;
+            margin-top: 3em;
+        }
+        
+        .auction-card .tabs {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 30px 30px 30px;
+}
+
+.sidebar {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.content {
+    max-width: 900px;
+    width: 100%;
+}
+.my-auctions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2em;
+    margin-top: 2em;
+}
+
+.my-auctions .slide-content {
+    width: 250px;
+    background-color: rgba(30, 30, 30, 0.85);
+    border-radius: 20px;
+    padding: 1em;
+    text-align: center;
+    text-decoration: none;
+}
+
+.my-auctions .slide-content img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 15px;
+}
+
+.art-price {
+    color: #ffcc00; /* elegant golden yellow */
+    font-weight: bold;
+    font-size: 1.1em;
+    margin: 0.5em 0;
+}
+
+.time-left {
+    font-size: 1em; /* just slightly bigger */
+    color: #f0f0f0;  /* softer and brighter than pure white */
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    margin-top: 0.3em;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+}
+
+
+
     </style>
 </head>
 <body>
+<div class="dynamic-bg"></div>
+
 <header>
     <div class="logo">
         <img src="../images/logo.png" alt="Reesha">
@@ -169,38 +349,44 @@ $userResult = mysqli_query($conn, $userQuery);
         <div class="sidebar">
             <button class="tab-btn tab-btn-active" data-for-tab="1">Trending Artwork</button>
             <button class="tab-btn" data-for-tab="2">My Auctions</button>
-            <div class="active-line"></div>
         </div>
         <hr>
         <div class="content">
             <div class="tab-content tab-content-active" data-tab="1">
                 <div class="auction-row">
-                    <?php while ($row = mysqli_fetch_assoc($trendingResult)) : ?>
-<a href="../AuctionDetails/AuctionDetails.php?id=<?php echo $row['ArtworkID']; ?>" style="text-decoration: none;">
-    <div class="auction-item">
-        <img src="<?php echo $row['ArtPic']; ?>" alt="<?php echo $row['Title']; ?>">
-        <p class="art-name"><?php echo $row['Title']; ?></p>
-<p class="art-price">$<?php echo number_format($row['CurrentBid'], 2); ?></p>
-        <p class="time-left" data-endtime="<?php echo $row['EndTime']; ?>">Loading...</p>
-    </div>
-</a>
-
-                    <?php endwhile; ?>
+                    <?php if (mysqli_num_rows($trendingResult) === 0): ?>
+                        <p class="no-trending-msg">No trending auctions at the moment. Check back soon!</p>
+                    <?php else: ?>
+                        <div class="carousel-wrapper">
+                            <button class="carousel-arrow left">&#10094;</button>
+                            <div class="carousel-track">
+                                <?php while ($row = mysqli_fetch_assoc($trendingResult)) : ?>
+                                    <div class="carousel-slide">
+                                        <a href="../AuctionDetails/AuctionDetails.php?id=<?php echo $row['ArtworkID']; ?>" class="slide-content">
+                                            <img src="<?php echo $row['ArtPic']; ?>" alt="<?php echo $row['Title']; ?>">
+                                            <p class="art-name"><?php echo $row['Title']; ?></p>
+                                            <p class="art-price">$<?php echo number_format($row['CurrentBid'], 2); ?></p>
+                                            <p class="time-left" data-endtime="<?php echo $row['EndTime']; ?>">Loading...</p>
+                                        </a>
+                                    </div>
+                                <?php endwhile; ?>
+                            </div>
+                            <button class="carousel-arrow right">&#10095;</button>
+                        </div>
+                    <?php endif; ?>
                 </div>
             </div>
-            <div class="tab-content" data-tab="2">
-                <div class="auction-row">
+
+<div class="tab-content" data-tab="2">
+    <div class="auction-row my-auctions">
+
                     <?php while ($row = mysqli_fetch_assoc($userResult)) : ?>
-<a href="../AuctionDetails/AuctionDetails.php?id=<?php echo $row['ArtworkID']; ?>" style="text-decoration: none;">
-    <div class="auction-item">
-        <img src="<?php echo $row['ArtPic']; ?>" alt="<?php echo $row['Title']; ?>">
-        <p class="art-name"><?php echo $row['Title']; ?></p>
-<p class="art-price">$<?php echo number_format($row['CurrentBid'], 2); ?></p>
-
-        <p class="time-left" data-endtime="<?php echo $row['EndTime']; ?>">Loading...</p>
-    </div>
-</a>
-
+                        <a href="../AuctionDetails/AuctionDetails.php?id=<?php echo $row['ArtworkID']; ?>" class="slide-content">
+                            <img src="<?php echo $row['ArtPic']; ?>" alt="<?php echo $row['Title']; ?>">
+                            <p class="art-name"><?php echo $row['Title']; ?></p>
+                            <p class="art-price">$<?php echo number_format($row['CurrentBid'], 2); ?></p>
+                            <p class="time-left" data-endtime="<?php echo $row['EndTime']; ?>">Loading...</p>
+                        </a>
                     <?php endwhile; ?>
                 </div>
             </div>
@@ -226,6 +412,7 @@ $userResult = mysqli_query($conn, $userQuery);
 
         setupTabs();
         setupTimers();
+        setupInfiniteCarousel();
     });
 
     function setupTabs() {
@@ -241,6 +428,17 @@ $userResult = mysqli_query($conn, $userQuery);
 
                 button.classList.add('tab-btn-active');
                 tabActivate.classList.add('tab-content-active');
+
+                // Handle background switch
+                const bg = document.querySelector('.dynamic-bg');
+                if (tabNumber === "1") {
+                    const activeSlide = document.querySelector('.carousel-slide.active img');
+                    if (activeSlide) {
+                        bg.style.backgroundImage = `url('${activeSlide.src}')`;
+                    }
+                } else {
+                    bg.style.backgroundImage = `url('../images/auctionbackground.png')`;
+                }
             });
         });
     }
@@ -248,6 +446,7 @@ $userResult = mysqli_query($conn, $userQuery);
     function setupTimers() {
         document.querySelectorAll('.time-left').forEach(el => {
             const endTime = el.dataset.endtime;
+            if (!endTime) return;
             const interval = setInterval(() => {
                 const now = new Date();
                 const endDate = new Date(endTime);
@@ -265,6 +464,74 @@ $userResult = mysqli_query($conn, $userQuery);
             }, 1000);
         });
     }
+
+    function setupInfiniteCarousel() {
+        const track = document.querySelector('.carousel-track');
+        if (!track || !document.querySelector('.carousel-slide')) return;
+
+        let slides = Array.from(document.querySelectorAll('.carousel-slide'));
+        const prevBtn = document.querySelector('.carousel-arrow.left');
+        const nextBtn = document.querySelector('.carousel-arrow.right');
+
+        const firstClone = slides[0].cloneNode(true);
+        const lastClone = slides[slides.length - 1].cloneNode(true);
+        firstClone.setAttribute('id', 'first-clone');
+        lastClone.setAttribute('id', 'last-clone');
+        track.appendChild(firstClone);
+        track.insertBefore(lastClone, slides[0]);
+
+        slides = Array.from(document.querySelectorAll('.carousel-slide'));
+        let currentIndex = 1;
+        const slideWidth = slides[0].offsetWidth + 32;
+
+        function updateCarousel(animate = true) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            slides[currentIndex].classList.add('active');
+            track.style.transition = animate ? 'transform 0.6s ease-in-out' : 'none';
+            const offset = (slideWidth * currentIndex) - ((track.offsetWidth - slideWidth) / 2);
+            track.style.transform = `translateX(-${offset}px)`;
+
+            const activeSlide = slides[currentIndex].querySelector('img');
+            if (activeSlide) {
+                const bg = document.querySelector('.dynamic-bg');
+                bg.style.backgroundImage = `url('${activeSlide.src}')`;
+            }
+        }
+
+        function moveToNext() {
+            if (currentIndex >= slides.length - 1) return;
+            currentIndex++;
+            updateCarousel();
+        }
+
+        function moveToPrev() {
+            if (currentIndex <= 0) return;
+            currentIndex--;
+            updateCarousel();
+        }
+
+        nextBtn.addEventListener('click', moveToNext);
+        prevBtn.addEventListener('click', moveToPrev);
+
+        track.addEventListener('transitionend', () => {
+            if (slides[currentIndex].id === 'first-clone') {
+                currentIndex = 1;
+                updateCarousel(false);
+            }
+            if (slides[currentIndex].id === 'last-clone') {
+                currentIndex = slides.length - 2;
+                updateCarousel(false);
+            }
+        });
+
+        setInterval(() => {
+            moveToNext();
+        }, 5000);
+
+        updateCarousel(false);
+    }
+    
+
 </script>
 </body>
 </html>

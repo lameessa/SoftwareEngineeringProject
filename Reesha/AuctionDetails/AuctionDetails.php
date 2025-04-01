@@ -1,5 +1,7 @@
 <?php
 session_start();
+include_once("../utils/auto_cart_check.php");
+
 date_default_timezone_set('Asia/Riyadh');
 
 $host = "localhost";
@@ -21,13 +23,17 @@ if (!$artworkID) {
 
 // Get artwork + auction + artist info
 $query = "
-    SELECT a.Title, a.Description, a.Size, a.Category, a.Price AS StartPrice, a.ArtPic, a.UserID AS OwnerID, u.UserName,
-           au.AuctionID, au.StartTime, au.EndTime, au.HighestBid, au.HighestBidderID
+    SELECT a.Title, a.Description, a.Size, a.Category, a.Price AS StartPrice, a.ArtPic,
+           a.UserID AS OwnerID, u.UserName AS SellerName,
+           au.AuctionID, au.StartTime, au.EndTime, au.HighestBid, au.HighestBidderID,
+           ub.UserName AS BidderName
     FROM Artwork a
     JOIN Auction au ON a.ArtworkID = au.ArtworkID
     JOIN User u ON a.UserID = u.UserID
+    LEFT JOIN User ub ON au.HighestBidderID = ub.UserID
     WHERE a.ArtworkID = '$artworkID'
 ";
+
 
 $result = mysqli_query($conn, $query);
 $art = mysqli_fetch_assoc($result);
@@ -37,12 +43,8 @@ if (!$art) {
 }
 
 // Get highest bidder username if exists
-$highestBidderName = null;
-if ($art['HighestBidderID']) {
-    $bidderResult = mysqli_query($conn, "SELECT UserName FROM User WHERE UserID = '{$art['HighestBidderID']}'");
-    $bidderData = mysqli_fetch_assoc($bidderResult);
-    $highestBidderName = $bidderData['UserName'] ?? null;
-}
+$highestBidderName = $art['BidderName'] ?? null;
+
 ?>
 
 <!DOCTYPE html>
@@ -97,6 +99,9 @@ if ($art['HighestBidderID']) {
     $isSeller = $userID === $art['OwnerID'];
     $auctionEnded = strtotime($art['EndTime']) <= time();
 // Auto-add to cart if winner and auction ended
+
+
+    
 if ($auctionEnded && $userID === $art['HighestBidderID']) {
     $insertCartQuery = "INSERT INTO Cart (UserID, ArtworkID) VALUES ('$userID', '$artworkID')";
     if (mysqli_query($conn, $insertCartQuery)) {

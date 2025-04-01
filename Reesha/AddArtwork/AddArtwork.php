@@ -98,9 +98,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     } else {
                         $currentDateTime = date("Y-m-d H:i:s");
 
-                        $insertArtworkQuery = "INSERT INTO Artwork (UserID, UserName, Title, Description, Size, Price, Category, ArtPic)
-                                               VALUES ('$userID', '$userName', '$title', '$description', '$size', '$startingPrice', '$category', '$imagePath')";
-
+                        $insertArtworkQuery = "INSERT INTO Artwork (UserID, UserName, Title, Description, Size, Price, Category, ArtPic, ListingType)
+                       VALUES ('$userID', '$userName', '$title', '$description', '$size', '$startingPrice', '$category', '$imagePath', 'Auction')";
                         if (mysqli_query($conn, $insertArtworkQuery)) {
                             $artworkID = mysqli_insert_id($conn);
 

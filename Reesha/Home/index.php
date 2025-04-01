@@ -1,5 +1,6 @@
 <?php
 session_start(); // Start the session
+include_once("../utils/auto_cart_check.php");
 
 // Check if the user is logged in
 $is_logged_in = isset($_SESSION['user_id']); // Assume 'user_id' is stored in session upon login

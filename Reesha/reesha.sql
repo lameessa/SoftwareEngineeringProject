@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Apr 01, 2025 at 12:33 AM
+-- Generation Time: Apr 01, 2025 at 03:54 AM
 -- Server version: 5.7.24
 -- PHP Version: 8.3.1
 
@@ -36,29 +36,66 @@ CREATE TABLE `artwork` (
   `Category` varchar(255) NOT NULL,
   `Size` varchar(255) NOT NULL,
   `Price` decimal(10,0) NOT NULL,
-  `ArtPic` varchar(255) NOT NULL
+  `ArtPic` varchar(255) NOT NULL,
+  `Availability` varchar(10) DEFAULT 'Available',
+  `ListingType` varchar(20) DEFAULT 'Marketplace'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `artwork`
 --
 
-INSERT INTO `artwork` (`ArtworkID`, `UserID`, `UserName`, `Title`, `Description`, `Category`, `Size`, `Price`, `ArtPic`) VALUES
-(1, 'Yasmin_', 'Yasmin Azzam', 'Distorta', 'descreption1', 'Cubism', '40x50', '480', '../images/Distorta.png'),
-(2, 'batool999', 'Batool Aziz', 'Evanscent', 'descreption2', 'Expressionism', '20x25', '890', '../images/Evanscent.png'),
-(3, 'royaa_', 'Roya Shirazi', 'Tsubasa (翼)', 'descreption3', 'Expressionism', '10x15', '860', '../images/Tsubasa.png'),
-(4, 'no0or', 'Noor Qamar', 'Swanmoon', 'descreption4', 'Realism', '10x15', '380', '../images/Swanmoon.png'),
-(5, 'zaarina', 'Zarina parvaneh', 'Petals', 'descreption5', 'Realism', '20x25', '420', '../images/Petals.png'),
-(6, 'Faris_Alami', 'Faris Alami', 'Ebb $ Flow', 'descreption6', 'Abstract', '40x50', '670', '../images/EbbFlow.png'),
-(7, 'Lailaa', 'Laila Asmari', 'Family', 'descreption7', 'Cubism', '28x36', '770', '../images/Family.png'),
-(8, 'nad1r', 'Nadir Elbaz', 'Undercurrent', 'Descreption8', 'Abstract', '28x36', '760', '../images/Undercurrent.png'),
-(9, 'hiss', 'Hissah K', 'Feathers', 'Descreption9', 'Abstract', '13x18', '440', '../images/Feathers.jpg'),
-(10, 'Kh_1', 'Khalid Nassar', 'Crowded', 'Descreption10', 'Expressionism', '20x25', '320', '../images/Crowded.jpg'),
-(11, 'Lamyaa', 'Lamya Hamad', 'Golden Meadow', 'Descreption11', 'Realism', '10x15', '480', '../images/GoldenMeadow.jpg'),
-(12, 'Rama_A', 'Rama A', 'Cubist Kat', 'Descreption12', 'Cubism', '10x15', '180', '../images/CubistKat.jpg'),
-(30, 'batool999', 'Batool Aziz', 'hi', 'adfad', 'abstract', '10x15 cm', '500', '../images/Artwork_67e9f8f52ad6f.png'),
-(31, 'Faris_Alami', 'Faris Alami', 'first', 'first try', 'abstract', '13x18 cm', '500', '../images/Artwork_67e9fba1555f6.png'),
-(32, 'Faris_Alami', 'Faris Alami', 'second', 'qwdrwd', 'abstract', '13x18 cm', '500', '../images/Artwork_67e9fbc2ac36f.png');
+INSERT INTO `artwork` (`ArtworkID`, `UserID`, `UserName`, `Title`, `Description`, `Category`, `Size`, `Price`, `ArtPic`, `Availability`, `ListingType`) VALUES
+(1, 'Yasmin_', 'Yasmin Azzam', 'Distorta', 'A striking cubist composition, blending sharp geometric forms with emotional resonance.', 'Cubism', '40x50', '480', '../images/Distorta.png', 'Available', 'Marketplace'),
+(2, 'batool999', 'Batool Aziz', 'Evanscent', 'Delicate lines and muted greens swirl into a fleeting impression of emotion and memory.', 'Expressionism', '20x25', '890', '../images/Evanscent.png', 'Available', 'Auction'),
+(3, 'royaa_', 'Roya Shirazi', 'Tsubasa (翼)', 'Scene of white cranes soaring over a bold red sun, capturing fleeting grace in motion.', 'Expressionism', '10x15', '860', '../images/Tsubasa.png', 'Sold', 'Marketplace'),
+(4, 'no0or', 'Noor Qamar', 'Swanmoon', 'A serene and mystical depiction of two swans glowing beneath the moonlight.', 'Realism', '10x15', '380', '../images/Swanmoon.png', 'Available', 'Marketplace'),
+(5, 'zaarina', 'Zarina parvaneh', 'Petals', 'White lilies in quiet bloom, capturing a moment of peace and gentle introspection.', 'Realism', '20x25', '420', '../images/Petals.png', 'Available', 'Marketplace'),
+(6, 'Faris_Alami', 'Faris Alami', 'Ebb $ Flow', 'A vibrant, layered composition of swirling patterns and unexpected textures.', 'Abstract', '40x50', '670', '../images/EbbFlow.png', 'Available', 'Marketplace'),
+(7, 'Lailaa', 'Laila Asmari', 'Family', 'A textured and minimalist scene of a cubist human connection frozen in time.', 'Cubism', '28x36', '770', '../images/Family.png', 'Available', 'Auction'),
+(8, 'nad1r', 'Nadir Elbaz', 'Undercurrent', 'A wild fusion of bold colors and abstract forms, portraying chaos and movement.', 'Abstract', '28x36', '760', '../images/Undercurrent.png', 'Sold', 'Marketplace'),
+(9, 'hiss', 'Hissah K', 'Feathers', 'A fluid exploration of color and form, capturing the weightlessness of flight.', 'Abstract', '13x18', '440', '../images/Feathers.jpg', 'Available', 'Auction'),
+(10, 'Kh_1', 'Khalid Nassar', 'Crowded', 'A reflection on isolation, where one vivid soul stands against a blurred crowd.', 'Expressionism', '20x25', '320', '../images/Crowded.jpg', 'Available', 'Marketplace'),
+(11, 'Lamyaa', 'Lamya Hamad', 'Golden Meadow', 'An ode to nature’s quiet beauty, capturing a sunlit field with poetic softness.', 'Realism', '10x15', '480', '../images/GoldenMeadow.jpg', 'Available', 'Marketplace'),
+(12, 'Rama_A', 'Rama A', 'Cubist Kat', 'A playful fusion of geometry and whimsy, capturing a curious feline in cubist style.', 'Cubism', '10x15', '180', '../images/CubistKat.jpg', 'Sold', 'Marketplace');
+
+--
+-- Triggers `artwork`
+--
+DELIMITER $$
+CREATE TRIGGER `insert_into_auction` AFTER INSERT ON `artwork` FOR EACH ROW BEGIN
+    -- Only insert into Auction table if ListingType is 'Auction'
+    IF NEW.ListingType = 'Auction' THEN
+        INSERT INTO auction (ArtworkID, StartTime, EndTime, StartPrice, HighestBid, CurrentBid)
+        VALUES (
+            NEW.ArtworkID,
+            NOW(),
+            DATE_ADD(NOW(), INTERVAL 7 DAY), -- sets auction end to 7 days from now
+            NEW.Price,
+            NEW.Price,
+            NEW.Price
+        );
+    END IF;
+END
+$$
+DELIMITER ;
+DELIMITER $$
+CREATE TRIGGER `update_to_auction` AFTER UPDATE ON `artwork` FOR EACH ROW BEGIN
+    -- Only insert into Auction table if ListingType was changed to 'Auction' and it wasn't already auction
+    IF NEW.ListingType = 'Auction' AND OLD.ListingType != 'Auction' THEN
+        INSERT INTO auction (ArtworkID, StartTime, EndTime, StartPrice, HighestBid, CurrentBid)
+        VALUES (
+            NEW.ArtworkID,
+            NOW(),
+            DATE_ADD(NOW(), INTERVAL 7 DAY),
+            NEW.Price,
+            NEW.Price,
+            NEW.Price
+        );
+    END IF;
+END
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -82,9 +119,9 @@ CREATE TABLE `auction` (
 --
 
 INSERT INTO `auction` (`AuctionID`, `ArtworkID`, `StartTime`, `EndTime`, `Currentbid`, `StartPrice`, `Highestbid`, `HighestBidderID`) VALUES
-(14, 30, '2025-03-31 02:07:49', '2025-03-31 05:09:00', '600', '500', '600', 'Faris_Alami'),
-(15, 31, '2025-03-31 02:19:13', '2025-04-30 05:19:00', '500', '500', '500', NULL),
-(16, 32, '2025-03-31 02:19:46', '2025-04-01 05:19:00', '500', '500', '500', NULL);
+(33, 2, '2025-04-01 06:52:32', '2025-04-08 06:52:32', '890', '890', '890', NULL),
+(34, 7, '2025-04-01 06:52:54', '2025-04-15 06:52:54', '770', '770', '770', NULL),
+(35, 9, '2025-04-01 06:53:06', '2025-04-22 06:53:06', '440', '440', '440', NULL);
 
 -- --------------------------------------------------------
 
@@ -191,19 +228,19 @@ ALTER TABLE `wishlist`
 -- AUTO_INCREMENT for table `artwork`
 --
 ALTER TABLE `artwork`
-  MODIFY `ArtworkID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `ArtworkID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 
 --
 -- AUTO_INCREMENT for table `auction`
 --
 ALTER TABLE `auction`
-  MODIFY `AuctionID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `AuctionID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `CartID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `CartID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `wishlist`
