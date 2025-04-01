@@ -21,9 +21,9 @@ $is_logged_in = isset($_SESSION['user_id']); // Assume 'user_id' is stored in se
         <nav>
             <ul class="nav-links">
                 <li><a href="index.php">Home</a></li>
-                <li><a href="../Search/Search.html">Search</a></li>
-                <li><a href="../Auction/Auction.html">Auctions</a></li>
-                <li><a href="../Cart/Cart.html">Cart</a></li>
+                <li><a href="../Search/Search.php">Search</a></li>
+                <li><a href="../Auction/Auction.php">Auctions</a></li>
+                <li><a href="../Cart/Cart.php">Cart</a></li>
             </ul>
             <div class="icons">
                 <img src="../images/heart.png" alt="Wishlist" id="wishlist-header">
@@ -53,23 +53,33 @@ $is_logged_in = isset($_SESSION['user_id']); // Assume 'user_id' is stored in se
     </footer>
 
     <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        // Redirect to index.php when clicking on the logo
-        document.querySelector(".logo").addEventListener("click", function() {
-            window.location.href = "index.php";
-        });
+document.addEventListener("DOMContentLoaded", function() {
+    const isLoggedIn = <?= $is_logged_in ? 'true' : 'false' ?>;
 
-        // Redirect to Wishlist.html when clicking on the wishlist icon
-        document.querySelector("#wishlist-header").addEventListener("click", function() {
-            window.location.href = "../Wishlist/Wishlist.html";
-        });
-
-        // Redirect to Profile.php or Login.php based on login status
-        document.querySelector("#profile-header").addEventListener("click", function() {
-            let profileLink = this.getAttribute("data-profile-link");
-            window.location.href = profileLink;
-        });
+    document.querySelector(".logo").addEventListener("click", function() {
+        window.location.href = "index.php";
     });
+
+    document.querySelector("#wishlist-header").addEventListener("click", function() {
+        if (isLoggedIn) {
+            window.location.href = "../Wishlist/Wishlist.php";
+        } else {
+            window.location.href = "../Login/Login.php";
+        }
+    });
+
+    document.querySelector("#profile-header").addEventListener("click", function() {
+        let profileLink = this.getAttribute("data-profile-link");
+        window.location.href = profileLink;
+    });
+
+    document.querySelector(".nav-links li a[href='../Cart/Cart.php']").addEventListener("click", function(event) {
+        if (!isLoggedIn) {
+            event.preventDefault();
+            window.location.href = "../Login/Login.php";
+        }
+    });
+});
     </script>
 </body>
 </html>

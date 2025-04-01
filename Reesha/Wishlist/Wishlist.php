@@ -52,9 +52,9 @@ if ($result && mysqli_num_rows($result) > 0) {
         <nav>
             <ul class="nav-links">
                 <li><a href="../Home/index.php">Home</a></li>
-                <li><a href="../Search/Search.html">Search</a></li>
-                <li><a href="../Auction/Auction.html">Auctions</a></li>
-                <li><a href="../Cart/Cart.html">Cart</a></li>
+                <li><a href="../Search/Search.php">Search</a></li>
+                <li><a href="../Auction/Auction.php">Auctions</a></li>
+                <li><a href="../Cart/Cart.php">Cart</a></li>
             </ul>
             <div class="icons">
                 <img src="../images/heart.png" alt="Wishlist" id="wishlist-header">

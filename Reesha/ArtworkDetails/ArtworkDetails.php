@@ -29,7 +29,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
 
     $artID = intval($_POST['artwork_id']);
-    
+if (isset($_GET['id'])) {
+    $artID = $_GET['id'];
+}
+
 if (isset($_POST['add_to_cart'])) {
     $check = mysqli_query($conn, "SELECT * FROM cart WHERE UserID='$userID' AND ArtworkID=$artID");
 
@@ -120,7 +123,7 @@ if (isset($_GET['id'])) {
 
             <div class="content">
                 <h1 id="art-title"><?= htmlspecialchars($art['Title']) ?></h1>
-                <p>Description: <?= htmlspecialchars($art['Descreption']) ?></p>
+                <p><?= htmlspecialchars($art['Descreption']) ?></p>
                 <p><?= htmlspecialchars($art['UserName']) ?></p>
                 <p>Category: <?= htmlspecialchars($art['Category']) ?></p>
                 <p id="price">Price: $<?= htmlspecialchars($art['Price']) ?></p>
