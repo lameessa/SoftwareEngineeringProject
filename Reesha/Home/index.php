@@ -1,5 +1,6 @@
 <?php
 session_start(); // Start the session
+include_once("../utils/notification_popup.php");
 include_once("../utils/auto_cart_check.php");
 
 // Check if the user is logged in

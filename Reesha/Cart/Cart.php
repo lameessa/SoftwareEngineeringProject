@@ -11,6 +11,7 @@ error_reporting(E_ALL);
 
 
 session_start();
+include_once("../utils/notification_popup.php");
 include_once("../utils/auto_cart_check.php");
 
 $conn = mysqli_connect("localhost", "root", "root", "reesha");

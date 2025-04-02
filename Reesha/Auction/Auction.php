@@ -1,5 +1,8 @@
 <?php
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
 session_start();
+include_once("../utils/notification_popup.php");
 include_once("../utils/auto_cart_check.php");
 
 $host = "localhost";
@@ -24,7 +27,7 @@ $trendingQuery = "
 $trendingResult = mysqli_query($conn, $trendingQuery);
 
 $userQuery = "
-    SELECT a.ArtworkID, a.Title, a.ArtPic, au.currentBid, au.EndTime, au.HighestBidderID
+    SELECT a.ArtworkID, a.Title, a.ArtPic, au.CurrentBid, au.EndTime, au.HighestBidderID
     FROM Artwork a
     JOIN Auction au ON a.ArtworkID = au.ArtworkID
     WHERE a.UserID = '$userID'
@@ -41,13 +44,15 @@ $userResult = mysqli_query($conn, $userQuery);
     <title>REESHA - Auctions</title>
     <link rel="stylesheet" href="Auction.css">
     <style>
-        body, html {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            position: relative;
-            font-family: sans-serif;
-        }
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    position: relative;
+    font-family: 'Playfair Display', serif;
+    color: #ded0c8;
+}
+
 
         .dynamic-bg {
             position: fixed;
@@ -113,13 +118,14 @@ $userResult = mysqli_query($conn, $userQuery);
         }
 
         .auction-card .header {
+            
             padding: 50px 50px 20px;
             text-align: center;
         }
 
         .auction-card .header h1 {
             font-size: 4em;
-            color: #fff;
+            color: #ded0c8;
             margin: 0 auto;
             text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6);
             border-bottom: 1px solid #fff;
@@ -303,7 +309,7 @@ $userResult = mysqli_query($conn, $userQuery);
 
 .time-left {
     font-size: 1em; /* just slightly bigger */
-    color: #f0f0f0;  /* softer and brighter than pure white */
+    color: #ded0c8;  /* softer and brighter than pure white */
     font-weight: 500;
     letter-spacing: 0.5px;
     margin-top: 0.3em;
@@ -399,6 +405,8 @@ $userResult = mysqli_query($conn, $userQuery);
 </footer>
 
 <script>
+    let isTrendingTab = true;
+
     document.addEventListener("DOMContentLoaded", function () {
         document.querySelector(".logo").addEventListener("click", function () {
             window.location.href = "../Home/index.php";
@@ -415,33 +423,41 @@ $userResult = mysqli_query($conn, $userQuery);
         setupInfiniteCarousel();
     });
 
-    function setupTabs() {
-        document.querySelectorAll('.tab-btn').forEach(button => {
-            button.addEventListener('click', () => {
-                const sidebar = button.parentElement;
-                const tabs = sidebar.parentElement;
-                const tabNumber = button.dataset.forTab;
-                const tabActivate = tabs.querySelector(`.tab-content[data-tab="${tabNumber}"]`);
+function setupTabs() {
+    const bg = document.querySelector('.dynamic-bg');
 
-                sidebar.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('tab-btn-active'));
-                tabs.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('tab-content-active'));
+    document.querySelectorAll('.tab-btn').forEach(button => {
+        button.addEventListener('click', () => {
+            const sidebar = button.parentElement;
+            const tabs = sidebar.parentElement;
+            const tabNumber = button.dataset.forTab;
+            const tabActivate = tabs.querySelector(`.tab-content[data-tab="${tabNumber}"]`);
 
-                button.classList.add('tab-btn-active');
-                tabActivate.classList.add('tab-content-active');
+            // Switch active tab
+            sidebar.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('tab-btn-active'));
+            tabs.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('tab-content-active'));
 
-                // Handle background switch
-                const bg = document.querySelector('.dynamic-bg');
-                if (tabNumber === "1") {
-                    const activeSlide = document.querySelector('.carousel-slide.active img');
-                    if (activeSlide) {
-                        bg.style.backgroundImage = `url('${activeSlide.src}')`;
-                    }
-                } else {
-                    bg.style.backgroundImage = `url('../images/auctionbackground.png')`;
-                }
-            });
-        });
+            button.classList.add('tab-btn-active');
+            tabActivate.classList.add('tab-content-active');
+
+            // ✨ Background logic
+            if (tabNumber === "1") {
+    isTrendingTab = true;
+
+    const activeSlide = document.querySelector('.carousel-slide.active img') ||
+                        document.querySelector('.carousel-slide img');
+    if (activeSlide) {
+        bg.style.backgroundImage = `url('${activeSlide.src}')`;
     }
+} else {
+    isTrendingTab = false;
+    bg.style.backgroundImage = `url('../images/auctionbackground.png')`;
+}
+
+        });
+    });
+}
+
 
     function setupTimers() {
         document.querySelectorAll('.time-left').forEach(el => {
@@ -492,10 +508,11 @@ $userResult = mysqli_query($conn, $userQuery);
             track.style.transform = `translateX(-${offset}px)`;
 
             const activeSlide = slides[currentIndex].querySelector('img');
-            if (activeSlide) {
-                const bg = document.querySelector('.dynamic-bg');
-                bg.style.backgroundImage = `url('${activeSlide.src}')`;
-            }
+if (isTrendingTab && activeSlide) {
+    const bg = document.querySelector('.dynamic-bg');
+    bg.style.backgroundImage = `url('${activeSlide.src}')`;
+}
+
         }
 
         function moveToNext() {

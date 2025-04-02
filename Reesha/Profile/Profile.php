@@ -3,8 +3,9 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 session_start();
-
+include_once("../utils/notification_popup.php");
 include_once("../utils/auto_cart_check.php");
+
 
 // Redirect if not logged in
 if (!isset($_SESSION['user_id'])) {

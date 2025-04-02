@@ -102,7 +102,20 @@ label {
 }
 
 
+.auction-status {
+    color: #ded0c8;
+    font-weight: bold;
+    font-size: 1.5rem;
 
+    margin-top: 20px;
+}
+.auction-status a {
+    color: #ded0c8;
+    text-decoration: underline;
+}
+.auction-status a:hover {
+    opacity: 0.8;
+}
 .place-bid {
     padding: 12px 20px;
     font-size: 1.2em;
@@ -239,7 +252,7 @@ label {
 
 #timeleft {
     font-size: 1em;
-    color: white;
+    color: #ded0c8;
     font-weight: bold;
 }
 

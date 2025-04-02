@@ -1,5 +1,6 @@
 <?php
 session_start();
+include_once("../utils/notification_popup.php");
 include_once("../utils/auto_cart_check.php");
 
 date_default_timezone_set('Asia/Riyadh');
@@ -135,7 +136,9 @@ if ($auctionEnded && $userID === $art['HighestBidderID']) {
         </p>
     <?php endif; ?>
 <?php else: ?>
-    <?php if (!$auctionEnded): ?>
+<?php if (!$auctionEnded): ?>
+    <?php if ($userID): ?>
+        <!-- ✅ Logged-in user can place a bid -->
         <form action="place_bid.php" method="POST">
             <input type="hidden" name="artwork_id" value="<?= $artworkID ?>">
             <label for="bidAmount">Place your bid:</label>
@@ -146,10 +149,17 @@ if ($auctionEnded && $userID === $art['HighestBidderID']) {
             </div>
         </form>
     <?php else: ?>
-        <p class="auction-status" style="font-weight: bold; color: #ccc;">
-            Auction has ended.
+        <!-- 🚫 Not logged in — show a message and redirect -->
+        <p class="auction-status" style="color: #ded0c8; font-weight: bold;">
+            Please <a href="../Login/Login.php?redirected=true">log in</a> or <a href="../SignUp/SignUp.php?redirected=true">sign up</a> to place a bid.
         </p>
     <?php endif; ?>
+<?php else: ?>
+    <p class="auction-status" style="font-weight: bold; color: #ccc;">
+        Auction has ended.
+    </p>
+<?php endif; ?>
+
 <?php endif; ?>
 
                 </div>

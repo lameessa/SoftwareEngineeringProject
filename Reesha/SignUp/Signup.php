@@ -6,10 +6,10 @@ $host = "localhost";
 $dbUser = "root";          
 $dbPass = "root";          
 $dbName = "reesha";        
-$port = '8889';              
+      
 
 // Create connection
-$conn = mysqli_connect($host, $dbUser, $dbPass, $dbName, $port);
+$conn = mysqli_connect($host, $dbUser, $dbPass, $dbName);
 
 // Check connection
 if (!$conn) {
