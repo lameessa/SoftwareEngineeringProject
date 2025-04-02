@@ -17,10 +17,24 @@ $paymentComplete = false;
 
 // إذا تم الإرسال
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirm_payment'])) {
-    // هنا يتم حذف محتويات السلة (كأن الطلب تأكد)
+    // 1. أولاً نحدث الأعمال إلى "Sold"
+    $updateQuery = "
+        UPDATE artwork
+        SET Availability = 'Sold'
+        WHERE ArtworkID IN (
+            SELECT ArtworkID FROM cart WHERE UserID = '$userID'
+        )
+    ";
+    mysqli_query($conn, $updateQuery);
+
+    // 2. بعدها نحذف السلة
     mysqli_query($conn, "DELETE FROM cart WHERE UserID='$userID'");
+
+    // 3. نعرض رسالة النجاح
     $paymentComplete = true;
-} else {
+}
+
+else {
     // جلب عناصر السلة لعرضها قبل الدفع
     $query = "
         SELECT artwork.Title, artwork.Price
