@@ -125,7 +125,8 @@ if (isset($_GET['id'])) {
 
             <div class="content">
                 <h1 id="art-title"><?= htmlspecialchars($art['Title']) ?></h1>
-                <p><?= htmlspecialchars($art['Descreption']) ?></p>
+                <p><?= htmlspecialchars($art['Description']) ?></p>
+                <p>Status: <?= htmlspecialchars($art['Availability']) ?></p>
                 <p><?= htmlspecialchars($art['UserName']) ?></p>
                 <p>Category: <?= htmlspecialchars($art['Category']) ?></p>
                 <p id="price">Price: $<?= htmlspecialchars($art['Price']) ?></p>
