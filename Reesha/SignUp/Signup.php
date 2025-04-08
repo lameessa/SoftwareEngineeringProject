@@ -6,7 +6,6 @@ $host = "localhost";
 $dbUser = "root";          
 $dbPass = "root";          
 $dbName = "reesha";        
-      
 
 // Create connection
 $conn = mysqli_connect($host, $dbUser, $dbPass, $dbName);
@@ -19,14 +18,16 @@ if (!$conn) {
 // Process form when submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Sanitize and validate user inputs
-    $name = mysqli_real_escape_string($conn, $_POST['name']);        // Full Name
-    $username = mysqli_real_escape_string($conn, $_POST['username']); // UserID (Primary Key)
+    $name = mysqli_real_escape_string($conn, $_POST['name']);
+    $username = mysqli_real_escape_string($conn, $_POST['username']);
     $email = mysqli_real_escape_string($conn, $_POST['email']);
-    $password = mysqli_real_escape_string($conn, $_POST['password']); // Plain text password (⚠️ Only for testing!)
+    $password = mysqli_real_escape_string($conn, $_POST['password']);
 
-    // Check if any field is empty (basic validation)
+    // Check if any field is empty
     if (empty($name) || empty($username) || empty($email) || empty($password)) {
         $error = "Please fill in all fields.";
+    } elseif (strlen($password) < 8) {
+        $error = "Password must be at least 8 characters long.";
     } else {
         // Check if UserID (username) already exists
         $checkQuery = "SELECT * FROM User WHERE UserID = '$username'";
@@ -41,11 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             // Get file extension
             $fileExtension = pathinfo($profilePhoto["name"], PATHINFO_EXTENSION);
-
-            // Generate unique filename using uniqid()
             $fileName = "ArtistPhoto" . uniqid() . "." . $fileExtension;
-
-            // Full path to save the image
             $targetFile = $targetDir . $fileName;
 
             // Allowed image types
@@ -54,27 +51,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (!in_array($profilePhoto["type"], $allowedTypes)) {
                 $error = "Only JPG, JPEG, and PNG files are allowed.";
             } else {
-                // Create folder if it doesn't exist
                 if (!file_exists($targetDir)) {
                     mkdir($targetDir, 0777, true);
                 }
 
-                // Move the uploaded file
                 if (!move_uploaded_file($profilePhoto["tmp_name"], $targetFile)) {
                     $error = "Failed to upload profile photo.";
                 } else {
-                    // Save relative file path
                     $photoPath = "../images/" . $fileName;
 
-                    // Insert user data into the database
+                    // ✅ Hash the password before storing it
+                    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
+                    // Insert user data
                     $insertQuery = "INSERT INTO User (UserID, UserName, Email, UserPic, Password)
-                                    VALUES ('$username', '$name', '$email', '$photoPath', '$password')";
+                                    VALUES ('$username', '$name', '$email', '$photoPath', '$hashedPassword')";
 
                     if (mysqli_query($conn, $insertQuery)) {
-                        // Save the user_id in session
                         $_SESSION['user_id'] = $username;
-
-                        // Redirect to profile page
                         header("Location: ../Profile/Profile.php");
                         exit();
                     } else {
@@ -86,11 +80,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
-// Close connection
 mysqli_close($conn);
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -118,10 +109,10 @@ mysqli_close($conn);
             <div class="image"></div>
             <div class="form">
                 <h2>Create an Account</h2>
-                                <?php if (isset($error)) : ?>
+                <?php if (isset($error)) : ?>
                     <p style="color: red;"><?php echo $error; ?></p>
                 <?php endif; ?>
-                    
+                
                 <form action="signup.php" method="POST" enctype="multipart/form-data">
                     <label for="name">Full Name</label>
                     <input type="text" id="name" name="name" required>
@@ -150,11 +141,10 @@ mysqli_close($conn);
 
     <script>
     document.addEventListener("DOMContentLoaded", function() {
-        // Redirect to index.php when clicking on the logo
         document.querySelector(".logo").addEventListener("click", function() {
             window.location.href = "../Home/index.php";
         });
-      });
+    });
     </script>
 </body>
 </html>

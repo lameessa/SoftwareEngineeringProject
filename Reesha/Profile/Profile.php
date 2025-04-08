@@ -155,7 +155,8 @@ mysqli_close($conn);
                             <p>Category: <?php echo htmlspecialchars($art['Category']); ?></p>
                             <p><?php echo htmlspecialchars($art['Size']); ?></p>
                             <p>$<?php echo htmlspecialchars($art['Price']); ?></p>
-                            <p>Available</p>
+                            <p>Availability: <?php echo htmlspecialchars($art['Availability']); ?></p>
+
 
                             <?php if ($viewingOwnProfile): ?>
                                 <p>

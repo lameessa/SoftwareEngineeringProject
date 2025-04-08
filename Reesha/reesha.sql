@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.2
+-- version 4.9.5
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Apr 01, 2025 at 03:54 AM
+-- Generation Time: Apr 08, 2025 at 05:16 PM
 -- Server version: 5.7.24
--- PHP Version: 8.3.1
+-- PHP Version: 7.4.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -154,18 +155,18 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`UserID`, `UserName`, `Email`, `UserPic`, `Password`) VALUES
-('batool999', 'Batool Aziz', 'bbatool@gmail.com', '../images/ArtistPhoto2.jpg', '123'),
-('Faris_Alami', 'Faris Alami', 'fariss@gmail.com', '../images/ArtistPhoto6.jpg', 'Faris&2001'),
-('hiss', 'Hissah K', 'Hissah@gmail.com', '../images/ArtistPhoto1.jpg', 'hiss112233'),
-('Kh_1', 'Khalid Nassar', 'Khal1d@gmail.com', '../images/ArtistPhoto10.jpg', 'Kh00112233'),
-('Lailaa', 'Laila Asmari', 'lailoo@yahoo.com', '../images/ArtistPhoto4.jpg', 'Ll$1997'),
-('Lamyaa', 'Lamya Hamad', 'lamya03@yahoo.com', '../images/ArtistPhoto11.jpg', 'Lha0310'),
-('nad1r', 'Nadir Elbaz', 'nad1r@hotmail.com', '../images/ArtistPhoto5.jpg', 'Elbaz@123'),
-('no0or', 'Noor Qamar', 'no0rQ@gmail.com', '../images/ArtistPhoto3.jpg', 'Noorq0005'),
-('Rama_A', 'Rama A', 'ramaA11@gmail.com', '../images/ArtistPhoto12.jpg', 'ramaa0207!'),
-('royaa_', 'Roya Shirazi', 'roya1@gmail.com', '../images/ArtistPhoto7.jpg', 'RS009988'),
-('Yasmin_', 'Yasmin Azzam', 'yasAzzam@hotmail.com', '../images/ArtistPhoto9.jpg', 'Yasm1999'),
-('zaarina', 'Zarina Parvaneh', 'zzrna@gmail.com', '../images/ArtistPhoto8.jpg', 'Zz112233!');
+('batool999', 'Batool Aziz', 'bbatool@gmail.com', '../images/ArtistPhoto2.jpg', '$2y$10$8u7MSfx2PVWr5ePGoyOY/O3PlbdWEDJ.F8Wf8iE1o3sm8D0/yaVZq\r\n'),
+('Faris_Alami', 'Faris Alami', 'fariss@gmail.com', '../images/ArtistPhoto6.jpg', '$2y$10$B/n1v0iToNQ7EkDtpKCyT.3LIOt5xY/4zofgnQGn2DBMgyBQnTS6e\r\n'),
+('hiss', 'Hissah K', 'Hissah@gmail.com', '../images/ArtistPhoto1.jpg', '$2y$10$FfDHKZWhf22TkLdkMGozSutE6HRGUyHPevBiQYng.MvBDfYYJW0bK\r\n'),
+('Kh_1', 'Khalid Nassar', 'Khal1d@gmail.com', '../images/ArtistPhoto10.jpg', '$2y$10$JGgYyx8UChGFEynNDPDyZeiOSDxgb9xclKXZ8AxY9jV1PXY2RGz.C\r\n'),
+('Lailaa', 'Laila Asmari', 'lailoo@yahoo.com', '../images/ArtistPhoto4.jpg', '$2y$10$tVo1dxtlXihMiULfdv1uQeqUF1EqhWEc5Wpq1A9CIwOr0GUvlMGwe\r\n'),
+('Lamyaa', 'Lamya Hamad', 'lamya03@yahoo.com', '../images/ArtistPhoto11.jpg', '$2y$10$8OSsMx0XtHlGAnP4e.S4se1gGr9Z5MnWXpRbOHkR0RzEoovGkpbMK\r\n'),
+('nad1r', 'Nadir Elbaz', 'nad1r@hotmail.com', '../images/ArtistPhoto5.jpg', '$2y$10$P6s05eIb/OIXxFfA0u4ZRO9IsgeDeZBRGuxMQdtzmxgsncWlvi6bi\r\n'),
+('no0or', 'Noor Qamar', 'no0rQ@gmail.com', '../images/ArtistPhoto3.jpg', '$2y$10$w9ASprKbJZsv7iG1bsr2ieNJ2MoWJ.kHxyG0EQlb4kwl3fnnN9Lya\r\n'),
+('Rama_A', 'Rama A', 'ramaA11@gmail.com', '../images/ArtistPhoto12.jpg', '$2y$10$wNsGbrw5RpnxHQ/YIvOe6uRVjvZczEdbN2EN/FL9wxaY3rpvZTQyC\r\n'),
+('royaa_', 'Roya Shirazi', 'roya1@gmail.com', '../images/ArtistPhoto7.jpg', '$2y$10$V.NrA54YYzRJD0rh/UQxyOZK7JDJhZmAKV9.g2E4FEX2cZ5RGm0C2\r\n'),
+('Yasmin_', 'Yasmin Azzam', 'yasAzzam@hotmail.com', '../images/ArtistPhoto9.jpg', '$2y$10$Ht1kr69ddYGHMHifjFv7ye50eyp/1ODeIfWh0Z3i7DlmUeTJeYEXS\r\n'),
+('zaarina', 'Zarina Parvaneh', 'zzrna@gmail.com', '../images/ArtistPhoto8.jpg', '$2y$10$ruXR5ZUKvklmpdZ0HQdtxOZZ9qJxF7GLkh.DzEKTxUMd49m1NBctC\r\n');
 
 -- --------------------------------------------------------
 
@@ -228,7 +229,7 @@ ALTER TABLE `wishlist`
 -- AUTO_INCREMENT for table `artwork`
 --
 ALTER TABLE `artwork`
-  MODIFY `ArtworkID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `ArtworkID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 
 --
 -- AUTO_INCREMENT for table `auction`

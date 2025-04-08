@@ -20,8 +20,6 @@ $host = "localhost";
 $dbUser = "root";
 $dbPass = "root";
 $dbName = "reesha";
-
-
 $conn = mysqli_connect($host, $dbUser, $dbPass, $dbName);
 
 if (!$conn) {
@@ -76,8 +74,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     if (!is_numeric($price)) {
                         $message = "Invalid price format.";
                     } else {
-                        $insertArtworkQuery = "INSERT INTO Artwork (UserID, UserName, Title, Description, Size, Price, Category, ArtPic)
-                                               VALUES ('$userID', '$userName', '$title', '$description', '$size', '$price', '$category', '$imagePath')";
+                        $insertArtworkQuery = "INSERT INTO Artwork (UserID, UserName, Title, Description, Size, Price, Category, ArtPic, ListingType, Availability)
+                                               VALUES ('$userID', '$userName', '$title', '$description', '$size', '$price', '$category', '$imagePath', 'Marketplace', 'Available')";
 
                         if (mysqli_query($conn, $insertArtworkQuery)) {
                             header("Location: ../Profile/Profile.php");
@@ -100,8 +98,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     } else {
                         $currentDateTime = date("Y-m-d H:i:s");
 
-                        $insertArtworkQuery = "INSERT INTO Artwork (UserID, UserName, Title, Description, Size, Price, Category, ArtPic, ListingType)
-                       VALUES ('$userID', '$userName', '$title', '$description', '$size', '$startingPrice', '$category', '$imagePath', 'Auction')";
+                        $insertArtworkQuery = "INSERT INTO Artwork (UserID, UserName, Title, Description, Size, Price, Category, ArtPic, ListingType, Availability)
+                                               VALUES ('$userID', '$userName', '$title', '$description', '$size', '$startingPrice', '$category', '$imagePath', 'Auction', 'Available')";
+
                         if (mysqli_query($conn, $insertArtworkQuery)) {
                             $artworkID = mysqli_insert_id($conn);
 
