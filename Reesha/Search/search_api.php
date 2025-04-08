@@ -22,7 +22,9 @@ $size = isset($_GET['size']) ? mysqli_real_escape_string($conn, $_GET['size']) :
 $sql = "SELECT artwork.ArtworkID, artwork.*, user.UserPic, user.UserID AS ArtistID
         FROM artwork 
         JOIN user ON artwork.UserName = user.UserName
-        WHERE artwork.Price <= $maxPrice";
+        WHERE artwork.Price <= $maxPrice
+          AND artwork.ListingType = 'Marketplace'"; // 👈 Add this line
+
 
 if (!empty($query)) {
     $sql .= " AND LOWER(artwork.UserName) LIKE LOWER('%$query%')";

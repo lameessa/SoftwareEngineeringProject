@@ -1,7 +1,7 @@
 <?php
 session_start();
-include_once("../utils/notification_popup.php");
-include_once("../utils/auto_cart_check.php");
+//include_once("../utils/notification_popup.php");
+//include_once("../utils/auto_cart_check.php");
 
 // DB connection
 $conn = mysqli_connect("localhost", "root", "root", "reesha");
@@ -9,15 +9,15 @@ if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
-// Session user
 $userID = $_SESSION['user_id'] ?? null;
-if (!$userID) {
-    header("Location: ../Login/Login.php");
-    exit();
-}
 
 // Add to Cart
 if (isset($_GET['id']) && $_GET['action'] === 'add_to_cart') {
+    if (!$userID) {
+        header("Location: ../Login/Login.php");
+        exit();
+    }
+
     $artID = intval($_GET['id']);
     $check = mysqli_query($conn, "SELECT * FROM cart WHERE UserID = '$userID' AND ArtworkID = $artID");
     if (mysqli_num_rows($check) > 0) {
@@ -32,6 +32,11 @@ if (isset($_GET['id']) && $_GET['action'] === 'add_to_cart') {
 
 // Add to Wishlist
 if (isset($_GET['id']) && $_GET['action'] === 'add_to_wishlist') {
+    if (!$userID) {
+        header("Location: ../Login/Login.php");
+        exit();
+    }
+
     $artID = intval($_GET['id']);
     $check = mysqli_query($conn, "SELECT * FROM wishlist WHERE UserID = '$userID' AND ArtworkID = $artID");
     if (mysqli_num_rows($check) > 0) {
@@ -44,9 +49,10 @@ if (isset($_GET['id']) && $_GET['action'] === 'add_to_wishlist') {
     exit;
 }
 
-// Retrieve flash message if set
+// Flash message
 $flashMessage = $_SESSION['flash'] ?? null;
 unset($_SESSION['flash']);
+
 ?>
 
 
