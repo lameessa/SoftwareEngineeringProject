@@ -7,15 +7,29 @@ include_once("../utils/notification_popup.php");
 include_once("../utils/auto_cart_check.php");
 
 
-// Redirect if not logged in
+// Allow viewing artist profiles without login if artistID is provided
 if (!isset($_SESSION['user_id'])) {
-    header("Location: ../Login/login.php");
-    exit();
-}
+    if (isset($_GET['artistID'])) {
+        // Guest viewing another artist's profile, set limited access
+        $userID = null;
+        $viewingOwnProfile = false;
+        $profileUserID = $_GET['artistID'];
+    } else {
+        // Trying to view own profile without login -> redirect
+        header("Location: ../Login/login.php");
+        exit();
+    }
+} else {
+    $userID = $_SESSION['user_id'];
+    $viewingOwnProfile = true;
+    $profileUserID = $userID;
 
-$userID = $_SESSION['user_id'];
-$viewingOwnProfile = true;
-$profileUserID = $userID;
+    // Check if we're viewing someone else's profile
+    if (isset($_GET['artistID']) && $_GET['artistID'] != $userID) {
+        $viewingOwnProfile = false;
+        $profileUserID = $_GET['artistID'];
+    }
+}
 
 // Database connection
 $host = "localhost";
@@ -28,15 +42,6 @@ if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
-// Check if we're viewing someone else's profile
-if (isset($_GET['artistID'])) {
-    $viewedUserID = $_GET['artistID'];
-
-    if ($viewedUserID != $userID) {
-        $viewingOwnProfile = false;
-        $profileUserID = $viewedUserID;
-    }
-}
 
 // Get user info of the profile being viewed
 $userQuery = "SELECT * FROM User WHERE UserID = ?";
