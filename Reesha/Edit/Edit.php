@@ -33,11 +33,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             WHERE ArtworkID = '$artworkID'";
 
 
-
-    if (mysqli_query($conn, $sql)) {
-header("Location: ../ArtworkDetails/ArtworkDetails.php?id=$artworkID");
-exit;
-    } else {
+if (mysqli_query($conn, $sql)) {
+    echo "<script>
+        alert('Changes Saved Successfully!');
+        window.location.href = '../ArtworkDetails/ArtworkDetails.php?id=$artworkID';
+    </script>";
+    exit;
+} else {
         echo "Error updating artwork: " . mysqli_error($conn);
     }
 }
