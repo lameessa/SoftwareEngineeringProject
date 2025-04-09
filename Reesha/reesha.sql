@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Apr 08, 2025 at 05:16 PM
+-- Generation Time: Apr 09, 2025 at 07:22 PM
 -- Server version: 5.7.24
 -- PHP Version: 7.4.1
 
@@ -139,6 +139,20 @@ CREATE TABLE `cart` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `notifications`
+--
+
+CREATE TABLE `notifications` (
+  `NotificationID` int(11) NOT NULL,
+  `UserID` varchar(255) NOT NULL,
+  `Message` text NOT NULL,
+  `CreatedAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `IsRead` tinyint(1) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `user`
 --
 
@@ -155,18 +169,18 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`UserID`, `UserName`, `Email`, `UserPic`, `Password`) VALUES
-('batool999', 'Batool Aziz', 'bbatool@gmail.com', '../images/ArtistPhoto2.jpg', '$2y$10$8u7MSfx2PVWr5ePGoyOY/O3PlbdWEDJ.F8Wf8iE1o3sm8D0/yaVZq\r\n'),
-('Faris_Alami', 'Faris Alami', 'fariss@gmail.com', '../images/ArtistPhoto6.jpg', '$2y$10$B/n1v0iToNQ7EkDtpKCyT.3LIOt5xY/4zofgnQGn2DBMgyBQnTS6e\r\n'),
-('hiss', 'Hissah K', 'Hissah@gmail.com', '../images/ArtistPhoto1.jpg', '$2y$10$FfDHKZWhf22TkLdkMGozSutE6HRGUyHPevBiQYng.MvBDfYYJW0bK\r\n'),
-('Kh_1', 'Khalid Nassar', 'Khal1d@gmail.com', '../images/ArtistPhoto10.jpg', '$2y$10$JGgYyx8UChGFEynNDPDyZeiOSDxgb9xclKXZ8AxY9jV1PXY2RGz.C\r\n'),
-('Lailaa', 'Laila Asmari', 'lailoo@yahoo.com', '../images/ArtistPhoto4.jpg', '$2y$10$tVo1dxtlXihMiULfdv1uQeqUF1EqhWEc5Wpq1A9CIwOr0GUvlMGwe\r\n'),
-('Lamyaa', 'Lamya Hamad', 'lamya03@yahoo.com', '../images/ArtistPhoto11.jpg', '$2y$10$8OSsMx0XtHlGAnP4e.S4se1gGr9Z5MnWXpRbOHkR0RzEoovGkpbMK\r\n'),
-('nad1r', 'Nadir Elbaz', 'nad1r@hotmail.com', '../images/ArtistPhoto5.jpg', '$2y$10$P6s05eIb/OIXxFfA0u4ZRO9IsgeDeZBRGuxMQdtzmxgsncWlvi6bi\r\n'),
-('no0or', 'Noor Qamar', 'no0rQ@gmail.com', '../images/ArtistPhoto3.jpg', '$2y$10$w9ASprKbJZsv7iG1bsr2ieNJ2MoWJ.kHxyG0EQlb4kwl3fnnN9Lya\r\n'),
-('Rama_A', 'Rama A', 'ramaA11@gmail.com', '../images/ArtistPhoto12.jpg', '$2y$10$wNsGbrw5RpnxHQ/YIvOe6uRVjvZczEdbN2EN/FL9wxaY3rpvZTQyC\r\n'),
-('royaa_', 'Roya Shirazi', 'roya1@gmail.com', '../images/ArtistPhoto7.jpg', '$2y$10$V.NrA54YYzRJD0rh/UQxyOZK7JDJhZmAKV9.g2E4FEX2cZ5RGm0C2\r\n'),
-('Yasmin_', 'Yasmin Azzam', 'yasAzzam@hotmail.com', '../images/ArtistPhoto9.jpg', '$2y$10$Ht1kr69ddYGHMHifjFv7ye50eyp/1ODeIfWh0Z3i7DlmUeTJeYEXS\r\n'),
-('zaarina', 'Zarina Parvaneh', 'zzrna@gmail.com', '../images/ArtistPhoto8.jpg', '$2y$10$ruXR5ZUKvklmpdZ0HQdtxOZZ9qJxF7GLkh.DzEKTxUMd49m1NBctC\r\n');
+('batool999', 'Batool Aziz', 'bbatool@gmail.com', '../images/ArtistPhoto2.jpg', '$2y$10$1XWp3IV7/HrXFvczLHgEnOwGGo11vevx4N26VtrEGw6lq/CwlQM8O'),
+('Faris_Alami', 'Faris Alami', 'fariss@gmail.com', '../images/ArtistPhoto6.jpg', '$2y$10$WZLzfH5cyQp8ET8acmid2.YKN.5vK7FuaNwZiAb3aLEdj13nqgpoe'),
+('hiss', 'Hissah K', 'Hissah@gmail.com', '../images/ArtistPhoto1.jpg', '$2y$10$3xddv8x3b/5LuTbrfW0db.JeU.6GMj9rVyEBXJtrO6Wf5hZpPEr52'),
+('Kh_1', 'Khalid Nassar', 'Khal1d@gmail.com', '../images/ArtistPhoto10.jpg', '$2y$10$JKowEPHp8B/JCPRTmGe8U.X1ZJ.J7ZsVRy5SOj/1wfg/vqQAsaO1y'),
+('Lailaa', 'Laila Asmari', 'lailoo@yahoo.com', '../images/ArtistPhoto4.jpg', '$2y$10$Pr5hrJNk2b6z1PDXEU3Z5O/yEpSzr.l1A0HL27Dqi6MxwSLVlodxG'),
+('Lamyaa', 'Lamya Hamad', 'lamya03@yahoo.com', '../images/ArtistPhoto11.jpg', '$2y$10$qGedl4Mwn5/Z7k3flzRvZuo6.COe8kinodlSPu627UV82.UnUEI8K'),
+('nad1r', 'Nadir Elbaz', 'nad1r@hotmail.com', '../images/ArtistPhoto5.jpg', '$2y$10$KwqTr1M2m4g8AU1Iqmb0/umMK1MRyLe/r0hzAdv2vKujpFNhHO2lu'),
+('no0or', 'Noor Qamar', 'no0rQ@gmail.com', '../images/ArtistPhoto3.jpg', '$2y$10$eTscEFbbkVPMpa5Ao8J5QOKSft6UWAbkjFmTxwxgSPEBfFamGiFXK'),
+('Rama_A', 'Rama A', 'ramaA11@gmail.com', '../images/ArtistPhoto12.jpg', '$2y$10$hwDLyMHhUBUWI3ritWLchOJu.8KQ5AiP8VTXHfhK4XWBb2FagEeui'),
+('royaa_', 'Roya Shirazi', 'roya1@gmail.com', '../images/ArtistPhoto7.jpg', '$2y$10$zAFn5BQ5IlK70T1gS4M.Fepum/YjUw91rTrbghe21K8gv0lveb5jG'),
+('Yasmin_', 'Yasmin Azzam', 'yasAzzam@hotmail.com', '../images/ArtistPhoto9.jpg', '$2y$10$Pjj.ZfqEg/P6P8b6XpyDq.FfgckwHLxzQTqa8EDR.9zIAt0tQnZaO'),
+('zaarina', 'Zarina Parvaneh', 'zzrna@gmail.com', '../images/ArtistPhoto8.jpg', '$2y$10$/EoJ/u7/bS/0meCYLpKl/.8aW1xND0GHZajlfRfhWe3Fr5.kRpH46');
 
 -- --------------------------------------------------------
 
@@ -208,6 +222,13 @@ ALTER TABLE `cart`
   ADD KEY `ArtworkID` (`ArtworkID`);
 
 --
+-- Indexes for table `notifications`
+--
+ALTER TABLE `notifications`
+  ADD PRIMARY KEY (`NotificationID`),
+  ADD KEY `UserID` (`UserID`);
+
+--
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
@@ -244,6 +265,12 @@ ALTER TABLE `cart`
   MODIFY `CartID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
+-- AUTO_INCREMENT for table `notifications`
+--
+ALTER TABLE `notifications`
+  MODIFY `NotificationID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `wishlist`
 --
 ALTER TABLE `wishlist`
@@ -272,6 +299,12 @@ ALTER TABLE `auction`
 ALTER TABLE `cart`
   ADD CONSTRAINT `cart_ibfk_1` FOREIGN KEY (`ArtworkID`) REFERENCES `artwork` (`ArtworkID`),
   ADD CONSTRAINT `cart_ibfk_2` FOREIGN KEY (`UserID`) REFERENCES `user` (`UserID`);
+
+--
+-- Constraints for table `notifications`
+--
+ALTER TABLE `notifications`
+  ADD CONSTRAINT `notifications_ibfk_1` FOREIGN KEY (`UserID`) REFERENCES `user` (`UserID`);
 
 --
 -- Constraints for table `wishlist`
