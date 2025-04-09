@@ -130,7 +130,7 @@ $availability = $artwork['Availability'] ?? 'available';
 
                     <div id="buttons">
                         <button type="submit" class="save-changes">Save Changes</button>
-                        <button type="button" class="cancel-edit" onclick="window.location.href='../ArtworkDetails/ArtworkDetails.php?id=<?= $artworkID ?>'">Cancel</button>
+                        <button type="button" class="cancel-edit" id="cancelButton">Cancel</button>
                     </div>
                 </form>
             </div>
@@ -170,6 +170,22 @@ document.addEventListener("DOMContentLoaded", function () {
     addClickListener("#profile-header", function () {
         window.location.href = "../Profile/Profile.php";
     });
+    
+    document.getElementById("editArtworkForm").addEventListener("submit", function (event) {
+        const confirmSave = confirm("Are you sure you want to save the changes?");
+        if (!confirmSave) {
+            event.preventDefault(); // cancel submission
+        }
+    });
+    
+    // Alert before canceling edits
+    document.getElementById("cancelButton").addEventListener("click", function () {
+        const confirmCancel = confirm("Are you sure you want to cancel? Unsaved changes will be lost.");
+        if (confirmCancel) {
+            window.location.href = "../ArtworkDetails/ArtworkDetails.php?id=<?= $artworkID ?>";
+        }
+    });
+
 });
 </script>
 </body>
