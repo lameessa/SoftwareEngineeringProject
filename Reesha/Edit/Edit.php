@@ -178,7 +178,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
     
-    // Alert before canceling edits
     document.getElementById("cancelButton").addEventListener("click", function () {
         const confirmCancel = confirm("Are you sure you want to cancel? Unsaved changes will be lost.");
         if (confirmCancel) {
