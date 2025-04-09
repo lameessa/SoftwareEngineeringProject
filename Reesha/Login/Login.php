@@ -28,11 +28,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $result = mysqli_stmt_get_result($stmt);
 
     if ($row = mysqli_fetch_assoc($result)) {
-        // Compare plain text password
-        if ($password === $row['Password']) {
-               $_SESSION['email'] = $row['Email'];
-    $_SESSION['username'] = $row['Username'];
-    $_SESSION['user_id'] = $row['UserID']; // ← ADD THIS LINE // Optional
+        if (password_verify($password, $row['Password'])) {
+            $_SESSION['email'] = $row['Email'];
+            $_SESSION['username'] = $row['Username'];
+            $_SESSION['user_id'] = $row['UserID']; // Optional but useful
             header("Location: ../Home/index.php");
             exit();
         } else {
@@ -46,6 +45,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 mysqli_close($conn);
+?>
+
 ?>
 
 <!-- HTML Login Form -->
