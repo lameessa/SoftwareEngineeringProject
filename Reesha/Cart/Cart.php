@@ -119,7 +119,20 @@ $total = 0;
 
 <footer>
     <p>&copy; IT320 2025 Reesha. All rights reserved.</p>
-</footer>
+</footer
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelector(".logo").addEventListener("click", function () {
+            window.location.href = "../Home/index.php";
+        });
+
+        document.querySelector(".icons a[href='../Wishlist/Wishlist.php']").addEventListener("click", function (e) {
+            e.preventDefault();
+            window.location.href = "../Wishlist/Wishlist.php";
+        });
+    });
+</script>
 </body>
 </html>
 
