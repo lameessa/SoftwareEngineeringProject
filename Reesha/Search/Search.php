@@ -70,6 +70,14 @@ unset($_SESSION['flash']);
             font-style: italic;
             color: #666;
         }
+        .noArt {
+            text-align: center;
+            padding: 50px;
+            font-style: italic;
+            color: #ded0c8;
+            margin-left: 40px;
+             white-space: nowrap;
+        }
         .error {
             color: red;
             text-align: center;
@@ -209,6 +217,13 @@ unset($_SESSION['flash']);
 
     function renderArtworks(artworks) {
         artworksContainer.innerHTML = '';
+          if (artworks.length === 0) {
+artworksContainer.innerHTML = `
+    <div class="noArt">
+        No artworks found matching your filters.
+    </div>
+`;        return;
+    }
         artworks.forEach(art => {
             const item = document.createElement('div');
             item.className = 'art-item';
