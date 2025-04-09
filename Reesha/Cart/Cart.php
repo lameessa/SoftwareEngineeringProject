@@ -119,7 +119,7 @@ $total = 0;
 
 <footer>
     <p>&copy; IT320 2025 Reesha. All rights reserved.</p>
-</footer
+</footer>
 
 <script>
     document.addEventListener("DOMContentLoaded", function () {
