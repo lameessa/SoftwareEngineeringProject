@@ -1,7 +1,7 @@
 <?php
 session_start();
-//include_once("../utils/notification_popup.php");
-//include_once("../utils/auto_cart_check.php");
+include_once("../utils/notification_popup.php");
+include_once("../utils/auto_cart_check.php");
 
 // DB connection
 $conn = mysqli_connect("localhost", "root", "root", "reesha");
@@ -123,9 +123,10 @@ unset($_SESSION['flash']);
     <aside class="filters">
         <h3>Filters</h3>
         <label for="priceRange">Price Range:</label>
+         <div class="price-range-container">
         <input type="range" id="priceRange" min="0" max="5000" step="50" value="5000">
         <span id="priceValue">$5000</span>
-
+         </div>
         <label for="category">Category:</label>
         <select id="category">
             <option value="all">All</option>
