@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $sql = "UPDATE artwork SET 
                 Title = '$title',
-                Descreption = '$description',
+                Description = '$description',
                 Category = '$category',
                 Price = '$price',
                 Size = '$size',
@@ -34,10 +34,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
 if (mysqli_query($conn, $sql)) {
-    echo "<script>
-        alert('Changes Saved Successfully!');
-        window.location.href = '../ArtworkDetails/ArtworkDetails.php?id=$artworkID';
-    </script>";
+$artworkIDJS = json_encode($artworkID); // safely encoded
+echo "<script>
+    alert('Changes Saved Successfully!');
+    window.location.href = '../ArtworkDetails/ArtworkDetails.php?id=' + $artworkIDJS;
+</script>";
+exit;
+
     exit;
 } else {
         echo "Error updating artwork: " . mysqli_error($conn);
@@ -114,10 +117,16 @@ $availability = $artwork['Availability'] ?? 'available';
                         <label for="price">Price:</label>
                         <input type="number" id="price" name="price" value="<?= htmlspecialchars($artwork['Price']) ?>">
                     </div>
-
+                    
                     <div class="form-group">
                         <label for="size">Size:</label>
-                        <input type="text" id="size" name="size" value="<?= htmlspecialchars($artwork['Size']) ?>">
+                        <select id="size" name="size">
+                            <option value="10x15 cm" <?= $artwork['Size'] == '10x15 cm' ? 'selected' : '' ?>>10x15 cm</option>
+                            <option value="13x18 cm" <?= $artwork['Size'] == '13x18 cm' ? 'selected' : '' ?>>13x18 cm</option>
+                            <option value="20x25 cm" <?= $artwork['Size'] == '20x25 cm' ? 'selected' : '' ?>>20x25 cm</option>
+                            <option value="28x36 cm" <?= $artwork['Size'] == '28x36 cm' ? 'selected' : '' ?>>28x36 cm</option>
+                            <option value="40x50 cm" <?= $artwork['Size'] == '40x50 cm' ? 'selected' : '' ?>>40x50 cm</option>
+                        </select>
                     </div>
 
                     <div class="form-group">
