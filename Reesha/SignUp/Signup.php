@@ -3,9 +3,9 @@ session_start();
 
 // Database connection variables
 $host = "localhost";
-$dbUser = "root";          
-$dbPass = "root";          
-$dbName = "reesha";        
+$dbUser = "root";
+$dbPass = "root";
+$dbName = "reesha";
 
 // Create connection
 $conn = mysqli_connect($host, $dbUser, $dbPass, $dbName);
@@ -15,64 +15,65 @@ if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
-// Process form when submitted
+$errors = [];
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Sanitize and validate user inputs
     $name = mysqli_real_escape_string($conn, $_POST['name']);
     $username = mysqli_real_escape_string($conn, $_POST['username']);
     $email = mysqli_real_escape_string($conn, $_POST['email']);
     $password = mysqli_real_escape_string($conn, $_POST['password']);
 
-    // Check if any field is empty
+    // Check for empty fields
     if (empty($name) || empty($username) || empty($email) || empty($password)) {
-        $error = "Please fill in all fields.";
+        $errors[] = "Please fill in all fields.";
     } elseif (strlen($password) < 8) {
-        $error = "Password must be at least 8 characters long.";
+        $errors[] = "Password must be at least 8 characters long.";
     } else {
-        // Check if UserID (username) already exists
+        // Check if username exists
         $checkQuery = "SELECT * FROM User WHERE UserID = '$username'";
         $checkResult = mysqli_query($conn, $checkQuery);
 
         if (mysqli_num_rows($checkResult) > 0) {
-            $error = "This username already exists. Please choose another.";
+            $errors[] = "This username already exists. Please choose another.";
         } else {
             // Handle profile photo upload
             $profilePhoto = $_FILES['ProfilePhoto'];
             $targetDir = "../images/";
 
-            // Get file extension
-            $fileExtension = pathinfo($profilePhoto["name"], PATHINFO_EXTENSION);
-            $fileName = "ArtistPhoto" . uniqid() . "." . $fileExtension;
-            $targetFile = $targetDir . $fileName;
-
-            // Allowed image types
-            $allowedTypes = ['image/jpeg', 'image/png', 'image/jpg'];
-
-            if (!in_array($profilePhoto["type"], $allowedTypes)) {
-                $error = "Only JPG, JPEG, and PNG files are allowed.";
+            // Check if file was uploaded
+            if ($profilePhoto['error'] === UPLOAD_ERR_NO_FILE) {
+                $errors[] = "Please upload a profile photo.";
             } else {
-                if (!file_exists($targetDir)) {
-                    mkdir($targetDir, 0777, true);
-                }
+                $fileExtension = pathinfo($profilePhoto["name"], PATHINFO_EXTENSION);
+                $fileName = "ArtistPhoto" . uniqid() . "." . $fileExtension;
+                $targetFile = $targetDir . $fileName;
 
-                if (!move_uploaded_file($profilePhoto["tmp_name"], $targetFile)) {
-                    $error = "Failed to upload profile photo.";
+                $allowedTypes = ['image/jpeg', 'image/png', 'image/jpg'];
+
+                if (!in_array($profilePhoto["type"], $allowedTypes)) {
+                    $errors[] = "Only JPG, JPEG, and PNG files are allowed.";
                 } else {
-                    $photoPath = "../images/" . $fileName;
+                    if (!file_exists($targetDir)) {
+                        mkdir($targetDir, 0777, true);
+                    }
 
-                    // ✅ Hash the password before storing it
-                    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-
-                    // Insert user data
-                    $insertQuery = "INSERT INTO User (UserID, UserName, Email, UserPic, Password)
-                                    VALUES ('$username', '$name', '$email', '$photoPath', '$hashedPassword')";
-
-                    if (mysqli_query($conn, $insertQuery)) {
-                        $_SESSION['user_id'] = $username;
-                        header("Location: ../Profile/Profile.php");
-                        exit();
+                    if (!move_uploaded_file($profilePhoto["tmp_name"], $targetFile)) {
+                        $errors[] = "Failed to upload profile photo.";
                     } else {
-                        $error = "Error inserting user: " . mysqli_error($conn);
+                        // All validations passed, insert into DB
+                        $photoPath = "../images/" . $fileName;
+                        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
+                        $insertQuery = "INSERT INTO User (UserID, UserName, Email, UserPic, Password)
+                                        VALUES ('$username', '$name', '$email', '$photoPath', '$hashedPassword')";
+
+                        if (mysqli_query($conn, $insertQuery)) {
+                            $_SESSION['user_id'] = $username;
+                            header("Location: ../Profile/Profile.php");
+                            exit();
+                        } else {
+                            $errors[] = "Error inserting user: " . mysqli_error($conn);
+                        }
                     }
                 }
             }
@@ -103,26 +104,31 @@ mysqli_close($conn);
             </ul>
         </nav>
     </header>
-    
+
     <main class="signup-container">
         <div class="signup-box">
             <div class="image"></div>
             <div class="form">
                 <h2>Create an Account</h2>
-                <?php if (isset($error)) : ?>
-                    <p style="color: red;"><?php echo $error; ?></p>
+
+                <?php if (!empty($errors)) : ?>
+                    <ul style="color: red;">
+                        <?php foreach ($errors as $e) : ?>
+                            <li><?php echo $e; ?></li>
+                        <?php endforeach; ?>
+                    </ul>
                 <?php endif; ?>
-                
+
                 <form action="signup.php" method="POST" enctype="multipart/form-data">
                     <label for="name">Full Name</label>
-                    <input type="text" id="name" name="name" required>
-                    
+                    <input type="text" id="name" name="name" required value="<?php echo isset($_POST['name']) ? htmlspecialchars($_POST['name']) : ''; ?>">
+
                     <label for="username">Username</label>
-                    <input type="text" id="username" name="username" required>
-                    
+                    <input type="text" id="username" name="username" required value="<?php echo isset($_POST['username']) ? htmlspecialchars($_POST['username']) : ''; ?>">
+
                     <label for="email">Email</label>
-                    <input type="email" id="email" name="email" required>
-                    
+                    <input type="email" id="email" name="email" required value="<?php echo isset($_POST['email']) ? htmlspecialchars($_POST['email']) : ''; ?>">
+
                     <label for="password">Password</label>
                     <input type="password" id="password" name="password" required>
 
