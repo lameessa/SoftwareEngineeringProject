@@ -1,5 +1,5 @@
 <?php
-session_start();
+session_start(); // ✅ Only once, at the top
 
 $host = "localhost";
 $dbUser = "root";
@@ -60,16 +60,16 @@ if ($validBid) {
         WHERE AuctionID = '$auctionID'
     ";
 
-    if (mysqli_query($conn, $updateQuery)) {
-        header("Location: AuctionDetails.php?id=$artworkID");
-        exit;
-    } else {
+if (mysqli_query($conn, $updateQuery)) {
+    header("Location: AuctionDetails.php?id=$artworkID");
+    exit;
+}
+ else {
         die("Failed to update bid.");
     }
 } else {
-    echo "<script>
-        alert('$errorMessage');
-        window.location.href = 'AuctionDetails.php?id=$artworkID';
-    </script>";
+    $_SESSION['bid_error'] = $errorMessage;
+    header("Location: AuctionDetails.php?id=$artworkID");
+    exit;
 }
 ?>

@@ -1,9 +1,15 @@
+<?php ob_start(); ?>
 <?php
 session_start();
+
+$errorMessage = $_SESSION['bid_error'] ?? null;
+unset($_SESSION['bid_error']);
+
 include_once("../utils/notification_popup.php");
 include_once("../utils/auto_cart_check.php");
 
 date_default_timezone_set('Asia/Riyadh');
+
 
 $host = "localhost";
 $dbUser = "root";
@@ -47,6 +53,7 @@ if (!$art) {
 $highestBidderName = $art['BidderName'] ?? null;
 
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -178,6 +185,10 @@ if ($auctionEnded && $userID === $art['HighestBidderID']) {
     </footer>
 
     <script>
+        window.onerror = function(message, source, lineno, colno, error) {
+    console.error("💥 JS Error:", message, "at line:", lineno, "column:", colno);
+};
+
         
         document.querySelector(".logo").addEventListener("click", () => {
             window.location.href = "../Home/index.php";
@@ -224,6 +235,16 @@ if ($auctionEnded && $userID === $art['HighestBidderID']) {
             location.reload(); // reload page when auction ends
         }, diff);
     }
+    
+    <?php if ($errorMessage): ?>
+        alert("<?= addslashes($errorMessage) ?>");
+    <?php endif; ?>
+
+
     </script>
+    <script>console.log("✅ Page finished rendering");</script>
+
 </body>
 </html>
+<?php ob_end_flush(); ?>
+
