@@ -72,6 +72,7 @@ if ($result && mysqli_num_rows($result) > 0) {
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
             transition: transform 0.2s ease;
             height: 100%;
+            position:relative;
         }
 
         .wishlist-item:hover {
@@ -119,8 +120,8 @@ if ($result && mysqli_num_rows($result) > 0) {
         <h1 class="wishlist-title">My Wishlist</h1>
         <p class="collection-desc">Save your favorite pieces, revisit them anytime, and bring home the art you love.</p>
         <div class="divider"></div>
+        <?php if (!empty($wishlist_items)): ?>
         <div class="wishlist-grid">
-            <?php if (!empty($wishlist_items)): ?>
                 <?php foreach ($wishlist_items as $item): ?>
                     <div class="wishlist-item">
                         <a style="text-decoration: none !important;" href="../ArtworkDetails/ArtworkDetails.php?id=<?= $item['ArtworkID'] ?>" class="wishlist-link">
@@ -136,10 +137,10 @@ if ($result && mysqli_num_rows($result) > 0) {
                         <span class="remove-wishlist" data-wishlist-id="<?= $item['WishlistID'] ?>">×</span>
                     </div>
                 <?php endforeach; ?>
-            <?php else: ?>
-                <p class="empty-wishlist" style="text-align:center;">Your wishlist is empty.</p>
-            <?php endif; ?>
         </div>
+        <?php else: ?>
+            <p class="empty-wishlist" style="text-align:center;">Your wishlist is empty.</p>
+        <?php endif; ?>
     </main>
 
     <footer>
