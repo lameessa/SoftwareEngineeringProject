@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Apr 09, 2025 at 07:22 PM
+-- Generation Time: Apr 10, 2025 at 05:09 PM
 -- Server version: 5.7.24
 -- PHP Version: 7.4.1
 
@@ -56,30 +56,13 @@ INSERT INTO `artwork` (`ArtworkID`, `UserID`, `UserName`, `Title`, `Description`
 (7, 'Lailaa', 'Laila Asmari', 'Family', 'A textured and minimalist scene of a cubist human connection frozen in time.', 'Cubism', '28x36', '770', '../images/Family.png', 'Available', 'Auction'),
 (8, 'nad1r', 'Nadir Elbaz', 'Undercurrent', 'A wild fusion of bold colors and abstract forms, portraying chaos and movement.', 'Abstract', '28x36', '760', '../images/Undercurrent.png', 'Sold', 'Marketplace'),
 (9, 'hiss', 'Hissah K', 'Feathers', 'A fluid exploration of color and form, capturing the weightlessness of flight.', 'Abstract', '13x18', '440', '../images/Feathers.jpg', 'Available', 'Auction'),
-(10, 'Kh_1', 'Khalid Nassar', 'Crowded', 'A reflection on isolation, where one vivid soul stands against a blurred crowd.', 'Expressionism', '20x25', '320', '../images/Crowded.jpg', 'Available', 'Marketplace'),
+(10, 'Kh_1', 'Khalid Nassar', 'Crowded', 'A reflection on isolation, where one vivid soul stands against a blurred crowd.', 'Expressionism', '20x25', '320', '../images/Crowded.jpg', 'Sold', 'Marketplace'),
 (11, 'Lamyaa', 'Lamya Hamad', 'Golden Meadow', 'An ode to nature’s quiet beauty, capturing a sunlit field with poetic softness.', 'Realism', '10x15', '480', '../images/GoldenMeadow.jpg', 'Available', 'Marketplace'),
 (12, 'Rama_A', 'Rama A', 'Cubist Kat', 'A playful fusion of geometry and whimsy, capturing a curious feline in cubist style.', 'Cubism', '10x15', '180', '../images/CubistKat.jpg', 'Sold', 'Marketplace');
 
 --
 -- Triggers `artwork`
 --
-DELIMITER $$
-CREATE TRIGGER `insert_into_auction` AFTER INSERT ON `artwork` FOR EACH ROW BEGIN
-    -- Only insert into Auction table if ListingType is 'Auction'
-    IF NEW.ListingType = 'Auction' THEN
-        INSERT INTO auction (ArtworkID, StartTime, EndTime, StartPrice, HighestBid, CurrentBid)
-        VALUES (
-            NEW.ArtworkID,
-            NOW(),
-            DATE_ADD(NOW(), INTERVAL 7 DAY), -- sets auction end to 7 days from now
-            NEW.Price,
-            NEW.Price,
-            NEW.Price
-        );
-    END IF;
-END
-$$
-DELIMITER ;
 DELIMITER $$
 CREATE TRIGGER `update_to_auction` AFTER UPDATE ON `artwork` FOR EACH ROW BEGIN
     -- Only insert into Auction table if ListingType was changed to 'Auction' and it wasn't already auction
@@ -121,7 +104,6 @@ CREATE TABLE `auction` (
 
 INSERT INTO `auction` (`AuctionID`, `ArtworkID`, `StartTime`, `EndTime`, `Currentbid`, `StartPrice`, `Highestbid`, `HighestBidderID`) VALUES
 (33, 2, '2025-04-01 06:52:32', '2025-04-08 06:52:32', '890', '890', '890', NULL),
-(34, 7, '2025-04-01 06:52:54', '2025-04-15 06:52:54', '770', '770', '770', NULL),
 (35, 9, '2025-04-01 06:53:06', '2025-04-22 06:53:06', '440', '440', '440', NULL);
 
 -- --------------------------------------------------------
@@ -250,19 +232,19 @@ ALTER TABLE `wishlist`
 -- AUTO_INCREMENT for table `artwork`
 --
 ALTER TABLE `artwork`
-  MODIFY `ArtworkID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `ArtworkID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `auction`
 --
 ALTER TABLE `auction`
-  MODIFY `AuctionID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `AuctionID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `CartID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `CartID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `notifications`
@@ -274,7 +256,7 @@ ALTER TABLE `notifications`
 -- AUTO_INCREMENT for table `wishlist`
 --
 ALTER TABLE `wishlist`
-  MODIFY `WishlistID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `WishlistID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Constraints for dumped tables
