@@ -29,12 +29,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } elseif (strlen($password) < 8) {
         $errors[] = "Password must be at least 8 characters long.";
     } else {
-        // Check if username exists
-        $checkQuery = "SELECT * FROM User WHERE UserID = '$username'";
+        // Check if username or email already exists
+        $checkQuery = "SELECT * FROM User WHERE UserID = '$username' OR Email = '$email'";
         $checkResult = mysqli_query($conn, $checkQuery);
 
         if (mysqli_num_rows($checkResult) > 0) {
-            $errors[] = "This username already exists. Please choose another.";
+            while ($row = mysqli_fetch_assoc($checkResult)) {
+                if ($row['UserID'] === $username) {
+                    $errors[] = "This username already exists. Please choose another.";
+                }
+                if ($row['Email'] === $email) {
+                    $errors[] = "This email is already registered. Please use another.";
+                }
+            }
         } else {
             // Handle profile photo upload
             $profilePhoto = $_FILES['ProfilePhoto'];
