@@ -153,6 +153,8 @@ unset($_SESSION['flash']);
             <option value="28x36">28x36 cm</option>
             <option value="40x50">40x50 cm</option>
         </select>
+        <button id="resetFilters" style="margin-top: 15px;">Reset Filters</button>
+
     </aside>
 
     <section id="artworks-container" class="artworks"></section>
@@ -175,6 +177,20 @@ unset($_SESSION['flash']);
     const profilePhoto = document.getElementById("artist-photo");
     const artworksContainer = document.getElementById("artworks-container");
     const notification = document.getElementById("notification");
+document.getElementById('resetFilters').addEventListener('click', () => {
+    // Reset form fields to default
+    searchBar.value = '';
+    priceRange.value = 5000;
+    priceValue.textContent = "$5000";
+    categoryFilter.value = 'all';
+    sizeFilter.value = 'all';
+
+    // Optionally hide the artist profile
+    profileSection.classList.add('hidden');
+
+    // Fetch unfiltered results
+    fetchFilteredResults();
+});
 
     function debounce(func, wait) {
         let timeout;
