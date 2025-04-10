@@ -2,6 +2,7 @@
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 session_start();
+
 include_once("../utils/notification_popup.php");
 include_once("../utils/auto_cart_check.php");
 
@@ -16,8 +17,6 @@ if (!$conn) {
     die("Database connection failed: " . mysqli_connect_error());
 }
 
-$userID = $_SESSION['user_id'];
-
 $trendingQuery = "
     SELECT a.ArtworkID, a.Title, a.ArtPic, au.CurrentBid, au.EndTime
     FROM Artwork a
@@ -26,14 +25,20 @@ $trendingQuery = "
 ";
 $trendingResult = mysqli_query($conn, $trendingQuery);
 
-$userQuery = "
-    SELECT a.ArtworkID, a.Title, a.ArtPic, au.CurrentBid, au.EndTime, au.HighestBidderID
-    FROM Artwork a
-    JOIN Auction au ON a.ArtworkID = au.ArtworkID
-    WHERE a.UserID = '$userID'
-";
+// Only load user's auctions if logged in
+$userID = $_SESSION['user_id'] ?? null;
+$userResult = false;
 
-$userResult = mysqli_query($conn, $userQuery);
+if ($userID) {
+    $userQuery = "
+        SELECT a.ArtworkID, a.Title, a.ArtPic, au.CurrentBid, au.EndTime, au.HighestBidderID
+        FROM Artwork a
+        JOIN Auction au ON a.ArtworkID = au.ArtworkID
+        WHERE a.UserID = '$userID'
+    ";
+    $userResult = mysqli_query($conn, $userQuery);
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -316,6 +321,19 @@ body, html {
     text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
 }
 
+.no-trending-msg a {
+    color: #ffcc00; /* Elegant golden yellow */
+    font-weight: bold;
+    text-decoration: none; /* Remove underline */
+    border-bottom: 2px solid #ffcc00; /* Add a bottom border */
+    transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+.no-trending-msg a:hover {
+    color: #f4e02f; /* Slightly lighter yellow */
+    border-color: #f4e02f; /* Change the bottom border on hover */
+    text-decoration: underline; /* Add underline on hover */
+}
 
 
     </style>
@@ -385,20 +403,23 @@ body, html {
 
 <div class="tab-content" data-tab="2">
     <div class="auction-row my-auctions">
-
-                    <?php while ($row = mysqli_fetch_assoc($userResult)) : ?>
-                        <a href="../AuctionDetails/AuctionDetails.php?id=<?php echo $row['ArtworkID']; ?>" class="slide-content">
-                            <img src="<?php echo $row['ArtPic']; ?>" alt="<?php echo $row['Title']; ?>">
-                            <p class="art-name"><?php echo $row['Title']; ?></p>
-                            <p class="art-price">$<?php echo number_format($row['CurrentBid'], 2); ?></p>
-                            <p class="time-left" data-endtime="<?php echo $row['EndTime']; ?>">Loading...</p>
-                        </a>
-                    <?php endwhile; ?>
-                </div>
-            </div>
-        </div>
-    </section>
+        <?php if (!$userID): ?>
+            <p class="no-trending-msg">Please <a href="../Login/Login.php">log in</a> to view your auctions.</p>
+        <?php elseif ($userResult && mysqli_num_rows($userResult) > 0): ?>
+            <?php while ($row = mysqli_fetch_assoc($userResult)) : ?>
+                <a href="../AuctionDetails/AuctionDetails.php?id=<?php echo $row['ArtworkID']; ?>" class="slide-content">
+                    <img src="<?php echo $row['ArtPic']; ?>" alt="<?php echo $row['Title']; ?>">
+                    <p class="art-name"><?php echo $row['Title']; ?></p>
+                    <p class="art-price">$<?php echo number_format($row['CurrentBid'], 2); ?></p>
+                    <p class="time-left" data-endtime="<?php echo $row['EndTime']; ?>">Loading...</p>
+                </a>
+            <?php endwhile; ?>
+        <?php else: ?>
+            <p class="no-trending-msg">You haven't listed any auctions yet.</p>
+        <?php endif; ?>
+    </div>
 </div>
+
 
 <footer>
     <p>&copy; IT320 2025 Reesha. All rights reserved.</p>

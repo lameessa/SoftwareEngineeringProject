@@ -84,30 +84,7 @@ padding:0.5em;
     margin-bottom: 20px;
 }
 
-.wishlist-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-}
 
-.wishlist-item {
-    background: #1e1e1e;
-    padding: 15px;
-    border-radius: 10px;
-    width: 225px;
-    text-align: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-	transition: transform 0.3s ease;
-}
-.wishlist-item:hover {
-	transform: scale(1.05);
-}
-
-.wishlist-item img {
-    width: 100%;
-    height: 75%;
-    border-radius: 5px;
-}
 
 .art-wish-text{
 	display:flex;
@@ -131,20 +108,27 @@ padding:0.5em;
 	margin:0 0.3em;
 }
 
-.art-wish-text #art-title {
+.art-wish-text #art-title,
+.art-wish-text #art-title:visited,
+.art-wish-text #art-title:active {
 	font-weight:bold;
 	font-size:1.25em;
+        color: #ded0c8;
 }
+
 .art-wish-text #price {
 	color:#d4af37;
 }
-.art-wish-text #price,.art-wish-text #artist {
+.art-wish-text #price,
+.art-wish-text #artist {
 	font-family: 'Fira Code', 'Consolas', 'Courier New', monospace;
 	font-size:0.85em;
 }
+
 .art-wish-text #art-details {
 	text-align:left;
 }
+
 .divider {
     width: 100%;
     height: 1px;
@@ -158,6 +142,59 @@ padding:0.5em;
     padding-bottom: 20px;
     color: #ded0c8;
 	text-align:center;
+}
+
+
+
+.wishlist-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+
+.wishlist-link,
+.wishlist-link:visited,
+.wishlist-link:active {
+    text-decoration: none !important;
+    color: #ded0c8;
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+}
+
+.wishlist-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Exactly 4 artworks per row */
+    gap: 30px; /* Space between artworks */
+    max-width: 1200px; /* Optional: keeps the grid from getting too wide */
+    margin: 0 auto; /* Center the grid horizontally */
+    padding: 20px;
+    box-sizing: border-box;
+}
+.wishlist-item {
+    background-color: #1e1e1e;
+    border-radius: 12px;
+    padding: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s ease;
+    height: 100%;
+}
+
+.wishlist-item:hover {
+    transform: scale(1.02);
+}
+.remove-wishlist {
+    position: absolute;
+    top: 12px;
+    right: 15px;
+    font-size: 30px;       
+    color: #ded0c8;          
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    z-index: 2;
+    transition: color 0.2s ease;
 }
 
 /* Footer */

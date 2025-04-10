@@ -145,7 +145,7 @@ if ($auctionEnded && $userID === $art['HighestBidderID']) {
             <input type="number" name="bid_amount" id="bidAmount" placeholder="Enter bid amount" required step="0.01" min="0">
             <div class="buttons-container">
                 <button type="submit" class="place-bid">Place Bid</button>
-                <img src="../images/heart.png" alt="Wishlist" class="wishlist">
+
             </div>
         </form>
     <?php else: ?>
