@@ -55,39 +55,44 @@ if ($result && mysqli_num_rows($result) > 0) {
             width: 100%;
             height: 100%;
         }
-.wishlist-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr); /* Exactly 4 artworks per row */
-    gap: 30px; /* Space between artworks */
-    max-width: 1200px; /* Optional: keeps the grid from getting too wide */
-    margin: 0 auto; /* Center the grid horizontally */
-    padding: 20px;
-    box-sizing: border-box;
-}
-.wishlist-item {
-    background-color: #1e1e1e;
-    border-radius: 12px;
-    padding: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-    transition: transform 0.2s ease;
-    height: 100%;
-}
 
-.wishlist-item:hover {
-    transform: scale(1.02);
-}
-.remove-wishlist {
-    position: absolute;
-    top: 12px;
-    right: 15px;
-    font-size: 30px;        /* Make it bigger */
-    color: #ded0c8;          /* Match your color scheme */
-    cursor: pointer;
-    background: transparent;
-    border: none;
-    z-index: 2;
-    transition: color 0.2s ease;
-}
+        .wishlist-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr); /* Exactly 4 artworks per row */
+            gap: 30px; /* Space between artworks */
+            max-width: 1200px; /* Optional: keeps the grid from getting too wide */
+            margin: 0 auto; /* Center the grid horizontally */
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .wishlist-item {
+            background-color: #1e1e1e;
+            border-radius: 12px;
+            padding: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            transition: transform 0.2s ease;
+            height: 100%;
+        }
+
+        .wishlist-item:hover {
+            transform: scale(1.02);
+        }
+        .remove-wishlist {
+            position: absolute;
+            bottom: 12px;
+            right: 15px;
+            font-size: 30px;
+            color: #ded0c8;
+            cursor: pointer;
+            background: transparent;
+            border: none;
+            z-index: 2;
+            transition: color 0.2s ease;
+        }
+
+        .remove-wishlist:hover {
+            color: #d4af37;
+        }
     </style>
 </head>
 <body>
