@@ -88,7 +88,7 @@ $highestBidderName = $art['BidderName'] ?? null;
                 <div class="content">
                     <h1 id="art-title"><?= htmlspecialchars($art['Title']) ?></h1>
                     <p id="description"><?= htmlspecialchars($art['Description']) ?></p>
-                    <p id="artist"><?= htmlspecialchars($art['UserName']) ?></p>
+                    <p id="artist"><?= htmlspecialchars($art['SellerName']) ?></p>
                     <p>Size: <?= htmlspecialchars($art['Size']) ?></p>
                     <p>Category: <?= htmlspecialchars($art['Category']) ?></p>
                     <p id="timeleft" data-endtime="<?= $art['EndTime'] ?>">Loading...</p>

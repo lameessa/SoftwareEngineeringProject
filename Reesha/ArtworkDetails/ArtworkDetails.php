@@ -21,6 +21,12 @@ if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
+$userID = $_SESSION['user_id'] ?? null;
+if (!$userID) {
+    header("Location: ../Login/Login.php");
+    exit();
+}
+
 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
